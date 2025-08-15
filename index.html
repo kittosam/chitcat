@@ -117,7 +117,555 @@
       </div>
     </div>
   </section>
-  <!-- (Truncated in this minimal pack; full content is in your canvas and not required for deployment demo) -->
+    <!-- Social proof / stats -->
+  <section class="bg-white border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-6 text-center">
+      <div class="rounded-2xl bg-lilac p-6 shadow-sm">
+        <div class="text-3xl font-extrabold">1000+</div>
+        <div class="text-sm text-neutral-600">Visits completed</div>
+      </div>
+      <div class="rounded-2xl bg-lemon p-6 shadow-sm">
+        <div class="text-3xl font-extrabold">5★</div>
+        <div class="text-sm text-neutral-600">Average client rating</div>
+      </div>
+      <div class="rounded-2xl bg-sky p-6 shadow-sm">
+        <div class="text-3xl font-extrabold">100%</div>
+        <div class="text-sm text-neutral-600">Video+Photo updates per visit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">Services your cat actually likes</h2>
+        <p class="mt-3 text-neutral-700">No rushed drop‑ins. We follow routines, respect boundaries, and leave your home as we found it.</p>
+        <ul class="mt-6 space-y-3 text-neutral-800">
+          <li>• Daily visits (30–45 min): feed, water refresh, litter, play, brush, videos and photos</li>
+          <li>• Two visits/day for kittens, seniors, or social butterflies</li>
+          <li>• Overnights in your home for anxious cats</li>
+          <li>• Medication: pills, liquid, transdermal (as instructed)</li>
+          <li>• Little extras: plants, parcels, blinds/lights rotation</li>
+        </ul>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h3 class="font-semibold">Daily Visit</h3>
+          <p class="mt-1 text-sm text-neutral-600">30–45 min • 1x per day</p>
+          <p class="mt-4 text-3xl font-extrabold">£18<span class="text-base font-medium text-neutral-500"> / visit</span></p>
+          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+            <li>✔ Routine care + videos/photos</li>
+            <li>✔ Key holding available</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h3 class="font-semibold">Two Visits / Day</h3>
+          <p class="mt-1 text-sm text-neutral-600">For kittens & seniors</p>
+          <p class="mt-4 text-3xl font-extrabold">£28<span class="text-base font-medium text-neutral-500"> / day</span></p>
+          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+            <li>✔ Morning + evening</li>
+            <li>✔ Flexible timing windows</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h3 class="font-semibold">Overnight Stay</h3>
+          <p class="mt-1 text-sm text-neutral-600">In‑home 10–12h</p>
+          <p class="mt-4 text-3xl font-extrabold">£70<span class="text-base font-medium text-neutral-500"> / night</span></p>
+          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+            <li>✔ Evening & morning care</li>
+            <li>✔ Extra reassurance</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h3 class="font-semibold">Add‑ons</h3>
+          <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
+          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+            <li>• Medication admin: +£3 / day</li>
+            <li>• Key pick‑up/return: +£5 (one‑off)</li>
+            <li>• Extra time: +£8 / 30min</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="mt-6 text-sm text-neutral-500">Prices are indicative; confirm in your quote. Bank holidays may vary.</p>
+  </section>
+
+  <!-- Quote Calculator -->
+  <section id="quote" class="bg-white border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight">Instant quote (estimate)</h2>
+          <p class="mt-3 text-neutral-700">Get a ballpark figure. We’ll confirm after a quick chat and a free meet & greet.</p>
+          <form id="quoteForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-medium">Postcode</label>
+              <input type="text" id="postcode" placeholder="e.g., W5 2TH" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Start date</label>
+              <input type="date" id="start" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">End date</label>
+              <input type="date" id="end" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Visits per day</label>
+              <select id="visits" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500">
+                <option value="1">1 visit</option>
+                <option value="2">2 visits</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Overnight stays</label>
+              <input type="number" min="0" id="overnights" value="0" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Surcharge days (bank holidays / peak)</label>
+              <input type="number" min="0" id="surchargeDays" value="0" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="inline-flex items-center gap-2 text-sm"><input id="meds" type="checkbox" class="rounded border-neutral-300"> Medication required</label>
+            </div>
+            <div class="sm:col-span-2">
+              <div class="rounded-2xl bg-lilac border border-violet-200 p-4">
+                <div class="text-sm text-neutral-700">Estimated total</div>
+                <div id="total" class="text-3xl font-extrabold mt-1">£0</div>
+                <div id="breakdown" class="text-sm text-neutral-600 mt-2"></div>
+              </div>
+            </div>
+            <div class="sm:col-span-2 flex gap-3">
+              <a href="#contact" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Request booking</a>
+              <button type="button" id="resetQuote" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Reset</button>
+            </div>
+          </form>
+        </div>
+        <div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
+          <h3 class="text-xl font-semibold">What’s included</h3>
+          <ul class="mt-4 space-y-2 text-neutral-700">
+            <li>• Feeding, fresh water, litter refresh</li>
+            <li>• Playtime / cuddles (cat‑dependent!)</li>
+            <li>• Daily video, photo & message updates</li>
+            <li>• Light home care: plants, bins, blinds/lights</li>
+            <li>• Simple meds as instructed</li>
+          </ul>
+          <p class="mt-4 text-sm text-neutral-600">Need something special? Add it in your message below.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section id="areas" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold tracking-tight">Service areas</h2>
+    <p class="mt-3 text-neutral-700">Base in <strong>W5/N1</strong>. Travel fee <strong>+£3 per visit</strong> outside core zone.</p>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="rounded-2xl border border-neutral-200 bg-white p-4">Ealing</div>
+      <div class="rounded-2xl border border-neutral-200 bg-white p-4">Acton</div>
+      <div class="rounded-2xl border border-neutral-200 bg-white p-4">Kensington</div>
+      <div class="rounded-2xl border border-neutral-200 bg-white p-4">Westminster</div>
+      <div class="rounded-2xl border border-neutral-200 bg-white p-4">Camden</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="bg-white border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">About ChitCat</h2>
+        <p class="mt-3 text-neutral-700">Hi, I’m Sam! I built ChitCat to give London cats calm, reliable care in their own homes - no stressy catteries, no rushed drop‑ins. Clear communication, tidy homes, happy cats.</p>
+        <ul class="mt-6 space-y-2 text-neutral-800">
+          <li>• <strong>DBS checked</strong> and <strong>insured (£5m PL)</strong></li>
+          <li>• Comfortable with meds (pills, liquid, transdermal)</li>
+          <li>• Daily video and photo updates; you’ll never chase us</li>
+          <li>• Respect for routines and boundaries</li>
+          <li>• You'll find your house as you left it!</li>
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
+        <h3 class="text-xl font-semibold">How I work</h3>
+        <ul class="mt-4 space-y-2 text-neutral-700">
+          <li>• Free meet & greet to learn routines</li>
+          <li>• Visit windows you choose</li>
+          <li>• Vet‑on‑file and emergency plan agreed upfront</li>
+          <li>• Keys stored off‑site, no address labels</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="bg-neutral-50 border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-3xl font-bold tracking-tight">Loved by cats, trusted by humans</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <blockquote class="text-neutral-800">“Came home to a relaxed, happy cat and spotless flat. The daily photos were a joy.”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-600">— Emma, N1</figcaption>
+        </figure>
+        <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <blockquote class="text-neutral-800">“Handled our senior cat’s meds perfectly. Clear comms, zero stress.”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-600">— Raj, E8</figcaption>
+        </figure>
+        <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <blockquote class="text-neutral-800">“Booked last‑minute and was accommodated. Will use again.”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-600">— Laura, NW5</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold tracking-tight">FAQ</h2>
+    <div class="mt-6 space-y-4">
+      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+        <summary class="cursor-pointer font-medium">How do bookings work?</summary>
+        <p class="mt-2 text-neutral-700">Send your dates and postcode. We’ll confirm availability, then arrange a free meet & greet. A 25% deposit secures the booking.</p>
+      </details>
+      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+        <summary class="cursor-pointer font-medium">Do you hold keys?</summary>
+        <p class="mt-2 text-neutral-700">Yes—keys are stored securely off‑site with code tags (no addresses). Key pick‑up/return is available.</p>
+      </details>
+      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+        <summary class="cursor-pointer font-medium">What’s your cancellation policy?</summary>
+        <p class="mt-2 text-neutral-700">Full refund up to 7 days before start; 50% within 7 days; no refund within 48h of start. Bank holidays may differ. <em>Edit to your policy.</em></p>
+      </details>
+      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+        <summary class="cursor-pointer font-medium">Are you insured/DBS checked?</summary>
+        <p class="mt-2 text-neutral-700">Yes — public liability insurance up to £5m (Protectivity, policy #444900301998) and current DBS.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-white border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight">Book a free meet & greet</h2>
+          <p class="mt-3 text-neutral-700">Tell us about your cat and dates. We reply within 24 hours.</p>
+          <form id="contactForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" action="https://formspree.io/f/mgvzqelp" method="POST">
+            <!-- Attribution hidden fields (auto-filled by JS) -->
+            <input type="hidden" name="utm_source" id="utm_source">
+            <input type="hidden" name="utm_medium" id="utm_medium">
+            <input type="hidden" name="utm_campaign" id="utm_campaign">
+            <input type="hidden" name="utm_term" id="utm_term">
+            <input type="hidden" name="utm_content" id="utm_content">
+            <input type="hidden" name="landing_page" id="landing_page">
+            <input type="hidden" name="referrer" id="referrer">
+            <div>
+              <label class="block text-sm font-medium">Your name</label>
+              <input required name="name" type="text" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Email</label>
+              <input required name="email" type="email" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Phone / WhatsApp</label>
+              <input name="phone" type="tel" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Postcode</label>
+              <input name="postcode" type="text" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Start date</label>
+              <input name="start" type="date" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">End date</label>
+              <input name="end" type="date" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-medium">Tell us about your cat(s)</label>
+              <textarea name="details" rows="5" placeholder="Names, routines, meds, quirks—everything helps" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+              <div class="g-recaptcha mt-2" data-sitekey="6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA"></div>
+            </div>
+            <div class="sm:col-span-2 flex items-center gap-3">
+              <button type="submit" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Send request</button>
+              <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
+            </div>
+          </form>
+        </div>
+        <div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
+          <h3 class="text-xl font-semibold">Why ChitCat?</h3>
+          <ul class="mt-4 space-y-2 text-neutral-700">
+            <li>• Cat‑first handling; stress‑aware visits</li>
+            <li>• Transparent pricing, no upsell traps</li>
+            <li>• Clear updates; you’ll never chase us</li>
+            <li>• Respect for your home & privacy</li>
+          </ul>
+          <div class="mt-6 rounded-2xl bg-white border border-neutral-200 p-4 text-sm text-neutral-700">
+            <p><strong>Hours:</strong> 7:30–20:30 daily</p>
+            <p class="mt-1"><strong>Contact:</strong> +44 7455 567874 </p>
+            <p class="mt-1"><strong>Email:</strong> hello.chitcat@gmail.com </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative">
+    <div class="absolute inset-0 -z-10 cta-bg"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold">Travel without cat‑guilt. We’ve got this.</h2>
+      <a id="calendlyBtn2" href="#" class="mt-6 inline-flex items-center justify-center rounded-xl btn-brand px-6 py-3 text-white font-semibold shadow ">Book your meet & greet</a>
+    </div>
+  </section>
+
+  <section id="terms" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold tracking-tight">Terms & Conditions</h2>
+    <div class="mt-4 text-neutral-800 space-y-4 text-sm">
+      <p><strong>Bookings & Payment.</strong> A 25% deposit secures your booking; balance due 3 days before the first visit. Bank holidays & peak dates incur a 20% surcharge. Prices shown are indicative and confirmed in your quote.</p>
+      <p><strong>Cancellation.</strong> Full refund up to 7 days before start; 50% within 7 days; no refund within 48 hours of start. Deposits are non‑refundable once within the 7‑day window.</p>
+      <p><strong>Keys & Access.</strong> Keys are stored off‑site without address labels. Key pick‑up/return is £5 one‑off. You are responsible for accurate access info (codes, fobs).</p>
+      <p><strong>Pet Health & Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
+      <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We are not veterinarians and cannot administer injections unless expressly agreed.</p>
+      <p><strong>Home Care.</strong> Light home care is included (plants, bins, blinds/lights). We do not accept responsibility for property faults (plumbing, electrics, alarms) outside our control.</p>
+      <p><strong>Photos & Updates.</strong> We send updates per visit. You grant us permission to take non‑identifying photos of your pet, not your home, unless you opt out.</p>
+      <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We are not liable for pre‑existing conditions or damage caused by third parties with access to the premises.</p>
+      <p><strong>Travel Fee.</strong> +£3 per visit outside W5/N1 core zone.</p>
+      <p><strong>Governing Law.</strong> England & Wales. Complaints welcome—email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+    </div>
+  </section>
+
+  <section id="privacy" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold tracking-tight">Privacy Policy</h2>
+    <div class="mt-4 text-neutral-800 space-y-4 text-sm">
+      <p><strong>Who we are.</strong> ChitCat (Data Controller) — Samanta Chittolina. Postal: W52TJ, London, UK. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+      <p><strong>What we collect.</strong> Contact details, service addresses, pet info, booking dates, messages, and payment confirmations. We do not store card data.</p>
+      <p><strong>Why we process.</strong> To provide services (contract), communicate (legitimate interests), and comply with legal obligations.</p>
+      <p><strong>Sharing.</strong> Processors include: Formspree (contact form), Vercel (hosting), Google reCAPTCHA (spam prevention). Data may transfer outside the UK/EU with appropriate safeguards.</p>
+      <p><strong>Retention.</strong> Enquiry data: 12 months. Client records & invoices: 6 years for tax.</p>
+      <p><strong>Your rights.</strong> Access, rectification, deletion, restriction, objection, portability. Email us to exercise rights. You may complain to the ICO.</p>
+      <p><strong>Cookies & Analytics.</strong> We may use privacy‑friendly analytics (e.g., self‑hosted Umami or Cloudflare Web Analytics) and essential cookies only.</p>
+      <p><strong>Security.</strong> Keys stored off‑site; digital data protected with access controls. No method is 100% secure; we commit to reasonable safeguards.</p>
+      <p><em>This policy is general guidance and will be finalised with your legal name and address.</em></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start text-sm text-neutral-600">
+      <div>
+        <div class="flex items-center gap-2 font-semibold text-neutral-900"><span class="inline-flex h-8 w-8 items-center justify-center text-neutral-900" aria-hidden="true">
+  <!-- Monochrome home + cat face (footer) -->
+  <svg class="h-8 w-8" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChitCat logo">
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 30 L32 18 L48 30 V44 a4 4 0 0 1 -4 4 H20 a4 4 0 0 1 -4 -4 Z"/>
+      <circle cx="26" cy="36" r="1.8" fill="currentColor"/>
+      <circle cx="38" cy="36" r="1.8" fill="currentColor"/>
+    </g>
+  </svg>
+</span>ChitCat</div>
+        <p class="mt-2">London, UK</p>
+        <p class="mt-1">Public Liability Insurance: £5m PL, Protectivity #444900301998</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-neutral-900">Links</h4>
+        <ul class="mt-2 space-y-2">
+          <li><a class="hover:brand-text" href="#services">Services</a></li>
+          <li><a class="hover:brand-text" href="#pricing">Pricing</a> <span class="text-neutral-400">→ in Services</span></li>
+          <li><a class="hover:brand-text" href="#areas">Areas</a></li>
+          <li><a class="hover:brand-text" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-neutral-900">Policies</h4>
+        <ul class="mt-2 space-y-2">
+          <li><a class="hover:brand-text" href="#terms">Terms & Conditions</a></li>
+          <li><a class="hover:brand-text" href="#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-neutral-200/70 py-6 text-center text-xs text-neutral-500">© <span id="year"></span> ChitCat. All rights reserved.</div>
+  </footer>
+
+  <!-- Structured data (update business details) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PetSittingService",
+    "name": "ChitCat — Premium London Cat Sitting",
+    "areaServed": ["Ealing", "Acton", "Kensington", "Westminster", "Camden"],
+    "url": "https://chitcat.co.uk",
+    "email": "hello.chitcat@gmail.com",
+    "telephone": "+447455567874",
+    "address": {"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},
+    "priceRange": "££",
+    "openingHours": "Mo-Su 07:30-20:30",
+    "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1600&auto=format&fit=crop",
+    "sameAs": []
+  }
+  </script>
+
+  <script>
+    // ---------- Utils & Setup ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Capture UTMs + landing/referrer for Formspree
+    (function captureAttribution(){
+      const p = new URLSearchParams(location.search);
+      const set = (id, val)=>{ const el=document.getElementById(id); if(el) el.value = val || ''; };
+      set('utm_source', p.get('utm_source'));
+      set('utm_medium', p.get('utm_medium'));
+      set('utm_campaign', p.get('utm_campaign'));
+      set('utm_term', p.get('utm_term'));
+      set('utm_content', p.get('utm_content'));
+      set('landing_page', location.href);
+      set('referrer', document.referrer || '');
+    })();
+
+    const RATE = { single: 18, double: 28, overnight: 70, meds: 3 };
+
+    function daysDiff(a, b) {
+      const A = new Date(a), B = new Date(b);
+      if (isNaN(A) || isNaN(B) || B < A) return 0;
+      return Math.floor((B - A) / (1000*60*60*24)) + 1; // inclusive
+    }
+    function fmt(n){ return '£' + (Number.isInteger(n) ? n : n.toFixed(2)); }
+    function isCorePostcode(pc){
+      if (!pc) return false;
+      const p = pc.toUpperCase().replace(/\s+/g,'');
+      return p.startsWith('W5') || p.startsWith('N1');
+    }
+
+    // Pure calculator for testing & UI
+    function computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays, rate = RATE }){
+      const visitsKey = (visitsPerDay === 2) ? 'double' : 'single';
+      const visitCost = days * rate[visitsKey];
+      const overnightCost = overnights * rate.overnight;
+      const medCost = meds ? days * rate.meds : 0;
+      const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
+      const surchargeVisit = Math.min(surchargeDays, days) * rate[visitsKey] * 0.20;
+      const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
+      const total = visitCost + overnightCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
+      const parts = [];
+      if(days>0) parts.push(days + ' day' + (days>1?'s':'') + ' × ' + fmt(rate[visitsKey]));
+      if(overnights>0) parts.push(overnights + ' night' + (overnights>1?'s':'') + ' × ' + fmt(rate.overnight));
+      if(meds && days>0) parts.push(days + ' day' + (days>1?'s':'') + ' meds × ' + fmt(rate.meds));
+      if(travelFee>0) parts.push('travel fee ' + fmt(3) + ' × ' + visitsPerDay + ' visit' + (visitsPerDay>1?'s':'') + '/day × ' + days + ' day' + (days>1?'s':''));
+      if(surchargeVisit>0 || surchargeOvernight>0) parts.push('+20% peak on ' + Math.min(surchargeDays, days) + ' day(s)' + (overnights>0 ? (' + ' + Math.min(surchargeDays, overnights) + ' night(s)') : ''));
+      return { total, parts };
+    }
+
+    // ---------- UI wiring ----------
+    const form = document.getElementById('quoteForm');
+    function updateQuote(){
+      const start = document.getElementById('start').value;
+      const end = document.getElementById('end').value;
+      const days = daysDiff(start, end);
+      const visitsPerDay = (document.getElementById('visits').value === '2') ? 2 : 1;
+      const overnights = parseInt(document.getElementById('overnights').value || '0',10);
+      const meds = document.getElementById('meds').checked;
+      const surchargeDays = parseInt((document.getElementById('surchargeDays')?.value) || '0', 10);
+      const inCore = isCorePostcode(document.getElementById('postcode').value);
+
+      const { total, parts } = computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays });
+      document.getElementById('total').textContent = fmt(total);
+      document.getElementById('breakdown').textContent = parts.join(' + ') || 'Fill in your dates to see a price.';
+    }
+
+    ['postcode','start','end','visits','overnights','meds','surchargeDays'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', updateQuote);
+    });
+    const resetBtn = document.getElementById('resetQuote');
+    if (resetBtn) resetBtn.addEventListener('click', ()=>{ form.reset(); updateQuote(); });
+    updateQuote();
+
+    // ---------- Contact form -> Formspree + reCAPTCHA ----------
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+          if (window.grecaptcha && grecaptcha.getResponse().length === 0) {
+            alert('Please complete the reCAPTCHA.');
+            return;
+          }
+        } catch(_) {}
+
+        const data = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const original = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+        try {
+          const res = await fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            contactForm.reset();
+            if (window.grecaptcha) grecaptcha.reset();
+            let status = document.getElementById('formStatus');
+            if (!status) {
+              status = document.createElement('p');
+              status.id = 'formStatus';
+              status.className = 'mt-3 text-sm brand-text';
+              contactForm.insertAdjacentElement('afterend', status);
+            }
+            status.textContent = "Thanks! We'll be in touch within 24h.";
+            if (window.track) track('contact_submitted');
+            status.style.display = '';
+          } else {
+            alert('Sorry, something went wrong. Please email us directly.');
+          }
+        } catch (err) {
+          alert('Network error. Please email us directly.');
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+        }
+      });
+    }
+
+    // ---------- Calendly popup + analytics ----------
+    const CALENDLY_URL = 'https://calendly.com/chitcat/meet'; // replace with your live link
+    ['calendlyBtn','calendlyBtn2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('click', (e)=>{
+        e.preventDefault();
+        // preserve UTMs from current URL when opening Calendly
+        const ps = new URLSearchParams(location.search);
+        if (!ps.get('utm_source')) ps.set('utm_source','site');
+        const qs = ps.toString();
+        const url = CALENDLY_URL + '?' + qs + (qs ? '&' : '') + 'hide_event_type_details=1&hide_gdpr_banner=1';
+        if (window.Calendly) {
+          Calendly.initPopupWidget({ url });
+        } else {
+          window.open(url, '_blank');
+        }
+        if (window.track) track('calendly_open');
+      });
+    });
+
+    // ---------- Lightweight Tests (console) ----------
+    (function runTests(){
+      const almostEq = (a,b,eps=1e-6)=>Math.abs(a-b)<eps;
+      console.group('ChitCat quote tests');
+      console.assert(daysDiff('2025-01-01','2025-01-01') === 1, 'daysDiff same day');
+      console.assert(daysDiff('2025-01-01','2025-01-03') === 3, 'daysDiff inclusive');
+      console.assert(daysDiff('2025-01-03','2025-01-01') === 0, 'daysDiff invalid order -> 0');
+      console.assert(isCorePostcode('W5 2TH') && isCorePostcode('N1 5AB') && !isCorePostcode('E8 3AA'), 'isCorePostcode logic');
+
+      let r = computeQuote({ days:3, visitsPerDay:1, overnights:0, meds:false, inCore:true, surchargeDays:1 });
+      console.assert(almostEq(r.total, 3*18 + 1*18*0.2), 'quote: 3 days, 1 surcharge day');
+
+      r = computeQuote({ days:2, visitsPerDay:2, overnights:0, meds:false, inCore:false, surchargeDays:0 });
+      console.assert(almostEq(r.total, 2*28 + 3*2*2), 'quote: travel fee outside core');
+
+      r = computeQuote({ days:1, visitsPerDay:1, overnights:2, meds:false, inCore:true, surchargeDays:3 });
+      console.assert(almostEq(r.total, 1*18 + 2*70 + (1*18*0.2) + (2*70*0.2)), 'quote: surcharge capped by counts');
+      console.groupEnd();
+    })();
+  </script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
