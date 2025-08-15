@@ -384,10 +384,6 @@
               <label class="block text-sm font-medium">Tell us about your cat(s)</label>
               <textarea name="details" rows="5" placeholder="Names, routines, meds, quirks—everything helps" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
             </div>
-            <div class="sm:col-span-2">
-              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-              <div class="g-recaptcha mt-2" data-sitekey="6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA"></div>
-            </div>
             <div class="sm:col-span-2 flex items-center gap-3">
               <button type="submit" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Send request</button>
               <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
@@ -582,49 +578,70 @@
     if (resetBtn) resetBtn.addEventListener('click', ()=>{ form.reset(); updateQuote(); });
     updateQuote();
 
-    // ---------- Contact form -> Formspree + reCAPTCHA ----------
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        try {
-          if (window.grecaptcha && grecaptcha.getResponse().length === 0) {
-            alert('Please complete the reCAPTCHA.');
-            return;
-          }
-        } catch(_) {}
+<script>
+// ---------- Contact form -> Formspree (no reCAPTCHA) ----------
+const contactForm = document.getElementById('contactForm');
 
-        const data = new FormData(contactForm);
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const original = submitBtn ? submitBtn.textContent : '';
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        try {
-          const res = await fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-          if (res.ok) {
-            contactForm.reset();
-            if (window.grecaptcha) grecaptcha.reset();
-            let status = document.getElementById('formStatus');
-            if (!status) {
-              status = document.createElement('p');
-              status.id = 'formStatus';
-              status.className = 'mt-3 text-sm brand-text';
-              contactForm.insertAdjacentElement('afterend', status);
-            }
-            status.textContent = "Thanks! We'll be in touch within 24h.";
-            if (window.track) track('contact_submitted');
-            status.style.display = '';
-          } else {
-            alert('Sorry, something went wrong. Please email us directly.');
-          }
-        } catch (err) {
-          alert('Network error. Please email us directly.');
-        } finally {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
-        }
-      });
+    // If you keep the honeypot, block obvious bots here (optional, but cheap):
+    const honeypot = contactForm.querySelector('input[name="_gotcha"]');
+    if (honeypot && honeypot.value) {
+      // Bot filled the hidden field — pretend success and bail.
+      return;
     }
 
+    const data = new FormData(contactForm);
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const original = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      // Read body even on non-200 so we can show a useful message
+      const raw = await res.text();
+      let body; try { body = JSON.parse(raw); } catch {}
+
+      if (!res.ok) {
+        const msg =
+          (body && (body.error || body.message)) ||
+          (body && body.errors && body.errors[0] && body.errors[0].message) ||
+          `Form error (${res.status}). Please email us directly.`;
+        console.error('Formspree error', res.status, body || raw);
+        alert(msg);
+        return;
+      }
+
+      // Success
+      contactForm.reset();
+      let status = document.getElementById('formStatus');
+      if (!status) {
+        status = document.createElement('p');
+        status.id = 'formStatus';
+        status.className = 'mt-3 text-sm brand-text';
+        contactForm.insertAdjacentElement('afterend', status);
+      }
+      status.textContent = "Thanks! We'll be in touch within 24h.";
+      status.style.display = '';
+      if (window.track) track('contact_submitted');
+
+    } catch (err) {
+      console.error('Network error', err);
+      alert('Network error. Please email us directly.');
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+    }
+  });
+}
+</script>
+  
     // ---------- Calendly popup + analytics ----------
     const CALENDLY_URL = 'https://calendly.com/chitcat/meet'; // replace with your live link
     ['calendlyBtn','calendlyBtn2'].forEach(id => {
@@ -666,6 +683,5 @@
       console.groupEnd();
     })();
   </script>
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdA-qYrAAAAAHdktFYzzdUD3H8FlLYRd7OCeT7H"></script>
 </body>
 </html>
