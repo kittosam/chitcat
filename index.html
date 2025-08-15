@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChitCat — Premium London Cat Sitting</title>
+  <meta name="description" content="Reliable, loving in‑home cat care across London. Daily visits, overnights, medication, and video + photo updates. Book a free meet & greet." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-700: #7c3aed;
+      --brand-600: #8b5cf6;
+      --brand-50:  #f5f3ff;
+      --accent-1:  #ff7b54;
+      --accent-2:  #22d3ee;
+      --accent-3:  #f43f5e;
+      --lilac-50:  #f6e8ff;
+      --lemon-50:  #fff7cc;
+      --sky-50:    #e6fbff;
+      --ink:       #0b0f12;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); }
+    h1, h2, h3, .display { font-family: Rubik, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); }
+    .badge { border: 1px solid rgba(0,0,0,0.08); background: linear-gradient(135deg, #ffffff, rgba(139,92,246,0.07)); }
+    .ring-brand { box-shadow: 0 0 0 3px rgba(124,58,237,0.18); }
+    .btn-brand { background: linear-gradient(135deg, var(--brand-600), var(--accent-1)); color: #fff; border: none; transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; box-shadow: 0 10px 20px rgba(124,58,237,0.22); }
+    .btn-brand:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 12px 24px rgba(124,58,237,0.30); }
+    .brand-text { color: var(--brand-700); }
+    header nav a:hover, footer a:hover { color: var(--brand-700) !important; }
+    .bg-lilac { background: var(--lilac-50); }
+    .bg-lemon { background: var(--lemon-50); }
+    .bg-sky   { background: var(--sky-50); }
+    .hero-bg { background:
+      radial-gradient(800px 500px at -10% -10%, rgba(139,92,246,.25), transparent 60%),
+      radial-gradient(700px 400px at 110% 0%, rgba(255,123,84,.22), transparent 55%),
+      linear-gradient(135deg, var(--brand-50), #ffffff 40%, #ffffff);
+    }
+    .cta-bg { background:
+      radial-gradient(600px 400px at 20% 120%, rgba(34,211,238,.25), transparent 60%),
+      radial-gradient(700px 400px at 100% -20%, rgba(255,123,84,.18), transparent 55%),
+      linear-gradient(135deg, #ffffff, var(--brand-50));
+    }
+    .bg-brand-blob { background: rgba(139,92,246,0.18); }
+    header a svg { transition: transform .2s ease; }
+    header a:hover svg { transform: rotate(-6deg) scale(1.05); }
+  </style>
+<link rel="icon" href="/assets/chitcat-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b7057484a6f64513bc4279356eee7114"}'></script>
+<meta name="google-site-verification" content="PASTE_SEARCH_CONSOLE_TOKEN" />
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body class="bg-neutral-50 text-neutral-900">
+  <header class="sticky top-0 z-50 bg-white/80 glass border-b border-neutral-200/60">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
+        <span class="inline-flex h-9 w-9 items-center justify-center text-neutral-900" aria-hidden="true">
+  <svg class="h-9 w-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChitCat logo">
+    <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 30 L32 18 L48 30 V44 a4 4 0 0 1 -4 4 H20 a4 4 0 0 1 -4 -4 Z"/>
+      <circle cx="26" cy="36" r="2" fill="currentColor"/>
+      <circle cx="38" cy="36" r="2" fill="currentColor"/>
+      <path d="M20 38.5 h5 M39 38.5 h5"/>
+    </g>
+  </svg>
+</span>
+        <span>ChitCat</span>
+        <span class="hidden sm:inline text-neutral-500 font-normal">• Premium London Cat Sitting</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="hover:brand-text">About</a>
+        <a href="#services" class="hover:brand-text">Services</a>
+        <a href="#pricing" class="hover:brand-text">Pricing</a>
+        <a href="#areas" class="hover:brand-text">Areas</a>
+        <a href="#reviews" class="hover:brand-text">Reviews</a>
+        <a href="#faq" class="hover:brand-text">FAQ</a>
+      </nav>
+      <a id="calendlyBtn" href="#" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow  focus:outline-none ring-brand">
+        <span>Book a meet & greet</span>
+      </a>
+    </div>
+  </header>
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 hero-bg"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+            Loving, reliable <span class="brand-text">in‑home cat care</span> in London
+          </h1>
+          <p class="mt-5 text-lg text-neutral-700">Daily visits and overnights tailored to your cat’s routine. Photos and videos every visit. Clear communications.</p>
+          <p class="mt-2 text-neutral-700">No drama. Just purrs.</p>
+          <div class="mt-6 flex flex-wrap items-center gap-3 text-sm">
+            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">✅ Fully insured</span>
+            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">🪪 DBS checked</span>
+            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">💊 Medication admin</span>
+            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">📸 Photo updates</span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#quote" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Get an instant quote</a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Ask a question</a>
+          </div>
+          <p class="mt-4 text-sm text-neutral-600">Typical coverage: Ealing • Acton • Kensington • Westminster • Camden</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-6 -left-6 -z-10 h-72 w-72 rounded-3xl bg-brand-blob blur-3xl"></div>
+          <div class="rounded-3xl overflow-hidden shadow-2xl ring-1 ring-neutral-200">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1600&auto=format&fit=crop" alt="Sleepy tabby in a sunlit London flat" class="h-full w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- (Truncated in this minimal pack; full content is in your canvas and not required for deployment demo) -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>
