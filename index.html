@@ -53,8 +53,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b7057484a6f64513bc4279356eee7114"}'></script>
 <meta name="google-site-verification" content="PASTE_SEARCH_CONSOLE_TOKEN" />
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body class="bg-neutral-50 text-neutral-900">
   <header class="sticky top-0 z-50 bg-white/80 glass border-b border-neutral-200/60">
@@ -642,26 +640,37 @@ if (contactForm) {
 }
 </script>
   
-    // ---------- Calendly popup + analytics ----------
-    const CALENDLY_URL = 'https://calendly.com/chitcat/meet'; // replace with your live link
-    ['calendlyBtn','calendlyBtn2'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener('click', (e)=>{
-        e.preventDefault();
-        // preserve UTMs from current URL when opening Calendly
-        const ps = new URLSearchParams(location.search);
-        if (!ps.get('utm_source')) ps.set('utm_source','site');
-        const qs = ps.toString();
-        const url = CALENDLY_URL + '?' + qs + (qs ? '&' : '') + 'hide_event_type_details=1&hide_gdpr_banner=1';
-        if (window.Calendly) {
-          Calendly.initPopupWidget({ url });
-        } else {
-          window.open(url, '_blank');
-        }
-        if (window.track) track('calendly_open');
-      });
-    });
+    // ---------- Calendly open in new tab (preserve UTMs) ----------
+['calendlyBtn','calendlyBtn2'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  // Also set intent in markup at runtime
+  el.setAttribute('target','_blank');
+  el.setAttribute('rel','noopener noreferrer');
+
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Use the button's own href (avoids hard-coded mismatches)
+    const base = el.getAttribute('href');  // e.g. https://calendly.com/hello-chitcat/30min
+
+    // Carry over UTMs or default to utm_source=site
+    const ps = new URLSearchParams(location.search);
+    if (!ps.get('utm_source')) ps.set('utm_source','site');
+
+    // Calendly UI params
+    ps.set('hide_event_type_details','1');
+    ps.set('hide_gdpr_banner','1');
+
+    const url = base + (base.includes('?') ? '&' : '?') + ps.toString();
+
+    // Open in new tab, safely
+    window.open(url, '_blank', 'noopener,noreferrer');
+
+    if (window.track) track('calendly_open');
+  });
+});
 
     // ---------- Lightweight Tests (console) ----------
     (function runTests(){
