@@ -62,6 +62,7 @@
 
     header a svg { transition: transform .2s ease; }
     header a:hover svg { transform: rotate(-6deg) scale(1.05); }
+    
     /* Fixed stray comment/brace */
   </style>
 <link rel="icon" href="/assets/chitcat-logo.svg" type="image/svg+xml">
@@ -171,55 +172,52 @@
 
   <!-- Services -->
   <section id="services" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <h2 class="text-3xl font-bold tracking-tight">Services your cat actually likes</h2>
-        <p class="mt-3 text-neutral-700">No rushed drop‑ins. We follow routines, respect boundaries, and leave your home as we found it.</p>
-        <ul class="mt-6 space-y-3 text-neutral-800">
-          <li>• Daily visits (30–45 min): feed, water refresh, litter, play, brush, videos and photos</li>
-          <li>• Two visits/day for kittens, seniors, or social butterflies</li>
-          <li>• Overnights in your home for anxious cats</li>
-          <li>• Medication: pills, liquid, transdermal (as instructed)</li>
-          <li>• Little extras: plants, parcels, blinds/lights rotation</li>
-        </ul>
-      </div>
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 class="font-semibold">Daily Visit</h3>
-          <p class="mt-1 text-sm text-neutral-600">30–45 min • 1x per day</p>
-          <p class="mt-4 text-3xl font-extrabold">£18<span class="text-base font-medium text-neutral-500"> / visit</span></p>
-          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-            <li>✔ Routine care + videos/photos</li>
-            <li>✔ Key holding available</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 class="font-semibold">Two Visits / Day</h3>
-          <p class="mt-1 text-sm text-neutral-600">For kittens & seniors</p>
-          <p class="mt-4 text-3xl font-extrabold">£28<span class="text-base font-medium text-neutral-500"> / day</span></p>
-          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-            <li>✔ Morning + evening</li>
-            <li>✔ Flexible timing windows</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 class="font-semibold">Overnight Stay</h3>
-          <p class="mt-1 text-sm text-neutral-600">In‑home 10–12h</p>
-          <p class="mt-4 text-3xl font-extrabold">£70<span class="text-base font-medium text-neutral-500"> / night</span></p>
-          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-            <li>✔ Evening & morning care</li>
-            <li>✔ Extra reassurance</li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 class="font-semibold">Add‑ons</h3>
-          <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
-          <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-            <li>• Medication admin: +£3 / day</li>
-                        <li>• Extra time: +£8 / 30min</li>
-          </ul>
-        </div>
-      </div>
+    <div class="grid sm:grid-cols-2 gap-6">
+  <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <h3 class="font-semibold">Daily Visit</h3>
+    <p class="mt-1 text-sm text-neutral-600">30 minutes • 1× per day</p>
+    <p class="mt-4 text-3xl font-extrabold">from £18<span class="text-base font-medium text-neutral-500"> / visit</span></p>
+    <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+      <li>✔ Routine care + photos/videos</li>
+      <li>✔ Extra time available (+£4 per 15min)</li>
+    </ul>
+  </div>
+
+  <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <h3 class="font-semibold">Two Visits / Day</h3>
+    <p class="mt-1 text-sm text-neutral-600">2 × 30 minutes (AM + PM)</p>
+    <p class="mt-4 text-3xl font-extrabold">from £36<span class="text-base font-medium text-neutral-500"> / day</span></p>
+    <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+      <li>✔ Morning + evening</li>
+      <li>✔ Extra time per visit (+£4 per 15min)</li>
+    </ul>
+  </div>
+
+  <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <h3 class="font-semibold">Overnight Stay</h3>
+    <p class="mt-1 text-sm text-neutral-600">In-home 10–12h (typ. 20:00–07:00)</p>
+    <p class="mt-4 text-3xl font-extrabold">from £45<span class="text-base font-medium text-neutral-500"> / night</span></p>
+    <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+      <li>✔ Evening + morning care</li>
+      <li>✔ Extendable by quote</li>
+    </ul>
+  </div>
+
+  <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <h3 class="font-semibold">Add-ons</h3>
+    <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
+    <ul class="mt-4 text-sm text-neutral-700 space-y-2">
+      <li>• Extra time: +£4 / 15min (per visit)</li>
+      <li>• Simple meds (oral/topical): <strong>included</strong></li>
+      <li>• Travel: +£3/visit outside W5/N1</li>
+    </ul>
+  </div>
+</div>
+
+<p class="mt-6 text-sm text-neutral-500">
+  Prices shown are starting points; your quote is confirmed after a quick chat. 
+  Bank holidays & peak dates +20%.
+</p>
     </div>
     <p class="mt-6 text-sm text-neutral-500">Prices are indicative; confirm in your quote. Bank holidays may vary.</p>
   </section>
