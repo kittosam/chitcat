@@ -11,30 +11,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --brand-700: #7c3aed;
-      --brand-600: #8b5cf6;
-      --brand-50:  #f5f3ff;
-      --accent-1:  #ff7b54;
-      --accent-2:  #22d3ee;
-      --accent-3:  #f43f5e;
+      /* Palette A — Loud */
+      --brand-700: #7c3aed; /* violet */
+      --brand-600: #8b5cf6; /* violet */
+      --brand-50:  #f5f3ff; /* soft lilac */
+      --accent-1:  #ff7b54; /* tangerine */
+      --accent-2:  #22d3ee; /* sky/cyan */
+      --accent-3:  #f43f5e; /* pop rose */
       --lilac-50:  #f6e8ff;
       --lemon-50:  #fff7cc;
       --sky-50:    #e6fbff;
-      --ink:       #0b0f12;
+      --ink:       #0b0f12; /* near-black */
     }
     html { scroll-behavior: smooth; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); }
     h1, h2, h3, .display { font-family: Rubik, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
     .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); }
     .badge { border: 1px solid rgba(0,0,0,0.08); background: linear-gradient(135deg, #ffffff, rgba(139,92,246,0.07)); }
     .ring-brand { box-shadow: 0 0 0 3px rgba(124,58,237,0.18); }
+
     .btn-brand { background: linear-gradient(135deg, var(--brand-600), var(--accent-1)); color: #fff; border: none; transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; box-shadow: 0 10px 20px rgba(124,58,237,0.22); }
     .btn-brand:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 12px 24px rgba(124,58,237,0.30); }
+
     .brand-text { color: var(--brand-700); }
+
+    /* Hide any auto-injected Calendly embeds/badges – we only use popup */
+    .calendly-inline-widget,
+    .calendly-badge-widget,
+    .calendly-badge-content { display: none !important; }
+
+    /* Make link hovers pop without changing HTML classes */
     header nav a:hover, footer a:hover { color: var(--brand-700) !important; }
+
     .bg-lilac { background: var(--lilac-50); }
     .bg-lemon { background: var(--lemon-50); }
     .bg-sky   { background: var(--sky-50); }
+
     .hero-bg { background:
       radial-gradient(800px 500px at -10% -10%, rgba(139,92,246,.25), transparent 60%),
       radial-gradient(700px 400px at 110% 0%, rgba(255,123,84,.22), transparent 55%),
@@ -46,19 +59,39 @@
       linear-gradient(135deg, #ffffff, var(--brand-50));
     }
     .bg-brand-blob { background: rgba(139,92,246,0.18); }
+
     header a svg { transition: transform .2s ease; }
     header a:hover svg { transform: rotate(-6deg) scale(1.05); }
+    /* Fixed stray comment/brace */
   </style>
 <link rel="icon" href="/assets/chitcat-logo.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
+<!-- Cloudflare Web Analytics (free, JS beacon). Replace TOKEN and keep this enabled. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b7057484a6f64513bc4279356eee7114"}'></script>
+
+<!-- Search Console verification (paste your token, then remove after verify) -->
 <meta name="google-site-verification" content="PASTE_SEARCH_CONSOLE_TOKEN" />
+
+<script>
+  // Unified event helper: tries Umami/Plausible/GA4 if present; otherwise no-op
+  window.track = function(name, props){
+    try {
+      if (window.umami && typeof window.umami === 'function') return window.umami(name, props);
+      if (window.plausible && typeof window.plausible === 'function') return window.plausible(name, { props });
+      if (window.gtag && typeof window.gtag === 'function') return window.gtag('event', name, props || {});
+    } catch(e) { /* no-op */ }
+  };
+</script>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body class="bg-neutral-50 text-neutral-900">
+  <!-- Sticky Nav -->
   <header class="sticky top-0 z-50 bg-white/80 glass border-b border-neutral-200/60">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
         <span class="inline-flex h-9 w-9 items-center justify-center text-neutral-900" aria-hidden="true">
+  <!-- Monochrome home + cat face (simple) -->
   <svg class="h-9 w-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChitCat logo">
     <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M16 30 L32 18 L48 30 V44 a4 4 0 0 1 -4 4 H20 a4 4 0 0 1 -4 -4 Z"/>
@@ -79,9 +112,13 @@
         <a href="#reviews" class="hover:brand-text">Reviews</a>
         <a href="#faq" class="hover:brand-text">FAQ</a>
       </nav>
-<a id="calendlyBtn" href="https://calendly.com/hello-chitcat/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow focus:outline-none ring-brand"> <span>Book a meet & greet</span> </a>
+      <a id="calendlyBtn" href="#" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow  focus:outline-none ring-brand">
+        <span>Book a meet & greet</span>
+      </a>
     </div>
   </header>
+
+  <!-- Hero -->
   <section id="home" class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 hero-bg"></div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -113,7 +150,8 @@
       </div>
     </div>
   </section>
-    <!-- Social proof / stats -->
+
+  <!-- Social proof / stats -->
   <section class="bg-white border-y border-neutral-200/70">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-6 text-center">
       <div class="rounded-2xl bg-lilac p-6 shadow-sm">
@@ -178,8 +216,7 @@
           <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
           <ul class="mt-4 text-sm text-neutral-700 space-y-2">
             <li>• Medication admin: +£3 / day</li>
-            <li>• Key pick‑up/return: +£5 (one‑off)</li>
-            <li>• Extra time: +£8 / 30min</li>
+                        <li>• Extra time: +£8 / 30min</li>
           </ul>
         </div>
       </div>
@@ -317,17 +354,11 @@
   <section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
     <h2 class="text-3xl font-bold tracking-tight">FAQ</h2>
     <div class="mt-6 space-y-4">
-      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-        <summary class="cursor-pointer font-medium">How do bookings work?</summary>
-        <p class="mt-2 text-neutral-700">Send your dates and postcode. We’ll confirm availability, then arrange a free meet & greet. A 25% deposit secures the booking.</p>
+      $1
+        <p class="mt-2 text-neutral-700">Yes — keys are stored securely off‑site with coded tags (no addresses). Key pick‑up/return is included (no fee), or we can hold a key for future bookings.</p>
       </details>
-      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-        <summary class="cursor-pointer font-medium">Do you hold keys?</summary>
-        <p class="mt-2 text-neutral-700">Yes—keys are stored securely off‑site with code tags (no addresses). Key pick‑up/return is available.</p>
-      </details>
-      <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-        <summary class="cursor-pointer font-medium">What’s your cancellation policy?</summary>
-        <p class="mt-2 text-neutral-700">Full refund up to 7 days before start; 50% within 7 days; no refund within 48h of start. Bank holidays may differ. <em>Edit to your policy.</em></p>
+      $1
+        <p class="mt-2 text-neutral-700">5+ days before the first visit: full refund (including the deposit). Inside 5 days but at least 24 hours before: we keep the 25% deposit and refund the rest. Within 24 hours of the start or after the booking begins: no refund. Bank holidays may differ.</p>
       </details>
       <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
         <summary class="cursor-pointer font-medium">Are you insured/DBS checked?</summary>
@@ -380,6 +411,10 @@
               <label class="block text-sm font-medium">Tell us about your cat(s)</label>
               <textarea name="details" rows="5" placeholder="Names, routines, meds, quirks—everything helps" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
             </div>
+            <div class="sm:col-span-2">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+              <div class="g-recaptcha mt-2" data-sitekey="6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA"></div>
+            </div>
             <div class="sm:col-span-2 flex items-center gap-3">
               <button type="submit" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Send request</button>
               <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
@@ -409,38 +444,32 @@
     <div class="absolute inset-0 -z-10 cta-bg"></div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
       <h2 class="text-2xl md:text-3xl font-bold">Travel without cat‑guilt. We’ve got this.</h2>
-<a id="calendlyBtn2" href="https://calendly.com/hello-chitcat/30min" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center rounded-xl btn-brand px-6 py-3 text-white font-semibold shadow"> Book your meet & greet</a>
+      <a id="calendlyBtn2" href="#" class="mt-6 inline-flex items-center justify-center rounded-xl btn-brand px-6 py-3 text-white font-semibold shadow ">Book your meet & greet</a>
     </div>
   </section>
 
   <section id="terms" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
     <h2 class="text-3xl font-bold tracking-tight">Terms & Conditions</h2>
     <div class="mt-4 text-neutral-800 space-y-4 text-sm">
-      <p><strong>Bookings & Payment.</strong> A 25% deposit secures your booking; balance due 3 days before the first visit. Bank holidays & peak dates incur a 20% surcharge. Prices shown are indicative and confirmed in your quote.</p>
-      <p><strong>Cancellation.</strong> Full refund up to 7 days before start; 50% within 7 days; no refund within 48 hours of start. Deposits are non‑refundable once within the 7‑day window.</p>
-      <p><strong>Keys & Access.</strong> Keys are stored off‑site without address labels. Key pick‑up/return is £5 one‑off. You are responsible for accurate access info (codes, fobs).</p>
-      <p><strong>Pet Health & Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
-      <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We are not veterinarians and cannot administer injections unless expressly agreed.</p>
-      <p><strong>Home Care.</strong> Light home care is included (plants, bins, blinds/lights). We do not accept responsibility for property faults (plumbing, electrics, alarms) outside our control.</p>
-      <p><strong>Photos & Updates.</strong> We send updates per visit. You grant us permission to take non‑identifying photos of your pet, not your home, unless you opt out.</p>
-      <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We are not liable for pre‑existing conditions or damage caused by third parties with access to the premises.</p>
-      <p><strong>Travel Fee.</strong> +£3 per visit outside W5/N1 core zone.</p>
-      <p><strong>Governing Law.</strong> England & Wales. Complaints welcome—email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
-    </div>
-  </section>
+      <p><strong>Bookings & Payment.</strong> A 25% deposit secures your dates. The remaining balance is due <strong>24 hours before</strong> the first visit (or immediately for bookings starting within 48 hours). Bank holidays & peak dates carry a 20% surcharge. Prices shown are indicative and confirmed in your quote.</p>
 
-  <section id="privacy" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-3xl font-bold tracking-tight">Privacy Policy</h2>
-    <div class="mt-4 text-neutral-800 space-y-4 text-sm">
-      <p><strong>Who we are.</strong> ChitCat (Data Controller) — Samanta Chittolina. Postal: W52TJ, London, UK. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
-      <p><strong>What we collect.</strong> Contact details, service addresses, pet info, booking dates, messages, and payment confirmations. We do not store card data.</p>
-      <p><strong>Why we process.</strong> To provide services (contract), communicate (legitimate interests), and comply with legal obligations.</p>
-      <p><strong>Sharing.</strong> Processors include: Formspree (contact form), Vercel (hosting), Google reCAPTCHA (spam prevention). Data may transfer outside the UK/EU with appropriate safeguards.</p>
-      <p><strong>Retention.</strong> Enquiry data: 12 months. Client records & invoices: 6 years for tax.</p>
-      <p><strong>Your rights.</strong> Access, rectification, deletion, restriction, objection, portability. Email us to exercise rights. You may complain to the ICO.</p>
-      <p><strong>Cookies & Analytics.</strong> We may use privacy‑friendly analytics (e.g., self‑hosted Umami or Cloudflare Web Analytics) and essential cookies only.</p>
-      <p><strong>Security.</strong> Keys stored off‑site; digital data protected with access controls. No method is 100% secure; we commit to reasonable safeguards.</p>
-      <p><em>This policy is general guidance and will be finalised with your legal name and address.</em></p>
+      <p><strong>Changes & Cancellations.</strong> Plans change — that’s OK. <strong>5+ days before</strong> the first visit: <strong>full refund</strong> (including the deposit). <strong>Inside 5 days but at least 24 hours</strong> before the first visit: we keep the 25% deposit and refund the rest. <strong>Within 24 hours</strong> of the start or after the booking begins: <strong>no refund</strong>. Peak/bank-holiday surcharges are non‑refundable once applied.</p>
+
+      <p><strong>Keys & Access.</strong> Keys are stored off‑site without address labels. Key pick‑up/return is included (no fee). You are responsible for accurate access info (codes, fobs). We can hold keys securely for future bookings if you prefer.</p>
+
+      <p><strong>Pet Health & Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
+
+      <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We’re not veterinarians and cannot administer injections unless expressly agreed.</p>
+
+      <p><strong>Home Care.</strong> Light home care is included (plants, bins, blinds/lights). We can’t accept responsibility for property faults (plumbing, electrics, alarms) outside our control.</p>
+
+      <p><strong>Photos & Updates.</strong> We send updates per visit. You grant us permission to take non‑identifying photos of your pet (not your home) unless you opt out.</p>
+
+      <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We’re not liable for pre‑existing conditions or for damage caused by third parties with access to the premises.</p>
+
+      <p><strong>Travel Fee.</strong> +£3 per visit outside W5/N1 core zone.</p>
+
+      <p><strong>Governing Law.</strong> England & Wales. Complaints welcome — email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
     </div>
   </section>
 
@@ -574,101 +603,69 @@
     if (resetBtn) resetBtn.addEventListener('click', ()=>{ form.reset(); updateQuote(); });
     updateQuote();
 
-<script>
-// ---------- Contact form -> Formspree (no reCAPTCHA) ----------
-const contactForm = document.getElementById('contactForm');
+    // ---------- Contact form -> Formspree + reCAPTCHA ----------
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+          if (window.grecaptcha && grecaptcha.getResponse().length === 0) {
+            alert('Please complete the reCAPTCHA.');
+            return;
+          }
+        } catch(_) {}
 
-if (contactForm) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+        const data = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const original = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
-    // If you keep the honeypot, block obvious bots here (optional, but cheap):
-    const honeypot = contactForm.querySelector('input[name="_gotcha"]');
-    if (honeypot && honeypot.value) {
-      // Bot filled the hidden field — pretend success and bail.
-      return;
-    }
-
-    const data = new FormData(contactForm);
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const original = submitBtn ? submitBtn.textContent : '';
-    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-
-    try {
-      const res = await fetch(contactForm.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        try {
+          const res = await fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            contactForm.reset();
+            if (window.grecaptcha) grecaptcha.reset();
+            let status = document.getElementById('formStatus');
+            if (!status) {
+              status = document.createElement('p');
+              status.id = 'formStatus';
+              status.className = 'mt-3 text-sm brand-text';
+              contactForm.insertAdjacentElement('afterend', status);
+            }
+            status.textContent = "Thanks! We'll be in touch within 24h.";
+            if (window.track) track('contact_submitted');
+            status.style.display = '';
+          } else {
+            alert('Sorry, something went wrong. Please email us directly.');
+          }
+        } catch (err) {
+          alert('Network error. Please email us directly.');
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+        }
       });
-
-      // Read body even on non-200 so we can show a useful message
-      const raw = await res.text();
-      let body; try { body = JSON.parse(raw); } catch {}
-
-      if (!res.ok) {
-        const msg =
-          (body && (body.error || body.message)) ||
-          (body && body.errors && body.errors[0] && body.errors[0].message) ||
-          `Form error (${res.status}). Please email us directly.`;
-        console.error('Formspree error', res.status, body || raw);
-        alert(msg);
-        return;
-      }
-
-      // Success
-      contactForm.reset();
-      let status = document.getElementById('formStatus');
-      if (!status) {
-        status = document.createElement('p');
-        status.id = 'formStatus';
-        status.className = 'mt-3 text-sm brand-text';
-        contactForm.insertAdjacentElement('afterend', status);
-      }
-      status.textContent = "Thanks! We'll be in touch within 24h.";
-      status.style.display = '';
-      if (window.track) track('contact_submitted');
-
-    } catch (err) {
-      console.error('Network error', err);
-      alert('Network error. Please email us directly.');
-    } finally {
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
     }
-  });
-}
-</script>
-  
-    // ---------- Calendly open in new tab (preserve UTMs) ----------
-['calendlyBtn','calendlyBtn2'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
 
-  // Also set intent in markup at runtime
-  el.setAttribute('target','_blank');
-  el.setAttribute('rel','noopener noreferrer');
-
-  el.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Use the button's own href (avoids hard-coded mismatches)
-    const base = el.getAttribute('href');  // e.g. https://calendly.com/hello-chitcat/30min
-
-    // Carry over UTMs or default to utm_source=site
-    const ps = new URLSearchParams(location.search);
-    if (!ps.get('utm_source')) ps.set('utm_source','site');
-
-    // Calendly UI params
-    ps.set('hide_event_type_details','1');
-    ps.set('hide_gdpr_banner','1');
-
-    const url = base + (base.includes('?') ? '&' : '?') + ps.toString();
-
-    // Open in new tab, safely
-    window.open(url, '_blank', 'noopener,noreferrer');
-
-    if (window.track) track('calendly_open');
-  });
-});
+    // ---------- Calendly popup + analytics ----------
+    const CALENDLY_URL = 'https://calendly.com/chitcat/meet'; // replace with your live link
+    ['calendlyBtn','calendlyBtn2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('click', (e)=>{
+        e.preventDefault();
+        // preserve UTMs from current URL when opening Calendly
+        const ps = new URLSearchParams(location.search);
+        if (!ps.get('utm_source')) ps.set('utm_source','site');
+        const qs = ps.toString();
+        const url = CALENDLY_URL + '?' + qs + (qs ? '&' : '') + 'hide_event_type_details=1&hide_gdpr_banner=1';
+        if (window.Calendly) {
+          Calendly.initPopupWidget({ url });
+        } else {
+          window.open(url, '_blank');
+        }
+        if (window.track) track('calendly_open');
+      });
+    });
 
     // ---------- Lightweight Tests (console) ----------
     (function runTests(){
