@@ -195,6 +195,7 @@
 </section>
 
   <!-- Services (premium, starts-at pricing) -->
+<section id="services" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
 <div class="grid sm:grid-cols-2 gap-6">
   <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
     <h3 class="font-semibold">Daily Visit</h3>
@@ -238,13 +239,12 @@
     </ul>
   </div>
 </div>
+  </section>
 
 <p class="mt-6 text-sm text-neutral-500">
   Prices are starting points; your quote is confirmed after a quick chat. 
   Simple oral/topical meds are included. Bank holidays & peak dates +20%.
 </p>
-    </div>
-  </section>
 
   <!-- Quote Calculator -->
   <section id="quote" class="bg-white border-y border-neutral-200/70">
@@ -691,7 +691,8 @@
       const days = daysDiff(start, end);
       const visitsPerDay = (document.getElementById('visits').value === '2') ? 2 : 1;
       const overnights = parseInt(document.getElementById('overnights').value || '0',10);
-      const meds = document.getElementById('meds').checked;
+      const medsEl = document.getElementById('meds');
+      const meds = medsEl ? !!medsEl.checked : false;  // meds included by default → no fee
       const surchargeDays = parseInt((document.getElementById('surchargeDays')?.value) || '0', 10);
       const inCore = isCorePostcode(document.getElementById('postcode').value);
       const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
@@ -705,7 +706,7 @@
   const el = document.getElementById(id);
   if (el) el.addEventListener('input', updateQuote);
   });
-
+  updateQuote(); //
 
     // ---------- Contact form -> Formspree + reCAPTCHA ----------
     const contactForm = document.getElementById('contactForm');
@@ -781,13 +782,14 @@
       console.assert(isCorePostcode('W5 2TH') && isCorePostcode('N1 5AB') && !isCorePostcode('E8 3AA'), 'isCorePostcode logic');
 
       let r = computeQuote({ days:3, visitsPerDay:1, overnights:0, meds:true, inCore:true, surchargeDays:1 });
-      console.assert(Math.abs(r.total - (3*18 + 1*18*0.2 + 0)) < 1e-6, '3 days, 1 surcharge day, meds free');
+      console.assert(Math.abs(r.total - (3*22 + 1*22*0.2 + 0)) < 1e-6, '3 days, 1 surcharge day, meds free'); // 66 + 4.4 = 70.4
 
       r = computeQuote({ days:2, visitsPerDay:2, overnights:0, meds:false, inCore:false, surchargeDays:0 });
-      console.assert(Math.abs(r.total - (2*36 + 3*2*2)) < 1e-6, 'double visits + travel outside core');
+      console.assert(Math.abs(r.total - (2*36 + 3*2*2)) < 1e-6, 'double visits + travel outside core'); // 72 + 12 = 84
 
       r = computeQuote({ days:1, visitsPerDay:1, overnights:2, meds:false, inCore:true, surchargeDays:3 });
-      console.assert(Math.abs(r.total - (1*18 + 2*45 + (1*18*0.2) + (2*45*0.2))) < 1e-6, 'overnight from 45 + surcharge');
+      console.assert(Math.abs(r.total - (1*22 + 2*55 + (1*22*0.2) + (2*55*0.2))) < 1e-6, 'overnight from 55 + surcharge'); // 158.4
+
 
     })();
   </script>
