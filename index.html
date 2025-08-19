@@ -118,7 +118,7 @@
       <a href="#contact" class="hover:brand-text">Contact</a>
     </nav>
       <a id="calendlyBtn" href="https://calendly.com/hello-chitcat/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow focus:outline-none ring-brand">
-      <span>Book a meet & greet</span>
+      <span>New? Book a meet & greet</span>
       </a>
     </div>
   </header>
@@ -140,9 +140,10 @@
             <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">💊 Medication admin</span>
             <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">📸 Photo updates</span>
           </div>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#quote" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Get an instant quote</a>
-            <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Ask a question</a>
+          <div class="mt-8 flex flex-wrap gap-3"> 
+            <a id="btnExisting" href="?client=existing#contact" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">Existing client: Book dates</a>
+            <a id="btnQuote" href="#quote" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Get an instant quote</a>
+            <a id="btnMeet" href="https://calendly.com/hello-chitcat/30min" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">New? Book a Meet &amp; Greet</a>
           </div>
           <p class="mt-4 text-sm text-neutral-600">Typical coverage: Ealing • Acton • Paddington</p>
         </div>
@@ -801,7 +802,7 @@ updateQuote(); // ensure initial calculation
   };
 
   const url = buildUrl();
-  ['calendlyBtn','calendlyBtn2'].forEach(id => {
+  ['calendlyBtn','calendlyBtn2','btnMeet'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
 
