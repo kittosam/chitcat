@@ -68,10 +68,6 @@
   .calendly-inline-widget,
   .calendly-badge-widget,
   .calendly-badge-content { display: none !important; }
-
-  /* slightly tighter vertical rhythm */
-section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
-@media (min-width: 768px){ section { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; } }
     
   </style>
   
@@ -121,8 +117,8 @@ section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
       <a href="#quote" class="hover:brand-text">Quote</a>
       <a href="#contact" class="hover:brand-text">Contact</a>
     </nav>
-      <a id="calendlyBtn" href="#" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow  focus:outline-none ring-brand">
-        <span>Book a meet & greet</span>
+      <a id="calendlyBtn" href="https://calendly.com/chitcat/meet" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow focus:outline-none ring-brand">
+      <span>Book a meet & greet</span>
       </a>
     </div>
   </header>
@@ -542,7 +538,7 @@ section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
     <div class="absolute inset-0 -z-10 cta-bg"></div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
       <h2 class="text-2xl md:text-3xl font-bold">Travel without cat‑guilt. We’ve got this.</h2>
-      <a id="calendlyBtn2" href="#" class="mt-6 inline-flex items-center justify-center rounded-xl btn-brand px-6 py-3 text-white font-semibold shadow ">Book your meet & greet</a>
+      <a id="calendlyBtn2" href="https://calendly.com/chitcat/meet" target="_blank" rel="noopener" class="mt-6 inline-flex items-center justify-center rounded-xl btn-brand px-6 py-3 text-white font-semibold shadow"> Book your meet & greet</a>
     </div>
   </section>
 
@@ -747,6 +743,7 @@ section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
   if (el) el.addEventListener('input', updateQuote);
 });
 updateQuote(); // ensure initial calculation
+    
 
     // ---------- Contact form -> Formspree + reCAPTCHA ----------
     const contactForm = document.getElementById('contactForm');
@@ -790,48 +787,42 @@ updateQuote(); // ensure initial calculation
         }
       });
     }
+    
 
-    // ---------- Calendly popup + analytics ----------
-    const CALENDLY_URL = 'https://calendly.com/chitcat/meet'; // replace with your live link
-    ['calendlyBtn','calendlyBtn2'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener('click', (e)=>{
-        e.preventDefault();
-        // preserve UTMs from current URL when opening Calendly
-        const ps = new URLSearchParams(location.search);
-        if (!ps.get('utm_source')) ps.set('utm_source','site');
-        const qs = ps.toString();
-        const url = CALENDLY_URL + '?' + qs + (qs ? '&' : '') + 'hide_event_type_details=1&hide_gdpr_banner=1';
-        if (window.Calendly) {
-          Calendly.initPopupWidget({ url });
-        } else {
-          window.open(url, '_blank');
-        }
-        if (window.track) track('calendly_open');
-      });
-    });
+    <script>
+// Calendly popup with progressive enhancement
+(function(){
+  const BASE = 'https://calendly.com/chitcat/meet';
+  const buildUrl = () => {
+    const ps = new URLSearchParams(location.search);
+    if (!ps.get('utm_source')) ps.set('utm_source','site');
+    const qs = ps.toString();
+    return BASE + (qs ? `?${qs}&` : '?') + 'hide_event_type_details=1&hide_gdpr_banner=1';
+  };
 
-    // ---------- Lightweight Tests (console) ----------
-    (function runTests(){
-      const almostEq = (a,b,eps=1e-6)=>Math.abs(a-b)<eps;
-      console.group('ChitCat quote tests');
-      console.assert(daysDiff('2025-01-01','2025-01-01') === 1, 'daysDiff same day');
-      console.assert(daysDiff('2025-01-01','2025-01-03') === 3, 'daysDiff inclusive');
-      console.assert(daysDiff('2025-01-03','2025-01-01') === 0, 'daysDiff invalid order -> 0');
-      console.assert(isCorePostcode('W5 2TH') && isCorePostcode('N1 5AB') && !isCorePostcode('E8 3AA'), 'isCorePostcode logic');
+  const url = buildUrl();
+  ['calendlyBtn','calendlyBtn2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
 
-      let r = computeQuote({ days:3, visitsPerDay:1, overnights:0, meds:true, inCore:true, surchargeDays:1 });
-      console.assert(Math.abs(r.total - (3*22 + 1*22*0.2 + 0)) < 1e-6, '3 days, 1 surcharge day, meds free'); // 66 + 4.4 = 70.4
+    // Default behaviour: open in new tab even if Calendly JS fails
+    el.href = url;
+    el.target = '_blank';
+    el.rel = 'noopener';
 
-      r = computeQuote({ days:2, visitsPerDay:2, overnights:0, meds:false, inCore:false, surchargeDays:0 });
-      console.assert(Math.abs(r.total - (2*36 + 3*2*2)) < 1e-6, 'double visits + travel outside core'); // 72 + 12 = 84
+    // Enhance with popup only if Calendly is available
+    el.addEventListener('click', (e) => {
+    // respect modifier keys / middle click
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (window.Calendly && typeof Calendly.initPopupWidget === 'function') {
+      e.preventDefault();
+      Calendly.initPopupWidget({ url });
+      if (window.track) track('calendly_open');
+    }
+  });
+  });
+})();
 
-      r = computeQuote({ days:1, visitsPerDay:1, overnights:2, meds:false, inCore:true, surchargeDays:3 });
-      console.assert(Math.abs(r.total - (1*22 + 2*55 + (1*22*0.2) + (2*55*0.2))) < 1e-6, 'overnight from 55 + surcharge'); // 158.4
-
-
-    })();
   </script>
 </body>
 </html>
