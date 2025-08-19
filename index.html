@@ -656,15 +656,26 @@
     }
 
     // Pure calculator for testing & UI
-    function computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays, extraBlocksPerVisit = 0, rate = RATE }){
+  function computeQuote({
+  days = 0,
+  visitsPerDay = 1,
+  overnights = 0,
+  meds = false,
+  inCore = true,
+  surchargeDays = 0,
+  extraBlocksPerVisit = 0,
+  rate = RATE
+} = {}) {
   const visitsKey = (visitsPerDay === 2) ? 'double' : 'single';
+
   const visitCost = days * rate[visitsKey];
   const overnightCost = overnights * rate.overnight;
 
   // Extra time: £4 per 15-min block per visit
-  const extraTimeCost = days * visitsPerDay * Math.max(0, extraBlocksPerVisit) * 4;
+  const extraBlocks = Math.max(0, Number(extraBlocksPerVisit) || 0);
+  const extraTimeCost = days * visitsPerDay * extraBlocks * 4;
 
-  // Meds: free (or flat once per booking if you set medsFlatPerBooking > 0)
+  // Meds: free by default (or flat per booking if you ever set medsFlatPerBooking > 0)
   const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
 
   const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
@@ -673,44 +684,41 @@
 
   const total = visitCost + overnightCost + extraTimeCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
 
+  // ---------- Friendly breakdown ----------
   const parts = [];
 
-// base visits
-if (days > 0) parts.push(`${days} ${days===1?'day':'days'} × ${fmt(rate[visitsKey])}`);
+  if (days > 0) parts.push(`${days} ${days===1?'day':'days'} × ${fmt(rate[visitsKey])}`);
+  if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
 
-// overnights
-if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
-
-// extra time (clean phrasing)
-if (extraTimeCost > 0) {
-  const perVisitMins = extraBlocksPerVisit * 15;
-  if (days === 1 && visitsPerDay === 1) {
-    parts.push(`extra time: ${perVisitMins} min = ${fmt(extraTimeCost)}`);
-  } else {
-    const totalExtraMins = perVisitMins * visitsPerDay * days;
-    parts.push(`extra time: ${totalExtraMins} min total = ${fmt(extraTimeCost)}`);
+  if (extraTimeCost > 0) {
+    const perVisitMins = extraBlocks * 15;
+    if (days === 1 && visitsPerDay === 1) {
+      parts.push(`extra time: ${perVisitMins} min = ${fmt(extraTimeCost)}`);
+    } else {
+      const totalExtraMins = perVisitMins * visitsPerDay * days;
+      parts.push(`extra time: ${totalExtraMins} min total = ${fmt(extraTimeCost)}`);
+    }
   }
-}
 
-// meds (only shows if you ever set a flat fee)
-if (medCost > 0) parts.push(`meds (flat): ${fmt(medCost)}`);
+  if (medCost > 0) parts.push(`meds (flat): ${fmt(medCost)}`);
 
-// travel (clearer)
-if (travelFee > 0) {
-  const visitsTotal = days * visitsPerDay;
-  parts.push(`travel: ${fmt(3)} × ${visitsTotal} visit${visitsTotal===1?'':'s'} = ${fmt(travelFee)}`);
-}
+  if (travelFee > 0) {
+    const visitsTotal = days * visitsPerDay;
+    parts.push(`travel: ${fmt(3)} × ${visitsTotal} visit${visitsTotal===1?'':'s'} = ${fmt(travelFee)}`);
+  }
 
-// peak surcharge (summarised)
-const peakTotal = surchargeVisit + surchargeOvernight;
-if (peakTotal > 0) {
-  const sd = Math.min(surchargeDays, days);
-  const sn = Math.min(surchargeDays, overnights);
-  const label =
-    (sd>0 && sn>0) ? `${sd} day${sd>1?'s':''} + ${sn} night${sn>1?'s':''}` :
-    (sd>0) ? `${sd} day${sd>1?'s':''}` :
-             `${sn} night${sn>1?'s':''}`;
-  parts.push(`peak +20% on ${label} = ${fmt(peakTotal)}`);
+  const peakTotal = surchargeVisit + surchargeOvernight;
+  if (peakTotal > 0) {
+    const sd = Math.min(surchargeDays, days);
+    const sn = Math.min(surchargeDays, overnights);
+    const label =
+      (sd>0 && sn>0) ? `${sd} day${sd>1?'s':''} + ${sn} night${sn>1?'s':''}` :
+      (sd>0) ? `${sd} day${sd>1?'s':''}` :
+               `${sn} night${sn>1?'s':''}`;
+    parts.push(`peak +20% on ${label} = ${fmt(peakTotal)}`);
+  }
+
+  return { total, parts };
 }
 
     // ---------- UI wiring ----------
@@ -722,7 +730,7 @@ if (peakTotal > 0) {
       const visitsPerDay = (document.getElementById('visits').value === '2') ? 2 : 1;
       const overnights = parseInt(document.getElementById('overnights').value || '0',10);
       const medsEl = document.getElementById('meds');
-      const meds = medsEl ? !!medsEl.checked : false;  // meds included by default → no fee
+      const meds = medsEl ? !!medsEl.checked : false;
       const surchargeDays = parseInt((document.getElementById('surchargeDays')?.value) || '0', 10);
       const inCore = isCorePostcode(document.getElementById('postcode').value);
       const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
@@ -735,8 +743,8 @@ if (peakTotal > 0) {
     ['postcode','start','end','visits','overnights','meds','surchargeDays','extraBlocks'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('input', updateQuote);
-  });
-  updateQuote(); //
+});
+updateQuote(); // ensure initial calculation
 
     // ---------- Contact form -> Formspree + reCAPTCHA ----------
     const contactForm = document.getElementById('contactForm');
