@@ -272,6 +272,12 @@
                 <option value="1">1 visit</option>
                 <option value="2">2 visits</option>
               </select>
+              <div>
+              <label class="block text-sm font-medium">Extra 15-min blocks <span class="text-neutral-500">(per visit)</span></label>
+              <input type="number" min="0" id="extraBlocks" value="0"
+               class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+              <p class="mt-1 text-xs text-neutral-500">Adds £4 per block, per visit.</p>
+            </div>
             </div>
             <div>
               <label class="block text-sm font-medium">Overnight stays</label>
@@ -657,28 +663,31 @@
     }
 
     // Pure calculator for testing & UI
-    function computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays, rate = RATE }) {
-      const visitsKey = (visitsPerDay === 2) ? 'double' : 'single';
-      const visitCost = days * rate[visitsKey];
-      const overnightCost = overnights * rate.overnight;
-    
-      // simple meds: free (default). To charge once per booking, use medsFlatPerBooking.
-      const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0; // default: free
-    
-      const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
-      const surchargeVisit = Math.min(surchargeDays, days) * rate[visitsKey] * 0.20;
-      const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
-      const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
-      const extraTimeCost = days * visitsPerDay * extraBlocksPerVisit * 4; // £4 per block
-      // then add extraTimeCost into total + parts
-      const total = visitCost + overnightCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
-      const parts = [];
-      if (days>0) parts.push(days + ' day' + (days>1?'s':'') + ' × ' + fmt(rate[visitsKey]));
-      if (overnights>0) parts.push(overnights + ' night' + (overnights>1?'s':'') + ' × ' + fmt(rate.overnight));
-      if (medCost>0) parts.push('meds (flat) ' + fmt(medCost));
-      if (travelFee>0) parts.push('travel ' + fmt(3) + ' × ' + visitsPerDay + '/day × ' + days + ' day' + (days>1?'s':''));
-      if (surchargeVisit>0 || surchargeOvernight>0) parts.push('+20% peak on ' + Math.min(surchargeDays, days) + ' day(s)' + (overnights>0 ? (' + ' + Math.min(surchargeDays, overnights) + ' night(s)') : ''));
-      return { total, parts };
+    function computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays, extraBlocksPerVisit = 0, rate = RATE }){
+  const visitsKey = (visitsPerDay === 2) ? 'double' : 'single';
+  const visitCost = days * rate[visitsKey];
+  const overnightCost = overnights * rate.overnight;
+
+  // Extra time: £4 per 15-min block per visit
+  const extraTimeCost = days * visitsPerDay * Math.max(0, extraBlocksPerVisit) * 4;
+
+  // Meds: free (or flat once per booking if you set medsFlatPerBooking > 0)
+  const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
+
+  const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
+  const surchargeVisit = Math.min(surchargeDays, days) * rate[visitsKey] * 0.20;
+  const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
+
+  const total = visitCost + overnightCost + extraTimeCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
+
+  const parts = [];
+  if (days>0) parts.push(days + ' day' + (days>1?'s':'') + ' × ' + fmt(rate[visitsKey]));
+  if (overnights>0) parts.push(overnights + ' night' + (overnights>1?'s':'') + ' × ' + fmt(rate.overnight));
+  if (extraTimeCost>0) parts.push(extraBlocksPerVisit + ' × 15min/visit × ' + visitsPerDay + '/day × ' + days + ' day' + (days>1?'s':'') + ' × £4');
+  if (medCost>0) parts.push('meds (flat) ' + fmt(medCost));
+  if (travelFee>0) parts.push('travel ' + fmt(3) + ' × ' + visitsPerDay + '/day × ' + days + ' day' + (days>1?'s':''));
+  if (surchargeVisit>0 || surchargeOvernight>0) parts.push('+20% peak on ' + Math.min(surchargeDays, days) + ' day(s)' + (overnights>0 ? (' + ' + Math.min(surchargeDays, overnights) + ' night(s)') : ''));
+  return { total, parts };
 }
 
     // ---------- UI wiring ----------
@@ -692,19 +701,18 @@
       const meds = document.getElementById('meds').checked;
       const surchargeDays = parseInt((document.getElementById('surchargeDays')?.value) || '0', 10);
       const inCore = isCorePostcode(document.getElementById('postcode').value);
+      const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
 
-      const { total, parts } = computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays });
+      const { total, parts } = computeQuote({ days, visitsPerDay, overnights, meds, inCore, surchargeDays, extraBlocksPerVisit });
       document.getElementById('total').textContent = fmt(total);
       document.getElementById('breakdown').textContent = parts.join(' + ') || 'Fill in your dates to see a price.';
     }
 
-    ['postcode','start','end','visits','overnights','meds','surchargeDays'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener('input', updateQuote);
-    });
-    const resetBtn = document.getElementById('resetQuote');
-    if (resetBtn) resetBtn.addEventListener('click', ()=>{ form.reset(); updateQuote(); });
-    updateQuote();
+    ['postcode','start','end','visits','overnights','meds','surchargeDays','extraBlocks'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updateQuote);
+  });
+
 
     // ---------- Contact form -> Formspree + reCAPTCHA ----------
     const contactForm = document.getElementById('contactForm');
