@@ -23,7 +23,7 @@
       --sky-50:    #e6fbff;
       --ink:       #0b0f12; /* near-black */
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); }
     h1, h2, h3, .display { font-family: Rubik, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
@@ -865,6 +865,7 @@ updateQuote(); // ensure initial calculation
 </div>
 
 <script>
+  
 // Router open/close
 (function(){
   const router = document.getElementById('bookRouter');
@@ -884,10 +885,29 @@ updateQuote(); // ensure initial calculation
   };
 
   open.addEventListener('click', (e)=>{ e.preventDefault(); show(); });
+
+  // existing close handlers
   router.addEventListener('click', (e)=> {
     if (e.target.matches('[data-close], [data-close] *') || e.target === router.firstElementChild) hide();
   });
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hide(); });
+
+  // NEW: close router when "Get an instant estimate" link (href="#quote") is clicked
+  router.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href="#quote"]');
+    if (!link) return;
+    e.preventDefault();
+    hide(); // close the modal
+
+    const target = document.getElementById('quote');
+    if (target && target.scrollIntoView) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { history.pushState(null, '', '#quote'); } catch(_) {}
+    } else {
+      location.hash = '#quote';
+    }
+    if (window.track) track('router_quote');
+  });
 })();
 </script>
 
