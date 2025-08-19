@@ -144,7 +144,8 @@
             <a id="openRouter" href="#book" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">Book now</a>
             <a id="btnQuote" href="#quote" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Get an instant quote</a>
           </div>
-          <p class="mt-4 text-sm text-neutral-600">Typical coverage: Ealing • Acton • Paddington</p>
+          <p class="mt-4 text-sm text-neutral-600"><p><strong>Service area.</strong> We currently serve Ealing, Acton and Paddington. There is no travel fee within these areas. Requests outside these areas may be accepted by agreement and priced individually.</p>
+</p>
         </div>
         <div class="relative">
           <div class="absolute -top-6 -left-6 -z-10 h-72 w-72 rounded-3xl bg-brand-blob blur-3xl"></div>
@@ -232,7 +233,6 @@
     <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
     <ul class="mt-4 text-sm text-neutral-700 space-y-2">
       <li>• Extra time: +£4 / 15min (per visit)</li>
-      <li>• Travel: +£3 / visit outside W5/N1</li>
       <li>• Complex meds/injections: by agreement</li>
     </ul>
   </div>
@@ -252,8 +252,13 @@
           <p class="mt-3 text-neutral-700">Get a ballpark figure. We’ll confirm after a quick chat and a free meet & greet.</p>
           <form id="quoteForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="sm:col-span-2">
-              <label class="block text-sm font-medium">Postcode</label>
-              <input type="text" id="postcode" placeholder="e.g., W5 2TH" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+              <label class="block text-sm font-medium" for="postcode">Postcode</label>
+              <input type="text" id="postcode" placeholder="e.g., W5 2TH"
+                     aria-describedby="quotePostHelp"
+                     class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
+              <p id="quotePostHelp" class="mt-1 text-xs text-neutral-500">
+                Currently serving <strong>Ealing, Acton and Paddington</strong> — no travel fees within these areas.
+              </p>
             </div>
             <div>
               <label class="block text-sm font-medium">Start date</label>
@@ -566,8 +571,6 @@
 
       <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We’re not liable for pre‑existing conditions or for damage caused by third parties with access to the premises.</p>
 
-      <p><strong>Travel Fee.</strong> +£3 per visit outside W5/N1 core zone.</p>
-
       <p><strong>Governing Law.</strong> England & Wales. Complaints welcome — email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
     </div>
   </section>
@@ -615,7 +618,7 @@
     "@context": "https://schema.org",
     "@type": "PetSittingService",
     "name": "ChitCat — Premium London Cat Sitting",
-    "areaServed": ["Ealing", "Acton", "Kensington", "Westminster", "Camden"],
+    "areaServed": ["Ealing", "Acton", "Paddington"],
     "url": "https://chitcat.co.uk",
     "email": "hello.chitcat@gmail.com",
     "telephone": "+447455567874",
@@ -664,7 +667,7 @@
   visitsPerDay = 1,
   overnights = 0,
   meds = false,
-  inCore = true,
+  inCore = true,              // kept for compatibility; now ignored
   surchargeDays = 0,
   extraBlocksPerVisit = 0,
   rate = RATE
@@ -681,17 +684,18 @@
   // Meds: free by default (or flat per booking if you ever set medsFlatPerBooking > 0)
   const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
 
-  const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
-  const surchargeVisit = Math.min(surchargeDays, days) * rate[visitsKey] * 0.20;
-  const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
+  // Travel fee removed (temporarily): always zero
+  const travelFee = 0;
+
+  const surchargeVisit     = Math.min(surchargeDays, days)       * rate[visitsKey] * 0.20;
+  const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight  * 0.20;
 
   const total = visitCost + overnightCost + extraTimeCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
 
   // ---------- Friendly breakdown ----------
   const parts = [];
-
-  if (days > 0) parts.push(`${days} ${days===1?'day':'days'} × ${fmt(rate[visitsKey])}`);
-  if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
+  if (days > 0)        parts.push(`${days} ${days===1?'day':'days'} × ${fmt(rate[visitsKey])}`);
+  if (overnights > 0)  parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
 
   if (extraTimeCost > 0) {
     const perVisitMins = extraBlocks * 15;
@@ -704,11 +708,6 @@
   }
 
   if (medCost > 0) parts.push(`meds (flat): ${fmt(medCost)}`);
-
-  if (travelFee > 0) {
-    const visitsTotal = days * visitsPerDay;
-    parts.push(`travel: ${fmt(3)} × ${visitsTotal} visit${visitsTotal===1?'':'s'} = ${fmt(travelFee)}`);
-  }
 
   const peakTotal = surchargeVisit + surchargeOvernight;
   if (peakTotal > 0) {
