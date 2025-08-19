@@ -674,13 +674,43 @@
   const total = visitCost + overnightCost + extraTimeCost + medCost + travelFee + surchargeVisit + surchargeOvernight;
 
   const parts = [];
-  if (days>0) parts.push(days + ' day' + (days>1?'s':'') + ' × ' + fmt(rate[visitsKey]));
-  if (overnights>0) parts.push(overnights + ' night' + (overnights>1?'s':'') + ' × ' + fmt(rate.overnight));
-  if (extraTimeCost>0) parts.push(extraBlocksPerVisit + ' × 15min/visit × ' + visitsPerDay + '/day × ' + days + ' day' + (days>1?'s':'') + ' × £4');
-  if (medCost>0) parts.push('meds (flat) ' + fmt(medCost));
-  if (travelFee>0) parts.push('travel ' + fmt(3) + ' × ' + visitsPerDay + '/day × ' + days + ' day' + (days>1?'s':''));
-  if (surchargeVisit>0 || surchargeOvernight>0) parts.push('+20% peak on ' + Math.min(surchargeDays, days) + ' day(s)' + (overnights>0 ? (' + ' + Math.min(surchargeDays, overnights) + ' night(s)') : ''));
-  return { total, parts };
+
+// base visits
+if (days > 0) parts.push(`${days} ${days===1?'day':'days'} × ${fmt(rate[visitsKey])}`);
+
+// overnights
+if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
+
+// extra time (clean phrasing)
+if (extraTimeCost > 0) {
+  const perVisitMins = extraBlocksPerVisit * 15;
+  if (days === 1 && visitsPerDay === 1) {
+    parts.push(`extra time: ${perVisitMins} min = ${fmt(extraTimeCost)}`);
+  } else {
+    const totalExtraMins = perVisitMins * visitsPerDay * days;
+    parts.push(`extra time: ${totalExtraMins} min total = ${fmt(extraTimeCost)}`);
+  }
+}
+
+// meds (only shows if you ever set a flat fee)
+if (medCost > 0) parts.push(`meds (flat): ${fmt(medCost)}`);
+
+// travel (clearer)
+if (travelFee > 0) {
+  const visitsTotal = days * visitsPerDay;
+  parts.push(`travel: ${fmt(3)} × ${visitsTotal} visit${visitsTotal===1?'':'s'} = ${fmt(travelFee)}`);
+}
+
+// peak surcharge (summarised)
+const peakTotal = surchargeVisit + surchargeOvernight;
+if (peakTotal > 0) {
+  const sd = Math.min(surchargeDays, days);
+  const sn = Math.min(surchargeDays, overnights);
+  const label =
+    (sd>0 && sn>0) ? `${sd} day${sd>1?'s':''} + ${sn} night${sn>1?'s':''}` :
+    (sd>0) ? `${sd} day${sd>1?'s':''}` :
+             `${sn} night${sn>1?'s':''}`;
+  parts.push(`peak +20% on ${label} = ${fmt(peakTotal)}`);
 }
 
     // ---------- UI wiring ----------
