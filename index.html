@@ -64,7 +64,13 @@
     header a:hover svg { transform: rotate(-6deg) scale(1.05); }
     
     /* Fixed stray comment/brace */
+
+  .calendly-inline-widget,
+  .calendly-badge-widget,
+  .calendly-badge-content { display: none !important; }
+    
   </style>
+  
 <link rel="icon" href="/assets/chitcat-logo.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
 <!-- Cloudflare Web Analytics (free, JS beacon). Replace TOKEN and keep this enabled. -->
@@ -170,15 +176,33 @@
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid sm:grid-cols-2 gap-6">
+  <!-- Our Promises -->
+<section class="bg-white border-y border-neutral-200/70">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-3 gap-6">
+    <div class="rounded-2xl bg-lilac p-6 shadow-sm">
+      <h3 class="font-semibold">On-time Window</h3>
+      <p class="mt-2 text-sm text-neutral-700">We keep agreed visit windows. If we miss one without notice, your next visit includes <strong>+15 minutes</strong> on us.</p>
+    </div>
+    <div class="rounded-2xl bg-lemon p-6 shadow-sm">
+      <h3 class="font-semibold">Update Promise</h3>
+      <p class="mt-2 text-sm text-neutral-700">Photo/video update every visit. If you don’t receive it after the window, <strong>£5 credit</strong> to your booking.</p>
+    </div>
+    <div class="rounded-2xl bg-sky p-6 shadow-sm">
+      <h3 class="font-semibold">No-Overbooking</h3>
+      <p class="mt-2 text-sm text-neutral-700">Limited client roster; we don’t cram routes. Your cat gets unhurried care.</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Services (premium, starts-at pricing) -->
+<div class="grid sm:grid-cols-2 gap-6">
   <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
     <h3 class="font-semibold">Daily Visit</h3>
     <p class="mt-1 text-sm text-neutral-600">30 minutes • 1× per day</p>
-    <p class="mt-4 text-3xl font-extrabold">from £18<span class="text-base font-medium text-neutral-500"> / visit</span></p>
+    <p class="mt-4 text-3xl font-extrabold">from £22<span class="text-base font-medium text-neutral-500"> / visit</span></p>
     <ul class="mt-4 text-sm text-neutral-700 space-y-2">
       <li>✔ Routine care + photos/videos</li>
+      <li>✔ Simple meds (oral/topical): <strong>included</strong></li>
       <li>✔ Extra time available (+£4 per 15min)</li>
     </ul>
   </div>
@@ -186,20 +210,21 @@
   <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
     <h3 class="font-semibold">Two Visits / Day</h3>
     <p class="mt-1 text-sm text-neutral-600">2 × 30 minutes (AM + PM)</p>
-    <p class="mt-4 text-3xl font-extrabold">from £30<span class="text-base font-medium text-neutral-500"> / day</span></p>
+    <p class="mt-4 text-3xl font-extrabold">from £36<span class="text-base font-medium text-neutral-500"> / day</span></p>
     <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-      <li>✔ Morning + evening</li>
+      <li>✔ Morning + evening windows</li>
+      <li>✔ Simple meds: <strong>included</strong></li>
       <li>✔ Extra time per visit (+£4 per 15min)</li>
     </ul>
   </div>
 
   <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
     <h3 class="font-semibold">Day & Overnight Stays</h3>
-    <p class="mt-1 text-sm text-neutral-600">In-home 10–12h (typ. 20:00–07:00)</p>
-    <p class="mt-4 text-3xl font-extrabold">from £45<span class="text-base font-medium text-neutral-500"> / night</span></p>
+    <p class="mt-1 text-sm text-neutral-600">In-home 10–12h (e.g., 20:00–07:00)</p>
+    <p class="mt-4 text-3xl font-extrabold">from £55<span class="text-base font-medium text-neutral-500"> / night</span></p>
     <ul class="mt-4 text-sm text-neutral-700 space-y-2">
-      <li>✔ Evening + morning care</li>
-      <li>✔ Extendable by quote</li>
+      <li>✔ Evening & morning care</li>
+      <li>✔ Extra time / early starts by agreement</li>
     </ul>
   </div>
 
@@ -208,15 +233,15 @@
     <p class="mt-1 text-sm text-neutral-600">Tailored to your needs</p>
     <ul class="mt-4 text-sm text-neutral-700 space-y-2">
       <li>• Extra time: +£4 / 15min (per visit)</li>
-      <li>• Simple meds (oral/topical): <strong>included</strong></li>
-      <li>• Travel: +£3/visit outside W5/N1</li>
+      <li>• Travel: +£3 / visit outside W5/N1</li>
+      <li>• Complex meds/injections: by agreement</li>
     </ul>
   </div>
 </div>
 
 <p class="mt-6 text-sm text-neutral-500">
-  Prices shown are starting points; your quote is confirmed after a quick chat. 
-  Bank holidays & peak dates +20%.
+  Prices are starting points; your quote is confirmed after a quick chat. 
+  Simple oral/topical meds are included. Bank holidays & peak dates +20%.
 </p>
     </div>
   </section>
@@ -326,6 +351,48 @@
     </div>
   </section>
 
+  <!-- Why we're different -->
+<section id="why" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+  <h2 class="text-3xl font-bold tracking-tight">Why we’re different</h2>
+  <div class="mt-6 grid md:grid-cols-2 gap-6">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <h3 class="font-semibold">Care Standards</h3>
+      <p class="mt-2 text-neutral-700">A clear, checklist-led routine with time-in/out transparency and a tidy-as-found finish.</p>
+    </div>
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <h3 class="font-semibold">Consistency</h3>
+      <p class="mt-2 text-neutral-700">The same sitter (me) with a documented backup under the same insurance and SOPs.</p>
+    </div>
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <h3 class="font-semibold">Transparent Updates</h3>
+      <p class="mt-2 text-neutral-700">ChitCat Care Report after every visit: time in/out, food, litter, play, meds, photos/video.</p>
+    </div>
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <h3 class="font-semibold">Privacy & Trust</h3>
+      <p class="mt-2 text-neutral-700">DBS, £5m PL, minimal data collection, consent-first photo policy, and off-site key storage with coded tags.</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Care Standards -->
+<section id="standards" class="bg-white border-y border-neutral-200/70">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold tracking-tight">Care Standards</h2>
+    <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-neutral-800">
+      <li>• Calm entry, greet if cat consents, fresh water first</li>
+      <li>• Feed as instructed; log appetite/leftovers</li>
+      <li>• Litter refresh & tidy surrounding area</li>
+      <li>• Play/enrichment rotation or quiet companionship</li>
+      <li>• Brush if allowed; check for changes (eyes/coat/behaviour)</li>
+      <li>• Simple meds as instructed; log dose/time</li>
+      <li>• Quick sweep of bowls/litter area; lock-up checklist</li>
+      <li>• Care Report sent before the visit window ends</li>
+    </ul>
+  </div>
+</section>
+
+
+
   <!-- Reviews -->
   <section id="reviews" class="bg-neutral-50 border-y border-neutral-200/70">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
@@ -376,9 +443,7 @@
         <li><strong>Inside 5 days</strong> but at least <strong>24 hours</strong> before: we keep the <strong>25% deposit</strong>, refund the rest.</li>
         <li><strong>Within 24 hours</strong> of the start or after the booking begins: <strong>no refund</strong>.</li>
       </ul>
-      <p class="mt-2 text-neutral-700">
-        Bank holidays &amp; peak dates carry a 20% surcharge.
-      </p>
+      <p class="mt-2 text-neutral-700">Bank holidays &amp; peak dates carry a 20% surcharge.</p>
     </details>
 
     <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
@@ -389,10 +454,10 @@
     </details>
 
     <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-      <summary class="cursor-pointer font-medium">Do you administer medication?</summary>
+      <summary class="cursor-pointer font-medium">What does a Care Report include?</summary>
       <p class="mt-2 text-neutral-700">
-        We’re comfortable with simple meds (pills, liquid, transdermal) as instructed by you/your vet. 
-        Injections only by prior agreement.
+        After each visit you’ll get a short message with time in/out, food &amp; water, litter, play/enrichment,
+        meds (if any), and 2–4 photos or a quick clip — all in one place. Consistent, concise, and reliable.
       </p>
     </details>
 
@@ -577,7 +642,7 @@
       set('referrer', document.referrer || '');
     })();
 
-    const RATE = { single: 18, double: 30, overnight: 45, meds: 0, medsFlatPerBooking: 0 /* set to 5 if you want that */ };
+    const RATE = { single: 22, double: 36, overnight: 55, meds: 0, medsFlatPerBooking: 0 /* set to 5 if you want that */ };
 
     function daysDiff(a, b) {
       const A = new Date(a), B = new Date(b);
@@ -598,7 +663,7 @@
       const overnightCost = overnights * rate.overnight;
     
       // simple meds: free (default). To charge once per booking, use medsFlatPerBooking.
-      const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
+      const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0; // default: free
     
       const travelFee = (days > 0 && !inCore) ? (3 * visitsPerDay * days) : 0;
       const surchargeVisit = Math.min(surchargeDays, days) * rate[visitsKey] * 0.20;
@@ -714,15 +779,15 @@
       console.assert(daysDiff('2025-01-03','2025-01-01') === 0, 'daysDiff invalid order -> 0');
       console.assert(isCorePostcode('W5 2TH') && isCorePostcode('N1 5AB') && !isCorePostcode('E8 3AA'), 'isCorePostcode logic');
 
-      let r = computeQuote({ days:3, visitsPerDay:1, overnights:0, meds:false, inCore:true, surchargeDays:1 });
-      console.assert(almostEq(r.total, 3*18 + 1*18*0.2), 'quote: 3 days, 1 surcharge day');
+      let r = computeQuote({ days:3, visitsPerDay:1, overnights:0, meds:true, inCore:true, surchargeDays:1 });
+      console.assert(Math.abs(r.total - (3*18 + 1*18*0.2 + 0)) < 1e-6, '3 days, 1 surcharge day, meds free');
 
       r = computeQuote({ days:2, visitsPerDay:2, overnights:0, meds:false, inCore:false, surchargeDays:0 });
-      console.assert(almostEq(r.total, 2*28 + 3*2*2), 'quote: travel fee outside core');
+      console.assert(Math.abs(r.total - (2*36 + 3*2*2)) < 1e-6, 'double visits + travel outside core');
 
       r = computeQuote({ days:1, visitsPerDay:1, overnights:2, meds:false, inCore:true, surchargeDays:3 });
-      console.assert(almostEq(r.total, 1*18 + 2*70 + (1*18*0.2) + (2*70*0.2)), 'quote: surcharge capped by counts');
-      console.groupEnd();
+      console.assert(Math.abs(r.total - (1*18 + 2*45 + (1*18*0.2) + (2*45*0.2))) < 1e-6, 'overnight from 45 + surcharge');
+
     })();
   </script>
 </body>
