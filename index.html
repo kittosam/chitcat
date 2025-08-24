@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChitCat — Premium London Cat Sitting</title>
-  <meta name="description" content="Reliable, loving in‑home cat care across London. Daily visits, overnights, medication, and video + photo updates. Book a free meet & greet." />
+  <meta name="description" content="Reliable, loving in‑home cat care across London. Daily visits, overnights, medication, and video + photo updates. Check availability & next steps" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +36,6 @@
 
     .brand-text { color: var(--brand-700); }
 
-    /* Hide any auto-injected Calendly embeds/badges – we only use popup */
-    .calendly-inline-widget,
-    .calendly-badge-widget,
-    .calendly-badge-content { display: none !important; }
-
     /* Make link hovers pop without changing HTML classes */
     header nav a:hover, footer a:hover { color: var(--brand-700) !important; }
 
@@ -63,17 +58,13 @@
     header a svg { transition: transform .2s ease; }
     header a:hover svg { transform: rotate(-6deg) scale(1.05); }
     
-    /* Fixed stray comment/brace */
-
-  .calendly-inline-widget,
-  .calendly-badge-widget,
-  .calendly-badge-content { display: none !important; }
     
   </style>
   
 <link rel="icon" href="/assets/chitcat-logo.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
-<!-- Cloudflare Web Analytics (free, JS beacon). Replace TOKEN and keep this enabled. -->
+
+  <!-- Cloudflare Web Analytics (free, JS beacon). Replace TOKEN and keep this enabled. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b7057484a6f64513bc4279356eee7114"}'></script>
 
 <!-- Search Console verification (paste your token, then remove after verify) -->
@@ -89,8 +80,7 @@
     } catch(e) { /* no-op */ }
   };
 </script>
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
 </head>
 <body class="bg-neutral-50 text-neutral-900">
   <!-- Sticky Nav -->
@@ -117,9 +107,24 @@
       <a href="#quote" class="hover:brand-text">Quote</a>
       <a href="#contact" class="hover:brand-text">Contact</a>
     </nav>
-      <a id="calendlyBtn" href="https://calendly.com/hello-chitcat/30min" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow focus:outline-none ring-brand">
-      <span>Book a meet & greet</span>
-      </a>
+<div class="relative">
+  <button id="contactCta"
+          type="button"
+          class="inline-flex items-center gap-2 rounded-xl btn-brand px-4 py-2 text-white shadow focus:outline-none ring-brand">
+    Contact us
+  </button>
+
+  <div id="contactPopover"
+       class="hidden absolute right-0 mt-2 w-64 rounded-2xl border border-neutral-200 bg-white p-3 shadow-lg z-50">
+    <a id="headerEmail"
+       href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20enquiry&body=Hi%2C%20I%27d%20like%20to%20check%20availability."
+       class="block rounded-lg px-3 py-2 hover:bg-neutral-50">📧 Email: hello.chitcat@gmail.com</a>
+    <a id="headerWhatsApp"
+       href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F"
+       target="_blank" rel="noopener"
+       class="block rounded-lg px-3 py-2 hover:bg-neutral-50">💬 WhatsApp: +44 7455 567874</a>
+  </div>
+</div>
     </div>
   </header>
 
@@ -148,15 +153,14 @@
     Get an instant estimate
   </a>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLrCidUW-9y2pVUvFR-D-s0UUl3IjcxOWtvdxUQaG_cHKFag/viewform"
-     target="_blank" rel="noopener"
+  <a href="#contact"
      class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
-    Existing client: Book dates
+    Contact us
   </a>
 </div>
 
-<p class="mt-5 text-xs text-neutral-700">
-  Returning client? Use the quick booking form above. New here? Book a meet &amp; greet from the top-right button.
+<p class="mt-3 text-xs text-neutral-500">
+  We’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake happens after you’re happy to book.
 </p>
 
         </div>
@@ -306,8 +310,9 @@
               </div>
             </div>
             <div class="sm:col-span-2 flex gap-3">
-              <a href="#contact" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Request booking</a>
-              <button type="button" id="resetQuote" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">Reset</button>
+              <button type="button" id="emailQuoteBtn" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow"> Email us to book
+                </button>
+              <a id="waQuoteBtn" href="#" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">WhatsApp us to book</a>
             </div>
           </form>
         </div>
@@ -491,6 +496,26 @@
         <div>
           <h2 class="text-3xl font-bold tracking-tight">Already a customer?</h2>
           <p class="mt-3 text-neutral-700">Tell us about your cat and dates. We reply within 24 hours.</p>
+          <div class="mt-4 flex flex-col sm:flex-row gap-3">
+  <a href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20enquiry&body=Hi%2C%20I%27d%20like%20to%20check%20availability."
+     class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">
+    Email us
+  </a>
+  <a href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F"
+     target="_blank" rel="noopener"
+     class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
+    WhatsApp us
+  </a>
+</div>
+
+<p class="mt-3 text-xs text-neutral-500">
+  We’ll confirm availability and send a short intake form. Meet &amp; Greet happens after you decide to book.
+</p>
+          <details class="mt-6">
+  <summary class="cursor-pointer text-sm text-neutral-700 underline">
+    Prefer a web form? Click to fill it out
+  </summary>
+  <div class="mt-4">
           <form id="contactForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" action="https://formspree.io/f/mgvzqelp" method="POST">
             <!-- Attribution hidden fields (auto-filled by JS) -->
             <input type="hidden" name="utm_source" id="utm_source">
@@ -537,6 +562,8 @@
               <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
             </div>
           </form>
+      </div>
+</details>
         </div>
         <div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
           <h3 class="text-xl font-semibold">Why ChitCat?</h3>
@@ -869,7 +896,7 @@ updateQuote(); // ensure initial calculation
       </a>
     </div>
     <p class="mt-4 text-sm text-neutral-600">
-      Just exploring? <a href="#quote" class="underline">Get an instant estimate</a>.
+      Just exploring? <a href="#quote" class="underline">Get an instant quote</a>.
     </p>
   </div>
 </div>
@@ -902,7 +929,7 @@ updateQuote(); // ensure initial calculation
   });
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hide(); });
 
-  // NEW: close router when "Get an instant estimate" link (href="#quote") is clicked
+  // NEW: close router when "Get an instant quote" link (href="#quote") is clicked
   router.addEventListener('click', (e) => {
     const link = e.target.closest('a[href="#quote"]');
     if (!link) return;
@@ -919,6 +946,91 @@ updateQuote(); // ensure initial calculation
     if (window.track) track('router_quote');
   });
 })();
+
+  // Header contact popover
+(function(){
+  const btn = document.getElementById('contactCta');
+  const pop = document.getElementById('contactPopover');
+  if (!btn || !pop) return;
+
+  const toggle = () => pop.classList.toggle('hidden');
+  btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(); if (window.track) track('contact_menu_open'); });
+
+  // close when clicking elsewhere / ESC
+  document.addEventListener('click', (e)=>{
+    if (!pop.contains(e.target) && e.target !== btn) pop.classList.add('hidden');
+  });
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') pop.classList.add('hidden'); });
+})();
+
+  function buildQuotePayload() {
+  const start = document.getElementById('start')?.value || '';
+  const end = document.getElementById('end')?.value || '';
+  const postcode = document.getElementById('postcode')?.value || '';
+  const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
+  const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
+  const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
+
+  const days = daysDiff(start, end);
+  const { total, parts } = computeQuote({
+    days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0, extraBlocksPerVisit
+  });
+
+  const lines = [
+    `Booking request`,
+    `Dates: ${start || '?'} → ${end || '?'}`,
+    `Days: ${days}`,
+    `Visits/day: ${visitsPerDay}`,
+    `Overnights: ${overnights}`,
+    extraBlocksPerVisit ? `Extra time: ${extraBlocksPerVisit} × 15min/visit` : null,
+    postcode ? `Postcode: ${postcode}` : null,
+    ``,
+    `Estimate: ${fmt(total)}`,
+    parts.length ? `Breakdown: ${parts.join(' + ')}` : null,
+    ``,
+    `Your name:`,
+    `Phone:`,
+    `Any notes:`
+  ].filter(Boolean);
+
+  return { subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`, body: lines.join('\n') };
+}
+
+// Wire the Email + WhatsApp buttons
+(function(){
+  const emailBtn = document.getElementById('emailQuoteBtn');
+  const waBtn = document.getElementById('waQuoteBtn');
+
+  function openEmail() {
+    const { subject, body } = buildQuotePayload();
+    const href = `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    location.href = href;
+    if (window.track) track('contact_email_from_quote');
+  }
+  function openWhatsApp() {
+    const { body } = buildQuotePayload();
+    const href = `https://wa.me/447455567874?text=${encodeURIComponent(body)}`;
+    window.open(href, '_blank', 'noopener');
+    if (window.track) track('contact_whatsapp_from_quote');
+  }
+
+  if (emailBtn) emailBtn.addEventListener('click', openEmail);
+  if (waBtn) waBtn.addEventListener('click', (e)=>{ e.preventDefault(); openWhatsApp(); });
+
+  // Disable buttons if dates are invalid
+  function toggleQuoteCTAs(){
+    const start = document.getElementById('start')?.value;
+    const end = document.getElementById('end')?.value;
+    const valid = daysDiff(start, end) > 0;
+    [emailBtn, waBtn].forEach(b => { if (!b) return; b.disabled = !valid; b.style.opacity = valid ? '1' : '0.5'; });
+  }
+  ['start','end','visits','overnights','extraBlocks'].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', toggleQuoteCTAs);
+  });
+  toggleQuoteCTAs();
+})();
+
 </script>
 
 </body>
