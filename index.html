@@ -372,6 +372,12 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
             </div>
           </form>
         </div>
+        <p class="mt-2 text-xs text-neutral-500">
+  Prefer webmail?
+  <a href="#" id="useGmail" class="underline">Gmail</a> •
+  <a href="#" id="useOutlook" class="underline">Outlook.com</a> •
+  <a href="#" id="copyEmail" class="underline">Copy message</a>
+</p>
         <div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
           <h3 class="text-xl font-semibold">What’s included</h3>
           <ul class="mt-4 space-y-2 text-neutral-700">
@@ -962,15 +968,47 @@ updateQuote(); // ensure initial calculation
 
 // Wire the Email + WhatsApp buttons
 (function(){
-  const emailBtn = document.getElementById('emailQuoteBtn');
-  const waBtn = document.getElementById('waQuoteBtn');
+  const emailBtn   = document.getElementById('emailQuoteBtn');
+  const waBtn      = document.getElementById('waQuoteBtn');
+  const linkGmail  = document.getElementById('useGmail');
+  const linkOut    = document.getElementById('useOutlook');
+  const linkCopy   = document.getElementById('copyEmail');
 
-  function openEmail() {
+  const openMailto = () => {
     const { subject, body } = buildQuotePayload();
     const href = `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    location.href = href;
-    if (window.track) track('contact_email_from_quote');
-  }
+    // Using window.location is fine, but some browsers behave better with window.open for mailto:
+    window.location.href = href;
+    if (window.track) track('contact_email_from_quote_mailto');
+  };
+
+  const openGmail = () => {
+    const { subject, body } = buildQuotePayload();
+    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=hello.chitcat@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(url, '_blank', 'noopener');
+    if (window.track) track('contact_email_from_quote_gmail');
+  };
+
+  const openOutlook = () => {
+    const { subject, body } = buildQuotePayload();
+    const url = `https://outlook.office.com/mail/deeplink/compose?to=hello.chitcat@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(url, '_blank', 'noopener');
+    if (window.track) track('contact_email_from_quote_outlook');
+  };
+
+  const copyMsg = async () => {
+    const { subject, body } = buildQuotePayload();
+    const fullText = `To: hello.chitcat@gmail.com\nSubject: ${subject}\n\n${body}`;
+    try {
+      await navigator.clipboard.writeText(fullText);
+      alert('Message copied. Paste it into your email app or WhatsApp.');
+      if (window.track) track('contact_email_from_quote_copy');
+    } catch {
+      // Fallback: show a prompt to copy manually
+      window.prompt('Copy this message:', fullText);
+    }
+  };
+
   function openWhatsApp() {
     const { body } = buildQuotePayload();
     const href = `https://wa.me/447455567874?text=${encodeURIComponent(body)}`;
@@ -978,43 +1016,29 @@ updateQuote(); // ensure initial calculation
     if (window.track) track('contact_whatsapp_from_quote');
   }
 
-  if (emailBtn) emailBtn.addEventListener('click', openEmail);
-  if (waBtn) waBtn.addEventListener('click', (e)=>{ e.preventDefault(); openWhatsApp(); });
+  // Hook up events
+  if (emailBtn)  emailBtn.addEventListener('click', openMailto);
+  if (waBtn)     waBtn.addEventListener('click', (e)=>{ e.preventDefault(); openWhatsApp(); });
+  if (linkGmail) linkGmail.addEventListener('click', (e)=>{ e.preventDefault(); openGmail(); });
+  if (linkOut)   linkOut.addEventListener('click', (e)=>{ e.preventDefault(); openOutlook(); });
+  if (linkCopy)  linkCopy.addEventListener('click', (e)=>{ e.preventDefault(); copyMsg(); });
 
-  // Disable buttons if dates are invalid
+  // Disable buttons if dates are invalid (keep your current behaviour)
   function toggleQuoteCTAs(){
     const start = document.getElementById('start')?.value;
-    const end = document.getElementById('end')?.value;
+    const end   = document.getElementById('end')?.value;
     const valid = daysDiff(start, end) > 0;
-    [emailBtn, waBtn].forEach(b => { if (!b) return; b.disabled = !valid; b.style.opacity = valid ? '1' : '0.5'; });
+    [emailBtn, waBtn, linkGmail, linkOut, linkCopy].forEach(el=>{
+      if (!el) return;
+      el.style.pointerEvents = valid ? 'auto' : 'none';
+      el.style.opacity = valid ? '1' : '0.5';
+    });
   }
   ['start','end','visits','overnights','extraBlocks'].forEach(id=>{
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', toggleQuoteCTAs);
   });
   toggleQuoteCTAs();
-})();
-
-  // Auto-open contact form panel when following links with data-open-form
-(function(){
-  const OPEN_AFTER_MS = 250; // allow scroll to settle
-  const panel = document.getElementById('contactFormPanel');
-  if (!panel) return;
-
-  function openPanelSoon(){
-    setTimeout(()=>{ if (!panel.open) panel.open = true; }, OPEN_AFTER_MS);
-  }
-
-  // Any click on a link/button marked with data-open-form
-  document.addEventListener('click', (e)=>{
-    const a = e.target.closest('[data-open-form]');
-    if (!a) return;
-    // If it navigates to #contact, open after scroll
-    openPanelSoon();
-  });
-
-  // If page loads with #contact in URL and we want it open by default:
-  if (location.hash === '#contact') openPanelSoon();
 })();
 
 
