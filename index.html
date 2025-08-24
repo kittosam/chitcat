@@ -167,25 +167,32 @@
 </p>
         </div>
         <!-- RIGHT COLUMN — REPLACE the whole existing right-side <div class="relative">…</div> -->
+<!-- Right column of your hero -->
 <div class="relative">
   <div class="absolute -top-6 -left-6 -z-10 h-72 w-72 rounded-3xl bg-brand-blob blur-3xl"></div>
 
-  <!-- Height cap: tweak 440/500/560 to taste -->
-  <div class="md:h-[500px] lg:h-[520px] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-neutral-200">
-    <div class="grid h-full grid-cols-3 gap-3">
-      <!-- your figures/images here -->
-      <figure class="col-span-1 row-span-2 rounded-xl overflow-hidden">
-        <img src="1.jpg" alt="Sam catsitter and her cat Gnocchi" class="h-full w-full object-cover">
+  <!-- 3 cols × 4 rows (4×120=480px). No gaps. -->
+  <div class="md:h-[480px] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-neutral-200">
+    <div class="grid grid-cols-3 auto-rows-[120px] gap-3">
+
+      <!-- Big hero tile (fills left 2 cols, all 4 rows) -->
+      <figure class="col-span-2 row-span-4 rounded-xl overflow-hidden">
+        <img src="1.jpg" alt="Sam with Gnocchi" class="h-full w-full object-cover">
       </figure>
 
-<img src="2.jpg" alt="Cozy London flat" loading="lazy">
-<img src="3.jpg" alt="Sam catsitter and her cat Gnocchi" loading="lazy">
-  </div>
+      <!-- Right column, top half -->
+      <figure class="col-span-1 row-span-2 rounded-xl overflow-hidden">
+        <img src="2.jpg" alt="Playtime" class="h-full w-full object-cover">
+      </figure>
 
-  <!-- Small caption card to reinforce 'not an agency' -->
-  <figcaption class="absolute -bottom-3 -right-3 rounded-xl bg-white/90 backdrop-blur px-3 py-2 shadow ring-1 ring-neutral-200 text-sm">
-    Hi, I’m <strong>Sam</strong> - your sitter (not an agency!). And the handsome grey tuxedo is my boy, Gnocchi 😸
-  </figcaption>
+      <!-- Right column, bottom half -->
+      <figure class="col-span-1 row-span-2 rounded-xl overflow-hidden">
+        <img src="3.jpg" alt="Cuddles" class="h-full w-full object-cover">
+      </figure>
+
+    </div>
+  </div>
+</div>
 </div>
     </div>
   </section>
