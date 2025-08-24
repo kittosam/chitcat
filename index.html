@@ -105,7 +105,8 @@
       <a href="#why" class="hover:brand-text">Why ChitCat</a>
       <a href="#pricing" class="hover:brand-text">Pricing</a>
       <a href="#quote" class="hover:brand-text">Quote</a>
-      <a href="#contact" class="hover:brand-text">Contact</a>
+      <a href="#faq" class="hover:brand-text">FAQ</a>
+      <a href="#t&c" class="hover:brand-text">T&C</a>
     </nav>
 <div class="relative">
   <button id="contactCta"
@@ -124,6 +125,9 @@
        target="_blank" rel="noopener"
        class="block rounded-lg px-3 py-2 hover:bg-neutral-50">💬 WhatsApp: +44 7455 567874</a>
   </div>
+  <p class="mt-3 text-xs text-neutral-500">
+  We’ll confirm availability and send a short intake form. Meet &amp; Greet happens after you decide to book.
+</p>
 </div>
     </div>
   </header>
@@ -153,10 +157,14 @@
     Get an instant quote
   </a>
 
-  <a href="#contact"
-     class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
-    Contact us
-  </a>
+<a href="#contact"
+   data-open-form
+   class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
+  Contact us
+</a>
+<p class="mt-2 text-xs text-neutral-500">
+  <a href="#contact" data-open-form class="underline">Prefer a web form?</a>
+</p>
 </div>
 
 <p class="mt-3 text-xs text-neutral-500">
@@ -494,7 +502,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 class="text-3xl font-bold tracking-tight">Already a customer?</h2>
+          <h2 class="text-3xl font-bold tracking-tight">Get in touch</h2>
           <p class="mt-3 text-neutral-700">Tell us about your cat and dates. We reply within 24 hours.</p>
           <div class="mt-4 flex flex-col sm:flex-row gap-3">
   <a href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20enquiry&body=Hi%2C%20I%27d%20like%20to%20check%20availability."
@@ -1030,6 +1038,29 @@ updateQuote(); // ensure initial calculation
   });
   toggleQuoteCTAs();
 })();
+
+  // Auto-open contact form panel when following links with data-open-form
+(function(){
+  const OPEN_AFTER_MS = 250; // allow scroll to settle
+  const panel = document.getElementById('contactFormPanel');
+  if (!panel) return;
+
+  function openPanelSoon(){
+    setTimeout(()=>{ if (!panel.open) panel.open = true; }, OPEN_AFTER_MS);
+  }
+
+  // Any click on a link/button marked with data-open-form
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('[data-open-form]');
+    if (!a) return;
+    // If it navigates to #contact, open after scroll
+    openPanelSoon();
+  });
+
+  // If page loads with #contact in URL and we want it open by default:
+  if (location.hash === '#contact') openPanelSoon();
+})();
+
 
 </script>
 
