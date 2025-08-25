@@ -377,17 +377,17 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
           <div class="sm:col-span-2 flex flex-wrap gap-3">
             <!-- EMAIL is a link, not a button -->
             <a id="emailQuoteBtn" href="mailto:hello.chitcat@gmail.com" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">Email us to book</a>
-            <a id="waQuoteBtn" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">WhatsApp us to book</a>
+            <a id="waQuoteBtn" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">WhatsApp us to book</a>
           </div>
         </form>
 
         <!-- IMPORTANT: keep this helper INSIDE the left column, after the form -->
         <p class="mt-2 text-xs text-neutral-500">
         Prefer webmail?
-        <a href="#" id="useGmail" class="underline">Gmail</a> •
-        <a href="#" id="useOutlook" class="underline">Outlook.com</a> •
-        <a href="#" id="copyEmail" class="underline">Copy message</a>
-</p>
+        <a id="useGmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.chitcat@gmail.com" target="_blank" rel="noopener">Gmail</a> •
+        <a id="useOutlook" href="https://outlook.live.com/owa/?path=/mail/action/compose&to=hello.chitcat@gmail.com" target="_blank" rel="noopener">Outlook.com</a> •
+        <button id="copyEmail" type="button" class="underline">Copy message</button>
+      </p>
       </div>
 
       <!-- RIGHT: What’s included card (second sibling in the grid) -->
@@ -947,110 +947,99 @@ updateQuote(); // ensure initial calculation
 })();
 
   <script>
-// --- Build the email/WA content from the form ---
-function buildQuotePayload() {
-  const start = document.getElementById('start')?.value || '';
-  const end = document.getElementById('end')?.value || '';
-  const postcode = document.getElementById('postcode')?.value || '';
-  const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
-  const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
-  const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
+document.addEventListener('DOMContentLoaded', function(){
 
-  const days = daysDiff(start, end);
-  const { total, parts } = computeQuote({
-    days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0, extraBlocksPerVisit
-  });
+  function buildQuotePayload() {
+    const start = document.getElementById('start')?.value || '';
+    const end = document.getElementById('end')?.value || '';
+    const postcode = document.getElementById('postcode')?.value || '';
+    const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
+    const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
+    const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
 
-  const lines = [
-    `Booking request`,
-    `Dates: ${start || '?'} → ${end || '?'}`,
-    `Days: ${days}`,
-    `Visits/day: ${visitsPerDay}`,
-    `Overnights: ${overnights}`,
-    extraBlocksPerVisit ? `Extra time: ${extraBlocksPerVisit} × 15min/visit` : null,
-    postcode ? `Postcode: ${postcode}` : null,
-    ``,
-    `Estimate: ${fmt(total)}`,
-    parts.length ? `Breakdown: ${parts.join(' + ')}` : null,
-    ``,
-    `Your name:`,
-    `Phone:`,
-    `Any notes:`
-  ].filter(Boolean);
+    const days = daysDiff(start, end);
+    const { total, parts } = computeQuote({
+      days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0, extraBlocksPerVisit
+    });
 
-  return {
-    subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`,
-    body: lines.join('\n')
-  };
-}
+    const lines = [
+      `Booking request`,
+      `Dates: ${start || '?'} → ${end || '?'}`,
+      `Days: ${days}`,
+      `Visits/day: ${visitsPerDay}`,
+      `Overnights: ${overnights}`,
+      extraBlocksPerVisit ? `Extra time: ${extraBlocksPerVisit} × 15min/visit` : null,
+      postcode ? `Postcode: ${postcode}` : null,
+      ``,
+      `Estimate: ${fmt(total)}`,
+      parts.length ? `Breakdown: ${parts.join(' + ')}` : null,
+      ``,
+      `Your name:`,
+      `Phone:`,
+      `Any notes:`
+    ].filter(Boolean);
 
-// --- Update all contact links from the current form values ---
-(function contactLinks(){
-  const emailBtn   = document.getElementById('emailQuoteBtn');
-  const waBtn      = document.getElementById('waQuoteBtn');
-  const gmailLink  = document.getElementById('useGmail');
-  const outLink    = document.getElementById('useOutlook');
-  const copyLink   = document.getElementById('copyEmail');
+    return {
+      subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`,
+      body: lines.join('\n')
+    };
+  }
 
-  function update() {
+  function updateContactLinks(){
+    const emailBtn   = document.getElementById('emailQuoteBtn');
+    const waBtn      = document.getElementById('waQuoteBtn');
+    const gmailLink  = document.getElementById('useGmail');
+    const outLink    = document.getElementById('useOutlook');
+
     const { subject, body } = buildQuotePayload();
 
-    // mailto: (let the browser/OS handle it – no window.open, no target)
     if (emailBtn) {
-      emailBtn.setAttribute(
-        'href',
-        `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      );
+      emailBtn.href = `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Let the OS handle it; do NOT window.open and do NOT set target
     }
 
-    // WhatsApp deep link (open in new tab is fine)
     if (waBtn) {
-      waBtn.setAttribute(
-        'href',
-        `https://wa.me/447455567874?text=${encodeURIComponent(body)}`
-      );
+      waBtn.href = `https://wa.me/447455567874?text=${encodeURIComponent(body)}`;
+      waBtn.target = '_blank';
+      waBtn.rel = 'noopener';
     }
 
-    // Webmail helpers (open in new tab)
     if (gmailLink) {
-      gmailLink.setAttribute(
-        'href',
-        `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('hello.chitcat@gmail.com')}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      );
-      gmailLink.setAttribute('target','_blank');
-      gmailLink.setAttribute('rel','noopener');
+      gmailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('hello.chitcat@gmail.com')}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      gmailLink.target = '_blank';
+      gmailLink.rel = 'noopener';
     }
 
     if (outLink) {
-      outLink.setAttribute(
-        'href',
-        `https://outlook.live.com/owa/?path=/mail/action/compose&to=${encodeURIComponent('hello.chitcat@gmail.com')}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      );
-      outLink.setAttribute('target','_blank');
-      outLink.setAttribute('rel','noopener');
+      outLink.href = `https://outlook.live.com/owa/?path=/mail/action/compose&to=${encodeURIComponent('hello.chitcat@gmail.com')}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      outLink.target = '_blank';
+      outLink.rel = 'noopener';
     }
   }
 
-  // Copy to clipboard
-  if (copyLink) {
-    copyLink.addEventListener('click', (e)=>{
-      e.preventDefault();
+  // “Copy message” button
+  (function wireCopy(){
+    const copyBtn = document.getElementById('copyEmail');
+    if (!copyBtn) return;
+    copyBtn.addEventListener('click', () => {
       const { subject, body } = buildQuotePayload();
       const text = `Subject: ${subject}\n\n${body}`;
       navigator.clipboard.writeText(text).then(()=>{
-        copyLink.textContent = 'Copied!';
-        setTimeout(()=>copyLink.textContent = 'Copy message', 1500);
-      }).catch(()=>{ /* ignore */ });
+        const old = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=> copyBtn.textContent = old, 1200);
+      }).catch(()=>{/* ignore */});
     });
-  }
+  })();
 
-  // Keep links up to date as the user types
+  // Keep links updated as the user types
   ['postcode','start','end','visits','overnights','extraBlocks'].forEach(id=>{
     const el = document.getElementById(id);
-    if (el) el.addEventListener('input', update, { passive: true });
+    if (el) el.addEventListener('input', updateContactLinks, { passive: true });
   });
-  update();
-})();
+  updateContactLinks();
+
+});
 </script>
 
 </script>
