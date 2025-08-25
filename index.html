@@ -863,47 +863,67 @@ updateQuote(); // ensure initial calculation
     
 
     // ---------- Contact form -> Formspree + reCAPTCHA ----------
+   // ---------- Contact form -> Formspree + reCAPTCHA (with graceful fallback) ----------
+  (function(){
     const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        try {
-          if (window.grecaptcha && grecaptcha.getResponse().length === 0) {
-            alert('Please complete the reCAPTCHA.');
-            return;
-          }
-        } catch(_) {}
+    if (!contactForm) return;
 
-        const data = new FormData(contactForm);
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const original = submitBtn ? submitBtn.textContent : '';
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-        try {
-          const res = await fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-          if (res.ok) {
-            contactForm.reset();
-            if (window.grecaptcha) grecaptcha.reset();
-            let status = document.getElementById('formStatus');
-            if (!status) {
-              status = document.createElement('p');
-              status.id = 'formStatus';
-              status.className = 'mt-3 text-sm brand-text';
-              contactForm.insertAdjacentElement('afterend', status);
-            }
-            status.textContent = "Thanks! We'll be in touch within 24h.";
-            if (window.track) track('contact_submitted');
-            status.style.display = '';
-          } else {
-            alert('Sorry, something went wrong. Please email us directly.');
-          }
-        } catch (err) {
-          alert('Network error. Please email us directly.');
-        } finally {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+      // reCAPTCHA guard (only if widget present)
+      try {
+        if (window.grecaptcha && grecaptcha.getResponse().length === 0) {
+          alert('Please complete the reCAPTCHA.');
+          return;
         }
-      });
-    }
+      } catch(_) {}
+
+      const data = new FormData(contactForm);
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const original = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+      // Helper: reset UI after success
+      function showSuccess(){
+        contactForm.reset();
+        try { if (window.grecaptcha) grecaptcha.reset(); } catch(_) {}
+        let status = document.getElementById('formStatus');
+        if (!status) {
+          status = document.createElement('p');
+          status.id = 'formStatus';
+          status.className = 'mt-3 text-sm brand-text';
+          contactForm.insertAdjacentElement('afterend', status);
+        }
+        status.textContent = "Thanks! We'll be in touch within 24h.";
+        if (window.track) track('contact_submitted');
+        status.style.display = '';
+      }
+
+      try {
+        // Try AJAX first
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' },
+          mode: 'cors',
+          redirect: 'follow'
+        });
+
+        if (res.ok) {
+          showSuccess();
+        } else {
+          // If Formspree returns non-2xx (or adblock/CORS meddles), use normal POST as fallback
+          contactForm.submit(); // native submit (navigates to Formspree thank-you)
+        }
+      } catch (err) {
+        // Network blocked by extension / strict browser / CSP? Fallback to native submit.
+        contactForm.submit();
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original; }
+      }
+    });
+  })();
   </script>
 
 
