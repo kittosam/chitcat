@@ -376,26 +376,18 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
           <div class="sm:col-span-2 flex flex-wrap gap-3">
             <!-- EMAIL is a link, not a button -->
-            <a id="emailQuoteBtn"
-               href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20booking%20request&body=Hi%20Sam%2C%0A"
-               class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">
-              Email us to book
-            </a>
-            <a id="waQuoteBtn"
-               href="#"
-               class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
-              WhatsApp us to book
-            </a>
+            <a id="emailQuoteBtn" href="mailto:hello.chitcat@gmail.com" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">Email us to book</a>
+            <a id="waQuoteBtn" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">WhatsApp us to book</a>
           </div>
         </form>
 
         <!-- IMPORTANT: keep this helper INSIDE the left column, after the form -->
         <p class="mt-2 text-xs text-neutral-500">
-          Prefer webmail?
-          <a href="#" id="useGmail" class="underline">Gmail</a> •
-          <a href="#" id="useOutlook" class="underline">Outlook.com</a> •
-          <a href="#" id="copyEmail" class="underline">Copy message</a>
-        </p>
+        Prefer webmail?
+        <a href="#" id="useGmail" class="underline">Gmail</a> •
+        <a href="#" id="useOutlook" class="underline">Outlook.com</a> •
+        <a href="#" id="copyEmail" class="underline">Copy message</a>
+</p>
       </div>
 
       <!-- RIGHT: What’s included card (second sibling in the grid) -->
@@ -954,7 +946,9 @@ updateQuote(); // ensure initial calculation
   });
 })();
 
-  function buildQuotePayload() {
+  <script>
+// --- Build the email/WA content from the form ---
+function buildQuotePayload() {
   const start = document.getElementById('start')?.value || '';
   const end = document.getElementById('end')?.value || '';
   const postcode = document.getElementById('postcode')?.value || '';
@@ -984,75 +978,84 @@ updateQuote(); // ensure initial calculation
     `Any notes:`
   ].filter(Boolean);
 
-  return { subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`, body: lines.join('\n') };
+  return {
+    subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`,
+    body: lines.join('\n')
+  };
 }
 
-<script>
-// Keep your existing buildQuotePayload() as-is.
+// --- Update all contact links from the current form values ---
+(function contactLinks(){
+  const emailBtn   = document.getElementById('emailQuoteBtn');
+  const waBtn      = document.getElementById('waQuoteBtn');
+  const gmailLink  = document.getElementById('useGmail');
+  const outLink    = document.getElementById('useOutlook');
+  const copyLink   = document.getElementById('copyEmail');
 
-(function(){
-  const emailLink = document.getElementById('emailQuoteBtn');
-  const waLink    = document.getElementById('waQuoteBtn');
-  const linkGmail = document.getElementById('useGmail');
-  const linkOut   = document.getElementById('useOutlook');
-  const linkCopy  = document.getElementById('copyEmail');
-
-  function setLinks(){
+  function update() {
     const { subject, body } = buildQuotePayload();
 
-    // 1) Native mail app (works with no JS too, but we refresh it as details change)
-    if (emailLink) {
-      emailLink.href =
-        `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // mailto: (let the browser/OS handle it – no window.open, no target)
+    if (emailBtn) {
+      emailBtn.setAttribute(
+        'href',
+        `mailto:hello.chitcat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      );
     }
 
-    // 2) Webmail fallbacks
-    if (linkGmail) {
-      linkGmail.href =
-        `https://mail.google.com/mail/?view=cm&fs=1&to=hello.chitcat@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      linkGmail.target = '_blank'; linkGmail.rel = 'noopener';
-    }
-    if (linkOut) {
-      linkOut.href =
-        `https://outlook.office.com/mail/deeplink/compose?to=hello.chitcat@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      linkOut.target = '_blank'; linkOut.rel = 'noopener';
+    // WhatsApp deep link (open in new tab is fine)
+    if (waBtn) {
+      waBtn.setAttribute(
+        'href',
+        `https://wa.me/447455567874?text=${encodeURIComponent(body)}`
+      );
     }
 
-    // 3) WhatsApp
-    if (waLink) {
-      waLink.href = `https://wa.me/447455567874?text=${encodeURIComponent(body)}`;
-      waLink.target = '_blank'; waLink.rel = 'noopener';
+    // Webmail helpers (open in new tab)
+    if (gmailLink) {
+      gmailLink.setAttribute(
+        'href',
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('hello.chitcat@gmail.com')}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      );
+      gmailLink.setAttribute('target','_blank');
+      gmailLink.setAttribute('rel','noopener');
+    }
+
+    if (outLink) {
+      outLink.setAttribute(
+        'href',
+        `https://outlook.live.com/owa/?path=/mail/action/compose&to=${encodeURIComponent('hello.chitcat@gmail.com')}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      );
+      outLink.setAttribute('target','_blank');
+      outLink.setAttribute('rel','noopener');
     }
   }
 
-  // Copy helper
-  if (linkCopy) {
-    linkCopy.addEventListener('click', async (e)=>{
+  // Copy to clipboard
+  if (copyLink) {
+    copyLink.addEventListener('click', (e)=>{
       e.preventDefault();
       const { subject, body } = buildQuotePayload();
-      const all = `To: hello.chitcat@gmail.com\nSubject: ${subject}\n\n${body}`;
-      try {
-        await navigator.clipboard.writeText(all);
-        alert('Message copied. Paste it into your email app or WhatsApp.');
-      } catch {
-        window.prompt('Copy this message:', all);
-      }
+      const text = `Subject: ${subject}\n\n${body}`;
+      navigator.clipboard.writeText(text).then(()=>{
+        copyLink.textContent = 'Copied!';
+        setTimeout(()=>copyLink.textContent = 'Copy message', 1500);
+      }).catch(()=>{ /* ignore */ });
     });
   }
 
-  // Refresh links whenever inputs change
-  ['start','end','visits','overnights','extraBlocks','postcode'].forEach(id=>{
+  // Keep links up to date as the user types
+  ['postcode','start','end','visits','overnights','extraBlocks'].forEach(id=>{
     const el = document.getElementById(id);
-    if (el) el.addEventListener('input', setLinks);
+    if (el) el.addEventListener('input', update, { passive: true });
   });
-
-  setLinks();
+  update();
 })();
 </script>
-  
+
 </script>
 
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </body>
 </html>
