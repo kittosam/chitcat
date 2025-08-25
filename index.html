@@ -624,7 +624,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
             </div>
             <div class="sm:col-span-2">
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-              <div class="g-recaptcha mt-2" data-sitekey="6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA"></div>
+              <div id="recaptcha" class="mt-2"></div>
             </div>
             <div class="sm:col-span-2 flex items-center gap-3">
               <button type="submit" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Send request</button>
@@ -1051,7 +1051,47 @@ document.addEventListener('DOMContentLoaded', function(){
 
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+(function(){
+  const SITE_KEY = '6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA'; // <-- replace with your real key
+  const details = document.getElementById('contactFormPanel'); // the <details> that holds the form
+  const slot    = document.getElementById('recaptcha');
+  let rendered  = false;
+
+  // Render as soon as possible if panel is already open AND script is ready
+  function tryRender(){
+    if (!rendered && window.__recaptchaReady && window.grecaptcha && slot && details && details.open) {
+      grecaptcha.render(slot, { sitekey: 6LdmY6UrAAAAAKgfCJXp6bKMOmEuoL5eiSMRMmoA });
+      rendered = true;
+    }
+  }
+
+  // When the <details> is toggled open, render if ready; otherwise keep trying
+  if (details) {
+    details.addEventListener('toggle', () => {
+      if (details.open) {
+        // give layout a tick (details just opened)
+        setTimeout(tryRender, 50);
+      }
+    });
+  }
+
+  // Safety net: check a few times after load in case the user opens quickly
+  let tries = 0;
+  const iv = setInterval(() => {
+    tryRender();
+    if (rendered || ++tries > 60) clearInterval(iv);
+  }, 250);
+})();
+</script>
+
+
+<script>
+  // Called by Google’s script once it loads
+  function onRecaptchaLoad(){ window.__recaptchaReady = true; }
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+
 
 </body>
 </html>
