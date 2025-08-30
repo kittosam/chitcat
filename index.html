@@ -374,13 +374,6 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
             <option value="60">60 minutes</option>
             </select>
           </div>
-            <div>
-              <label class="block text-sm font-medium">Extra 15-min blocks <span class="text-neutral-500">(per visit)</span></label>
-              <input type="number" min="0" id="extraBlocks" value="0"
-                     class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
-              <p class="mt-1 text-xs text-neutral-500">Adds £4 per block, per visit.</p>
-            </div>
-          </div>
 
           <div>
             <label class="block text-sm font-medium">Overnight stays</label>
@@ -845,17 +838,15 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     }
 
     // Pure calculator for testing & UI
-  function computeQuote({
+  ffunction computeQuote({
   days = 0,
   visitsPerDay = 1,
   lengthMins = 30,
   overnights = 0,
   meds = false,
-  surchargeDays = 0,          // number of bank-holiday days in range
+  surchargeDays = 0,
   rate = RATE
 } = {}) {
-
-  // choose price key
   const key =
     visitsPerDay === 2
       ? (lengthMins === 60 ? 'double60' : 'double30')
@@ -863,19 +854,13 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   const visitCost = days * rate[key];
   const overnightCost = overnights * rate.overnight;
-
-  // (optional) extra-time if you keep that control
-  const extraBlocks = Math.max(0, Number(document.getElementById('extraBlocks')?.value || 0));
-  const extraTimeCost = days * visitsPerDay * extraBlocks * 4;
-
   const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
 
-  // +20% on bank-holiday days (cap to days/overnights)
   const surchargeVisit     = Math.min(surchargeDays, days)       * rate[key]      * 0.20;
   const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
   const bhSurcharge = surchargeVisit + surchargeOvernight;
 
-  const total = visitCost + overnightCost + extraTimeCost + medCost + bhSurcharge;
+  const total = visitCost + overnightCost + medCost + bhSurcharge;
 
   const parts = [];
   if (days > 0) {
@@ -883,15 +868,12 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     parts.push(`${days} ${days===1?'day':'days'} (${labelV}, ${lengthMins}m) × ${fmt(rate[key])}`);
   }
   if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
-  if (extraTimeCost > 0) {
-    const totalExtraMins = (extraBlocks*15) * visitsPerDay * days;
-    parts.push(`extra time: ${totalExtraMins} min = ${fmt(extraTimeCost)}`);
-  }
   if (medCost > 0) parts.push(`meds (flat) = ${fmt(medCost)}`);
   if (bhSurcharge > 0) parts.push(`bank holiday +20% = ${fmt(bhSurcharge)}`);
 
   return { total, parts, bhSurcharge };
 }
+
 
     // ---------- UI wiring ----------
     const form = document.getElementById('quoteForm');
@@ -925,9 +907,9 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 }
 
 
-    ['postcode','start','end','visits','length','overnights','meds','surchargeDays','extraBlocks']
-  .forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', updateQuote); 
-  });
+    ['postcode','start','end','visits','length','overnights','meds']
+  .forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', updateQuote); });
+
 
 
 // ----- UK (England & Wales) Bank Holidays helpers -----
@@ -1140,11 +1122,10 @@ document.addEventListener('DOMContentLoaded', function(){
     const postcode = document.getElementById('postcode')?.value || '';
     const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
     const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
-    const extraBlocksPerVisit = parseInt(document.getElementById('extraBlocks')?.value || '0', 10);
 
     const days = daysDiff(start, end);
     const { total, parts } = computeQuote({
-      days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0, extraBlocksPerVisit
+      days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0
     });
 
     const lines = [
@@ -1153,7 +1134,6 @@ document.addEventListener('DOMContentLoaded', function(){
       `Days: ${days}`,
       `Visits/day: ${visitsPerDay}`,
       `Overnights: ${overnights}`,
-      extraBlocksPerVisit ? `Extra time: ${extraBlocksPerVisit} × 15min/visit` : null,
       postcode ? `Postcode: ${postcode}` : null,
       ``,
       `Estimate: ${fmt(total)}`,
@@ -1218,7 +1198,7 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
 
   // Keep links updated as the user types
-  ['postcode','start','end','visits','overnights','extraBlocks'].forEach(id=>{
+  ['postcode','start','end','visits','overnights'].forEach(id=>{
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', updateContactLinks, { passive: true });
   });
