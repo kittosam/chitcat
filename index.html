@@ -547,14 +547,14 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
       <summary class="cursor-pointer font-medium">Are you insured/DBS checked?</summary>
       <p class="mt-2 text-neutral-700">
-        Absolutely — public liability insurance up to <strong>£5m</strong> (Protectivity, policy #444900301998) and a current DBS.
+        Absolutely! Public liability insurance up to <strong>£5m</strong> (Protectivity, policy #444900301998) and a current DBS.
       </p>
     </details>
 
     <details class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
       <summary class="cursor-pointer font-medium">What does a Care Report include?</summary>
       <p class="mt-2 text-neutral-700">
-        After each visit you’ll get a short message with time in/out, food &amp; water, litter, play/enrichment, meds (if any), and 2–4 photos or a quick clip — all in one place.
+        After each visit you’ll get a short message with time in/out, food &amp; water, litter, play/enrichment, meds (if any), and 2–4 photos or a quick clip.
       </p>
     </details>
 
@@ -643,7 +643,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
           <ul class="mt-4 space-y-2 text-neutral-700">
             <li>• Cat‑first handling; stress‑aware visits</li>
             <li>• Transparent pricing, no upsell traps</li>
-            <li>• Clear updates; you’ll never chase us</li>
+            <li>• Clear updates: you’ll never chase us</li>
             <li>• Respect for your home & privacy</li>
           </ul>
           <div class="mt-6 rounded-2xl bg-white border border-neutral-200 p-4 text-sm text-neutral-700">
@@ -669,79 +669,67 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   </div>
 </section>
 
-<section id="terms" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-  <h2 class="text-3xl font-bold tracking-tight">Terms &amp; Conditions</h2>
-  <div class="mt-4 text-neutral-800 space-y-4 text-sm">
+<!-- Policies (accordion) -->
+<section id="policies" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 scroll-mt-24">
+  <h2 class="text-3xl font-bold tracking-tight">Policies</h2>
+  <p class="mt-2 text-sm text-neutral-600">Tap to read. Links in the header/footer will open the right panel.</p>
 
-    <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once we confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Bank holidays &amp; peak dates carry a <strong>20% surcharge</strong>. Prices shown are indicative and confirmed in your quote.</p>
-
-    <p><strong>Changes &amp; Cancellations.</strong><br>
-      <strong>7+ days</strong> before the first visit: <strong>free</strong> (full refund / no charge).<br>
-      <strong>24 hours–6 days</strong> before: <strong>20% cancellation fee</strong> (we refund 80%; if not yet paid, we invoice 20%).<br>
-      <strong>Less than 24 hours</strong> before: <strong>50% cancellation fee</strong> (we refund 50%; if not yet paid, we invoice 50%).<br>
-      After the booking begins, completed visits are <strong>non-refundable</strong>; remaining days are refunded per the same rule above (20% fee if ≥24h notice; 50% if &lt;24h).<br>
-      Peak/bank-holiday surcharges are <strong>non-refundable</strong> once applied. Missed access (e.g., wrong codes/keys) may be charged as a completed visit.
-    </p>
-
-    <p><strong>Keys &amp; Access.</strong> Keys are stored securely off-site with coded tags (no addresses). Key pick-up/return is included (no fee). You are responsible for accurate access info (codes, fobs). We can hold keys securely for future bookings if you prefer.</p>
-
-    <p><strong>Pet Health &amp; Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
-
-    <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We’re not veterinarians and cannot administer injections unless expressly agreed.</p>
-
-    <p><strong>Home Care.</strong> Light home care is included (plants, bins, blinds/lights). We can’t accept responsibility for property faults (plumbing, electrics, alarms) outside our control.</p>
-
-    <p><strong>Photos &amp; Updates.</strong> We send updates per visit. You grant us permission to take non-identifying photos of your pet (not your home) unless you opt out.</p>
-
-    <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We’re not liable for pre-existing conditions or for damage caused by third parties with access to the premises.</p>
-
-    <p><strong>Governing Law.</strong> England &amp; Wales. Complaints welcome — email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
-
+  <div class="mt-4 flex gap-3 text-sm">
+    <button id="expandPolicies" type="button"
+      class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 hover:border-neutral-400">Expand all</button>
+    <button id="collapsePolicies" type="button"
+      class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 hover:border-neutral-400">Collapse all</button>
   </div>
-</section>
 
-<section id="privacy" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-  <h2 class="text-3xl font-bold tracking-tight">Privacy Policy</h2>
-  <p class="mt-4 text-neutral-800 text-sm">
-    Last updated: 2025-01-01
-  </p>
+  <!-- Terms -->
+  <details id="termsPanel" class="mt-6 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+    <summary class="cursor-pointer font-medium text-lg">Terms &amp; Conditions</summary>
+    <div class="mt-4 space-y-4 text-sm text-neutral-800">
+      <!-- 🔽 paste your existing Terms HTML here (from your old #terms section) -->
+      <p><strong>Last updated:</strong> 01.09.2025</p>
+      <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once we confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Bank holidays &amp; peak dates carry a <strong>20% surcharge</strong>. Prices shown are indicative and confirmed in your quote.</p>
 
-  <div class="mt-4 text-neutral-800 space-y-4 text-sm">
-    <p><strong>Who we are.</strong> ChitCat provides in-home cat sitting in London. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+      <p><strong>Changes &amp; Cancellations.</strong><br>
+        <strong>7+ days</strong> before the first visit: <strong>free</strong> (full refund / no charge).<br>
+        <strong>24 hours–6 days</strong> before: <strong>20% cancellation fee</strong> (we refund 80%; if not yet paid, we invoice 20%).<br>
+        <strong>Less than 24 hours</strong> before: <strong>50% cancellation fee</strong> (we refund 50%; if not yet paid, we invoice 50%).<br>
+        After the booking begins, completed visits are <strong>non-refundable</strong>; remaining days are refunded per the same rule above (20% if ≥24h; 50% if &lt;24h).<br>
+        Peak/bank-holiday surcharges are <strong>non-refundable</strong> once applied. Missed access may be charged as a completed visit.
+      </p>
 
-    <p><strong>Data we collect.</strong> When you contact us or request a quote we collect the details you share (name, email, phone/WhatsApp, postcode, dates, booking info, pet notes). We also capture simple technical data such as referrer, landing page and UTM tags to understand how people find us.</p>
+      <p><strong>Keys &amp; Access.</strong> Keys are stored securely off-site with coded tags (no addresses). Key pick-up/return is included (no fee). You are responsible for accurate access info (codes, fobs). We can hold keys securely for future bookings if you prefer.</p>
 
-    <p><strong>Why we use your data (lawful bases).</strong> 
-      <ul class="list-disc pl-5 space-y-1">
-        <li><em>Contract</em> – to provide quotes, hold dates, deliver visits, send updates, and handle billing.</li>
-        <li><em>Legitimate interests</em> – to respond to enquiries, improve our service, prevent spam/abuse (e.g., reCAPTCHA).</li>
-        <li><em>Consent</em> – if you ask to receive optional comms or allow pet photos to be shared externally.</li>
-      </ul>
-    </p>
+      <p><strong>Pet Health &amp; Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
 
-    <p><strong>Sharing & processors.</strong> We use trusted providers to run the site and handle messages:
-      <ul class="list-disc pl-5 space-y-1">
-        <li><strong>Formspree</strong> – processes web form submissions so they reach our inbox.</li>
-        <li><strong>Email & cloud providers</strong> – to receive and store your messages.</li>
-        <li><strong>WhatsApp</strong> – if you choose to message us there.</li>
-        <li><strong>Google reCAPTCHA</strong> – protects forms from spam; Google may set cookies and process technical data.</li>
-        <li><strong>Cloudflare Web Analytics</strong> – privacy-first, no cookies; we use it to understand site usage.</li>
-      </ul>
-      We don’t sell your data.
-    </p>
+      <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We’re not veterinarians and cannot administer injections unless expressly agreed.</p>
 
-    <p><strong>International transfers.</strong> Some providers may process data outside the UK/EEA. Where they do, they use appropriate safeguards (e.g., Standard Contractual Clauses).</p>
+      <p><strong>Home Care.</strong> Light home care is included (plants, bins, blinds/lights). We can’t accept responsibility for property faults (plumbing, electrics, alarms) outside our control.</p>
 
-    <p><strong>Retention.</strong> Enquiry and booking records are kept for up to 6 years (tax/insurance requirements). Pet notes and keys data are retained only as long as needed for ongoing service or as you request.</p>
+      <p><strong>Photos &amp; Updates.</strong> We send updates per visit. You grant us permission to take non-identifying photos of your pet (not your home) unless you opt out.</p>
 
-    <p><strong>Your rights.</strong> You can request access, correction, deletion, restriction or portability of your data, and object to processing based on legitimate interests. To exercise rights, email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>. You can also complain to the UK ICO if you’re unhappy.</p>
+      <p><strong>Liability.</strong> Public Liability insurance via Protectivity (Policy #444900301998). We’re not liable for pre-existing conditions or for damage caused by third parties with access to the premises.</p>
 
-    <p><strong>Cookies & similar tech.</strong> We don’t use marketing cookies. Our contact form uses <strong>Google reCAPTCHA</strong> which may set cookies to prevent abuse; by using the form you agree to Google’s <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a class="underline" href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>. Cloudflare Web Analytics runs without cookies.</p>
+      <p><strong>Governing Law.</strong> England &amp; Wales. Complaints welcome — email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+      <!-- 🔼 end Terms -->
+    </div>
+  </details>
 
-    <p><strong>Children.</strong> Our service is for adults arranging pet care. We don’t knowingly collect data from children.</p>
-
-    <p><strong>Updates.</strong> We’ll post any changes on this page and update the date above.</p>
-  </div>
+  <!-- Privacy -->
+  <details id="privacyPanel" class="mt-4 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+    <summary class="cursor-pointer font-medium text-lg">Privacy Policy</summary>
+    <div class="mt-4 space-y-4 text-sm text-neutral-800">
+      <!-- 🔽 paste your existing Privacy HTML here (from your old #privacy section) -->
+      <p><strong>Last updated:</strong> 01.09.2025</p>
+      <p><strong>Who we are.</strong> ChitCat provides in-home cat sitting in London. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+      <p><strong>Data we collect.</strong> When you contact us or request a quote we collect the details you share (name, email, phone/WhatsApp, postcode, dates, booking info, pet notes). We also capture simple technical data such as referrer, landing page and UTM tags.</p>
+      <p><strong>Lawful bases.</strong> Contract, Legitimate interests (e.g., reCAPTCHA), and Consent (for optional comms/photo sharing).</p>
+      <p><strong>Processors.</strong> Formspree (forms), email/cloud providers, WhatsApp, Google reCAPTCHA, Cloudflare Web Analytics. We don’t sell data.</p>
+      <p><strong>Transfers & retention.</strong> Some providers may process data outside the UK/EEA (with safeguards). Records kept up to 6 years (tax/insurance).</p>
+      <p><strong>Your rights.</strong> Access, correction, deletion, restriction, portability, and objection. Email us. You may also complain to the UK ICO.</p>
+      <p><strong>Cookies.</strong> No marketing cookies. reCAPTCHA may set cookies; see Google’s <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a> and <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/terms">Terms</a>.</p>
+      <!-- 🔼 end Privacy -->
+    </div>
+  </details>
 </section>
 
 
@@ -1243,6 +1231,34 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 250);
 })();
 </script>
+
+<script>
+(function(){
+  const map = { '#terms': 'termsPanel', '#privacy': 'privacyPanel' };
+
+  function openFromHash(){
+    const id = map[location.hash];
+    if (!id) return;
+    const panel = document.getElementById(id);
+    if (!panel) return;
+    panel.open = true;
+    // smooth scroll under sticky header
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash(); // open if user landed with #terms or #privacy
+
+  // Expand/Collapse all buttons
+  document.getElementById('expandPolicies')?.addEventListener('click', ()=>{
+    document.querySelectorAll('#policies details').forEach(d => d.open = true);
+  });
+  document.getElementById('collapsePolicies')?.addEventListener('click', ()=>{
+    document.querySelectorAll('#policies details').forEach(d => d.open = false);
+  });
+})();
+</script>
+
 
 
 <script>
