@@ -720,17 +720,18 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   <p><strong>Who we are.</strong> ChitCat provides in-home cat sitting in London. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
 
-  <p><strong>What we collect.</strong></p>
+  <p><strong>Data we collect.</strong></p>
   <ul class="list-disc pl-5 space-y-1">
-    <li>Enquiry details you share (name, email, phone/WhatsApp, postcode, dates, booking info, pet notes).</li>
-    <li>Simple technical data (referrer, landing page, UTM tags) to understand how people find us.</li>
+    <li><em>Personal information:</em> Name, email, phone/WhatsApp number, postcode, pet details (e.g., routine, meds, preferences), dates, and booking information.</li>
+    <li><em>Technical information:</em> Simple technical data such as referrer, landing page, UTM tags, and data from reCAPTCHA for site security.</li>
+    <li><em>Optional:</em> If you choose to share, we may collect photos/videos of your cat(s) for updates or marketing purposes (with your consent).</li>
   </ul>
 
-  <p><strong>Lawful bases.</strong></p>
+  <p><strong>Lawful bases for processing your data.</strong></p>
   <ul class="list-disc pl-5 space-y-1">
-    <li><em>Contract</em> – to provide quotes, reserve dates, deliver visits, and handle billing.</li>
-    <li><em>Legitimate interests</em> – to respond to enquiries, keep the site secure (e.g., reCAPTCHA), and run simple, privacy-first analytics.</li>
-    <li><em>Consent</em> – only if you ask to receive optional updates (not required to use our service).</li>
+    <li><em>Contractual necessity:</em> Processing personal data (e.g., booking info, dates, pet details) is necessary to fulfill your contract with us for providing cat-sitting services.</li>
+    <li><em>Legitimate interests:</em> We process certain personal data, like technical information (e.g., cookies, reCAPTCHA data), to ensure security, provide a smooth website experience, and improve services.</li>
+    <li><em>Consent:</em> If you choose to share additional information (e.g., photos or videos of your pet), we process this with your explicit consent. You can withdraw consent at any time.</li>
   </ul>
 
   <p><strong>Who processes it (data processors).</strong></p>
@@ -744,11 +745,14 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   <p><strong>International transfers.</strong> Some providers may process data outside the UK/EEA using appropriate safeguards (e.g., Standard Contractual Clauses/UK Addendum).</p>
 
-  <p><strong>Retention.</strong></p>
+  <p><strong>Data Retention</strong></p>
+  <p>We will retain your data for the following periods:</p>
   <ul class="list-disc pl-5 space-y-1">
-    <li>Enquiries with no booking: up to 12 months, then deleted.</li>
-    <li>Bookings &amp; invoices: 6 years (tax/insurance).</li>
+    <li><strong>Enquiries (no booking):</strong> Data is kept for up to 12 months after your enquiry. After this period, your data will be deleted.</li>
+    <li><strong>Bookings and invoices:</strong> We keep booking and payment data for up to 6 years for tax and insurance purposes.</li>
   </ul>
+  <p>If you wish to request deletion of your data before the retention periods end, please contact us directly.</p>
+
 
   <p><strong>Your rights &amp; contact.</strong> You can request access, correction, deletion, restriction or portability of your data, and object to processing based on legitimate interests. Email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>. You can also complain to the UK ICO.</p>
 
@@ -1334,6 +1338,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   })();
 </script>
+
+  <!-- Cookie Banner -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-neutral-800 text-white text-center p-4">
+  <p class="text-sm">
+    We use cookies to ensure you have the best experience on our website. By continuing, you agree to our use of cookies. 
+    <a href="#privacy" class="underline">Learn more</a>.
+  </p>
+  <button id="cookie-accept" class="mt-2 bg-brand-600 text-white px-4 py-2 rounded">I’m OK with this</button>
+</div>
+
+<script>
+  // Check if the user has already accepted cookies
+  if (!localStorage.getItem('cookies-accepted')) {
+    document.getElementById('cookie-banner').style.display = 'block';
+  }
+
+  // When the user clicks "I'm OK with this"
+  document.getElementById('cookie-accept').onclick = function() {
+    localStorage.setItem('cookies-accepted', 'true');
+    document.getElementById('cookie-banner').style.display = 'none';
+    grecaptcha.render('recaptcha', {
+      sitekey: 'YOUR_RECAPTCHA_SITE_KEY',
+      callback: function(response) {
+        // Handle reCAPTCHA validation
+      }
+    });
+  };
+</script>
+
 
 
 
