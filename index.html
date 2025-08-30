@@ -716,17 +716,44 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   <details id="privacyPanel" class="mt-4 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
     <summary class="cursor-pointer font-medium text-lg">Privacy Policy</summary>
     <div class="mt-4 space-y-4 text-sm text-neutral-800">
-      <!-- 🔽 paste your existing Privacy HTML here (from your old #privacy section) -->
-      <p><strong>Last updated:</strong> 01.09.2025</p>
-      <p><strong>Who we are.</strong> ChitCat provides in-home cat sitting in London. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
-      <p><strong>Data we collect.</strong> When you contact us or request a quote we collect the details you share (name, email, phone/WhatsApp, postcode, dates, booking info, pet notes). We also capture simple technical data such as referrer, landing page and UTM tags.</p>
-      <p><strong>Lawful bases.</strong> Contract, Legitimate interests (e.g., reCAPTCHA), and Consent (for optional comms/photo sharing).</p>
-      <p><strong>Processors.</strong> Formspree (forms), email/cloud providers, WhatsApp, Google reCAPTCHA. We don’t sell data.</p>
-      <p><strong>Transfers & retention.</strong> Some providers may process data outside the UK/EEA (with safeguards). Records kept up to 6 years (tax/insurance).</p>
-      <p><strong>Your rights.</strong> Access, correction, deletion, restriction, portability, and objection. Email us. You may also complain to the UK ICO.</p>
-      <p><strong>Cookies.</strong> No marketing cookies. reCAPTCHA may set cookies; see Google’s <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a> and <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/terms">Terms</a>.</p>
-      <!-- 🔼 end Privacy -->
-    </div>
+  <p><strong>Last updated:</strong> 01.09.2025</p>
+
+  <p><strong>Who we are.</strong> ChitCat provides in-home cat sitting in London. Contact: <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
+
+  <p><strong>What we collect.</strong></p>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Enquiry details you share (name, email, phone/WhatsApp, postcode, dates, booking info, pet notes).</li>
+    <li>Simple technical data (referrer, landing page, UTM tags) to understand how people find us.</li>
+  </ul>
+
+  <p><strong>Lawful bases.</strong></p>
+  <ul class="list-disc pl-5 space-y-1">
+    <li><em>Contract</em> – to provide quotes, reserve dates, deliver visits, and handle billing.</li>
+    <li><em>Legitimate interests</em> – to respond to enquiries, keep the site secure (e.g., reCAPTCHA), and run simple, privacy-first analytics.</li>
+    <li><em>Consent</em> – only if you ask to receive optional updates (not required to use our service).</li>
+  </ul>
+
+  <p><strong>Who processes it (data processors).</strong></p>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Formspree – delivers web form submissions to our inbox.</li>
+    <li>Email &amp; cloud provider – to receive/store your messages.</li>
+    <li>WhatsApp – if you choose to message us there.</li>
+    <li>Google reCAPTCHA – protects the contact form from spam.</li>
+    <li>Cloudflare Web Analytics – cookie-free usage stats.</li>
+  </ul>
+
+  <p><strong>International transfers.</strong> Some providers may process data outside the UK/EEA using appropriate safeguards (e.g., Standard Contractual Clauses/UK Addendum).</p>
+
+  <p><strong>Retention.</strong></p>
+  <ul class="list-disc pl-5 space-y-1">
+    <li>Enquiries with no booking: up to 12 months, then deleted.</li>
+    <li>Bookings &amp; invoices: 6 years (tax/insurance).</li>
+  </ul>
+
+  <p><strong>Your rights &amp; contact.</strong> You can request access, correction, deletion, restriction or portability of your data, and object to processing based on legitimate interests. Email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>. You can also complain to the UK ICO.</p>
+
+  <p><strong>Cookies &amp; similar tech.</strong> We don’t use marketing cookies. The contact form uses Google reCAPTCHA which may set cookies; by using the form you agree to Google’s <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a> and <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/terms">Terms</a>. Cloudflare Web Analytics runs without cookies.</p>
+</div>
   </details>
 </section>
 
@@ -1257,13 +1284,58 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
-
+<!-- reCAPTCHA consent (simple) -->
+<div id="rc-banner"
+     class="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-xl w-[92vw] rounded-xl border border-neutral-300 bg-white/90 backdrop-blur px-4 py-3 shadow z-50 text-sm">
+  This form uses Google reCAPTCHA to prevent spam. By continuing, you agree to Google’s
+  <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a>
+  and <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/terms">Terms</a>.
+  <div class="mt-2 flex gap-2">
+    <button id="rc-accept" class="rounded-lg btn-brand px-3 py-1.5 text-white">I’m OK with this</button>
+    <button id="rc-later"  class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5">Not now</button>
+  </div>
+</div>
 
 <script>
-  // Called by Google’s script once it loads
+  // Keep this helper (OK to keep where it is)
   function onRecaptchaLoad(){ window.__recaptchaReady = true; }
+
+  (function(){
+    const BANNER_ID   = 'rc-banner';
+    const KEY         = 'recaptchaConsent';
+    const accepted    = localStorage.getItem(KEY) === 'yes';
+
+    function loadRecaptcha(){
+      if (window.__recaptchaLoaded) return;
+      const s = document.createElement('script');
+      s.src   = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+      window.__recaptchaLoaded = true;
+    }
+
+    // If previously accepted, load immediately and hide banner
+    if (accepted) {
+      document.getElementById(BANNER_ID)?.remove();
+      loadRecaptcha();
+    } else {
+      // Wire buttons
+      const accept = document.getElementById('rc-accept');
+      const later  = document.getElementById('rc-later');
+      accept?.addEventListener('click', () => {
+        localStorage.setItem(KEY, 'yes');
+        document.getElementById(BANNER_ID)?.remove();
+        loadRecaptcha();
+      });
+      later?.addEventListener('click', () => {
+        // just hide the banner; form will show but won’t render reCAPTCHA until accepted
+        document.getElementById(BANNER_ID)?.remove();
+      });
+    }
+  })();
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+
+
 
 
 </body>
