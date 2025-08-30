@@ -316,7 +316,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
       <h3 class="font-semibold">Overnight Stays</h3>
       <p class="mt-1 text-sm text-neutral-600">In-home 10–12h (e.g., 20:00–07:00)</p>
-      <p class="mt-4 text-3xl font-extrabold">from £65<span class="text-base font-medium text-neutral-500"> / night</span></p>
+      <p class="mt-4 text-3xl font-extrabold">from £70<span class="text-base font-medium text-neutral-500"> / night</span></p>
       <ul class="mt-4 text-sm text-neutral-700 space-y-2">
         <li>✔ Evening & morning care</li>
         <li>✔ Flexible starts by agreement</li>
@@ -418,9 +418,10 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       <li>• Simple meds as instructed</li>
     </ul>
     <p class="mt-4 text-sm text-neutral-600">Need something special? Add it in your message below.</p>
-  </div>
-</div>
-</section>
+      </div> <!-- end right "What’s included" card -->
+    </div> <!-- end grid -->
+  </div> <!-- end container -->
+</section> <!-- end Quote -->
 
 
   <!-- Why we're different -->
@@ -821,8 +822,8 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   single30: 20,   // 30 minutes
   single60: 32,   // 60 minutes
   double30: 38,   // 2 × 30 min (per day price)
-  double60: 64,   // (optional) 2 × 60 min if you ever want to quote it
-  overnight: 75,
+  double60: 60,   // (optional) 2 × 60 min if you ever want to quote it
+  overnight: 70,
   medsFlatPerBooking: 0
 };
 
@@ -839,7 +840,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     }
 
     // Pure calculator for testing & UI
-  ffunction computeQuote({
+  function computeQuote({
   days = 0,
   visitsPerDay = 1,
   lengthMins = 30,
@@ -1113,9 +1114,10 @@ updateQuote(); // ensure initial calculation
     if (window.track) track('router_quote');
   });
 })();
+</script>
 
-  <script>
-document.addEventListener('DOMContentLoaded', function(){
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
   function buildQuotePayload() {
     const start = document.getElementById('start')?.value || '';
@@ -1205,9 +1207,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   updateContactLinks();
 
-});
-</script>
-
+}); // ← close the function properly
 </script>
 
 <script>
