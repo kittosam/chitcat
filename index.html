@@ -63,14 +63,14 @@
     linear-gradient(135deg, var(--lemon-50), #ffffff 55%);
 }
 
-    header a svg { transition: transform .2s ease; }
-    header a:hover svg { transform: rotate(-6deg) scale(1.05); }
+    header a img { transition: transform .2s ease; }
+    header a:hover img { transform: rotate(-6deg) scale(1.05); }
 
     #contact { scroll-margin-top: 5rem; }
     
   </style>
   
-<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/logo.svg?v=2" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
 
 <!-- Search Console verification (paste your token, then remove after verify) -->
@@ -94,18 +94,7 @@
   <header class="sticky top-0 z-50 bg-white/80 glass border-b border-neutral-200/60">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
-        <span class="inline-flex h-9 w-9 items-center justify-center text-neutral-900" aria-hidden="true">
-          
-  <!-- Monochrome home + cat face (simple) -->
-  <svg class="h-9 w-9" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChitCat logo">
-    <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M16 30 L32 18 L48 30 V44 a4 4 0 0 1 -4 4 H20 a4 4 0 0 1 -4 -4 Z"/>
-      <circle cx="26" cy="36" r="2" fill="currentColor"/>
-      <circle cx="38" cy="36" r="2" fill="currentColor"/>
-      <path d="M20 38.5 h5 M39 38.5 h5"/>
-    </g>
-  </svg>
-</span>
+        <img src="/assets/logo.svg" alt="ChitCat logo" class="h-9 w-9" />
         <span>ChitCat</span>
         <span class="hidden sm:inline text-neutral-500 font-normal"> • Premium London Cat Sitting</span>
       </a>
@@ -767,15 +756,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   <footer class="border-t border-neutral-200/70">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start text-sm text-neutral-600">
       <div>
-        <div class="flex items-center gap-2 font-semibold text-neutral-900"><span class="inline-flex h-8 w-8 items-center justify-center text-neutral-900" aria-hidden="true">
-  <!-- Monochrome home + cat face (footer) -->
-  <svg class="h-8 w-8" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChitCat logo">
-    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M16 30 L32 18 L48 30 V44 a4 4 0 0 1 -4 4 H20 a4 4 0 0 1 -4 -4 Z"/>
-      <circle cx="26" cy="36" r="1.8" fill="currentColor"/>
-      <circle cx="38" cy="36" r="1.8" fill="currentColor"/>
-    </g>
-  </svg>
+        <img src="/assets/logo.svg" alt="ChitCat logo" class="h-9 w-9" />
 </span>ChitCat</div>
         <p class="mt-2">London, UK</p>
         <p class="mt-1">Public Liability Insurance: £5m PL, Protectivity #444900301998</p>
