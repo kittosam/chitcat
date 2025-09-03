@@ -755,10 +755,11 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
 
 
-  <!-- Footer -->
-  <footer class="border-t border-neutral-200/70">
+<footer class="border-t border-neutral-200/70">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start text-sm text-neutral-600 text-center md:text-left">
+    <!-- Brand column -->
     <div>
-      <div class="flex items-center gap-2 font-semibold text-neutral-900">
+      <div class="flex items-center justify-center md:justify-start gap-2 font-semibold text-neutral-900">
         <img src="logo.svg?v=2" alt="ChitCat logo" class="h-9 w-9" />
         <span>ChitCat</span>
       </div>
@@ -766,26 +767,32 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       <p class="mt-1">Public Liability Insurance: £5m PL, Protectivity #444900301998</p>
     </div>
 
-
-      <div>
-        <h4 class="font-semibold text-neutral-900">Links</h4>
-        <ul class="mt-2 space-y-2">
+    <!-- Links -->
+    <div>
+      <h4 class="font-semibold text-neutral-900">Links</h4>
+      <ul class="mt-2 space-y-2">
         <li><a class="hover:brand-text" href="#pricing">Pricing</a></li>
         <li><a class="hover:brand-text" href="#quote">Quote</a></li>
         <li><a class="hover:brand-text" href="#faq">FAQ</a></li>
         <li><a class="hover:brand-text" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-neutral-900">Policies</h4>
-        <ul class="mt-2 space-y-2">
-          <li><a class="hover:brand-text" href="#terms">Terms & Conditions</a></li>
-          <li><a class="hover:brand-text" href="#privacy">Privacy Policy</a></li>
-        </ul>
-      </div>
+      </ul>
     </div>
-    <div class="border-t border-neutral-200/70 py-6 text-center text-xs text-neutral-500">© <span id="year"></span> ChitCat. All rights reserved.</div>
-  </footer>
+
+    <!-- Policies -->
+    <div>
+      <h4 class="font-semibold text-neutral-900">Policies</h4>
+      <ul class="mt-2 space-y-2">
+        <li><a class="hover:brand-text" href="#terms">Terms &amp; Conditions</a></li>
+        <li><a class="hover:brand-text" href="#privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-neutral-200/70 py-6 text-center text-xs text-neutral-500">
+    © <span id="year"></span> ChitCat. All rights reserved.
+  </div>
+</footer>
+
 
   <!-- Structured data (update business details) -->
   <script type="application/ld+json">
