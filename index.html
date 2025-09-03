@@ -92,11 +92,14 @@
   
   <!-- Sticky Nav -->
   <header class="sticky top-0 z-50 bg-white/80 glass border-b border-neutral-200/60">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-auto py-2 md:h-16 md:py-0 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3 font-semibold tracking-tight">
         <img src="logo.svg?v=2" alt="ChitCat logo" class="h-18 w-20 shrink-0" />
-        <span>ChitCat</span>
+      <div class="leading-tight">
+        <span class="block sm:inline">ChitCat</span>
         <span class="hidden sm:inline text-neutral-500 font-normal"> • Premium London Cat Sitting</span>
+        <span class="block text-xs leading-4 text-neutral-500 sm:hidden">Premium London Cat Sitting</span>
+      </div>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="#about" class="hover:brand-text">About</a>
@@ -757,8 +760,8 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start text-sm text-neutral-600">
       <div>
       <div class="flex items-center gap-2 font-semibold text-neutral-900">
-        <img src="logo.svg?v=2" alt="ChitCat logo" class="h-10 w-10 shrink-0" />
-        <span>ChitCat</span>
+      <img src="/assets/logo.svg" alt="ChitCat logo" class="h-8 w-8" />
+            ChitCat
       </div>
       <p class="mt-2">London, UK</p>
       <p class="mt-1">Public Liability Insurance: £5m PL, Protectivity #444900301998</p>
