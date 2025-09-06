@@ -1161,7 +1161,7 @@ updateQuote(); // ensure initial calculation
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-  function buildQuotePayload() {
+function buildQuotePayload() {
   const start = document.getElementById('start')?.value || '';
   const end = document.getElementById('end')?.value || '';
   const postcode = document.getElementById('postcode')?.value || '';
@@ -1169,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
 
   // 🔗 add your vet-consent form link here
-  const consentURL = 'https://forms.gle/ESADdeuobJugL6Y56';
+  const consentURL = 'https://forms.gle/oWxGsTxTLcwHJ2vJ9';
 
   const days = daysDiff(start, end);
   const { total, parts } = computeQuote({
