@@ -720,7 +720,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
       <p><strong>Keys &amp; Access.</strong> Keys are stored securely off-site with coded tags (no addresses). Key pick-up/return is included (no fee). You are responsible for accurate access info (codes, fobs). We can hold keys securely for future bookings if you prefer.</p>
 
-      <p><strong>Pet Health &amp; Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs.</p>
+      <p><strong>Pet Health &amp; Emergencies.</strong> You authorise us to seek veterinary care if needed; we will use your nominated vet where possible. You are liable for veterinary costs. <span class="whitespace-nowrap">You can <a class="underline" href="https://forms.gle/giaYLAyEHWTd64Nd6" target="_blank" rel="noopener">pre-authorise emergency vet care here</a>.</span></p>
 
       <p><strong>Medication.</strong> We administer basic meds as instructed by you/your vet. We’re not veterinarians and cannot administer injections unless expressly agreed.</p>
 
@@ -1162,38 +1162,43 @@ updateQuote(); // ensure initial calculation
 document.addEventListener('DOMContentLoaded', function () {
 
   function buildQuotePayload() {
-    const start = document.getElementById('start')?.value || '';
-    const end = document.getElementById('end')?.value || '';
-    const postcode = document.getElementById('postcode')?.value || '';
-    const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
-    const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
+  const start = document.getElementById('start')?.value || '';
+  const end = document.getElementById('end')?.value || '';
+  const postcode = document.getElementById('postcode')?.value || '';
+  const visitsPerDay = (document.getElementById('visits')?.value === '2') ? 2 : 1;
+  const overnights = parseInt(document.getElementById('overnights')?.value || '0',10);
 
-    const days = daysDiff(start, end);
-    const { total, parts } = computeQuote({
-      days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0
-    });
+  // 🔗 add your vet-consent form link here
+  const consentURL = 'https://forms.gle/ESADdeuobJugL6Y56';
 
-    const lines = [
-      `Booking request`,
-      `Dates: ${start || '?'} → ${end || '?'}`,
-      `Days: ${days}`,
-      `Visits/day: ${visitsPerDay}`,
-      `Overnights: ${overnights}`,
-      postcode ? `Postcode: ${postcode}` : null,
-      ``,
-      `Estimate: ${fmt(total)}`,
-      parts.length ? `Breakdown: ${parts.join(' + ')}` : null,
-      ``,
-      `Your name:`,
-      `Phone:`,
-      `Any notes:`
-    ].filter(Boolean);
+  const days = daysDiff(start, end);
+  const { total, parts } = computeQuote({
+    days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0
+  });
 
-    return {
-      subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`,
-      body: lines.join('\n')
-    };
-  }
+  const lines = [
+    `Booking request`,
+    `Dates: ${start || '?'} → ${end || '?'}`,
+    `Days: ${days}`,
+    `Visits/day: ${visitsPerDay}`,
+    `Overnights: ${overnights}`,
+    postcode ? `Postcode: ${postcode}` : null,
+    ``,
+    `Estimate: ${fmt(total)}`,
+    parts.length ? `Breakdown: ${parts.join(' + ')}` : null,
+    ``,
+    consentURL ? `Optional: Pre-authorise emergency vet care now: ${consentURL}` : null,
+    ``,
+    `Your name:`,
+    `Phone:`,
+    `Any notes:`
+  ].filter(Boolean);
+
+  return {
+    subject: `ChitCat booking request — ${start || '?'} → ${end || '?'}`,
+    body: lines.join('\n')
+  };
+}
 
   function updateContactLinks(){
     const emailBtn   = document.getElementById('emailQuoteBtn');
