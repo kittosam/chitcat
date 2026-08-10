@@ -359,7 +359,10 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   <p class="mt-6 text-sm text-neutral-500">
     Prices are starting points; your quote is confirmed after a quick chat. Simple oral/topical meds are included.
-    Bank holidays & peak dates +20%. No travel fees within Ealing, Acton & Paddington.
+    Bank holidays +25%; 24 December to 1 January inclusive +50%. Additional cats +£3 per visit each.
+    Travel: <strong>Zone 1</strong> no fee (Ealing W5, West Ealing W13, Hanwell W7, Acton W3, Northfields, Perivale);
+    <strong>Zone 2</strong> +£3 per visit (Chiswick W4, Hammersmith W6, Shepherd's Bush W12, Brentford, Kew);
+    <strong>Zone 3</strong> +£5 per visit (Notting Hill W11, Holland Park, Maida Vale W9, Paddington and Bayswater W2, Kensington W8).
   </p>
 </section>
 
@@ -379,7 +382,9 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
                    aria-describedby="quotePostHelp"
                    class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
             <p id="quotePostHelp" class="mt-1 text-xs text-neutral-500">
-              Currently serving <strong>Ealing, Acton and Paddington</strong> — no travel fees within these areas.
+              <strong>Zone 1</strong> (no travel fee): Ealing W5, West Ealing W13, Hanwell W7, Acton W3, Northfields, Perivale.
+              <strong>Zone 2</strong> (+£3 per visit): Chiswick W4, Hammersmith W6, Shepherd's Bush W12, Brentford, Kew.
+              <strong>Zone 3</strong> (+£5 per visit): Notting Hill W11, Holland Park, Maida Vale W9, Paddington and Bayswater W2, Kensington W8.
             </p>
           </div>
 
@@ -406,6 +411,12 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
             <option value="30">30 minutes</option>
             <option value="60">60 minutes</option>
             </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium" for="cats">Number of cats</label>
+            <input type="number" min="1" step="1" id="cats" value="1"
+                   class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500" />
           </div>
 
           <div>
@@ -590,7 +601,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       <summary class="cursor-pointer font-medium">How do bookings work?</summary>
       <p class="mt-2 text-neutral-700">
         Send your dates and postcode. I’ll confirm availability and your estimate. If you’re happy to go ahead, I’ll reserve your dates and arrange a free meet &amp; greet before the first visit to run through routines, meds and keys.
-        <br><br><strong>No deposit required.</strong> Full payment is due <strong>24 hours before</strong> the first visit (or immediately if your booking starts within 48 hours). Bank holidays &amp; peak dates carry a <strong>+20%</strong> surcharge.
+        <br><br><strong>No deposit required.</strong> Full payment is due <strong>24 hours before</strong> the first visit (or immediately if your booking starts within 48 hours). Bank holidays carry a <strong>+25%</strong> surcharge, and 24 December to 1 January inclusive carries <strong>+50%</strong>. Additional cats are <strong>+£3 per visit</strong> each. Travel is free in Zone 1, <strong>+£3 per visit</strong> in Zone 2 and <strong>+£5 per visit</strong> in Zone 3 (zones are listed under the quote calculator).
       <br><br>
 <span class="text-sm text-neutral-600">
   Optional: you can complete the 
@@ -805,7 +816,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
       <p><strong>About me.</strong> I trade as ChitCat, a sole trader. Correspondence address: 7 Trafalgar House, Dickens Yard, Longfield Avenue, London W5 2TJ, United Kingdom. You can reach me at <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
 
-      <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once I confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Bank holidays &amp; peak dates carry a <strong>20% surcharge</strong>. Prices shown are indicative and confirmed in your quote.</p>
+      <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once I confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Bank holidays carry a <strong>25% surcharge</strong> and 24 December to 1 January inclusive carries a <strong>50% surcharge</strong>. Additional cats are <strong>£3 per visit</strong> each. Travel outside Zone 1 is charged at <strong>£3 per visit</strong> (Zone 2) or <strong>£5 per visit</strong> (Zone 3); the zones are listed on the pricing section of this site. Prices shown are indicative and confirmed in your quote.</p>
 
       <p><strong>Changes &amp; Cancellations.</strong><br>
         <strong>7+ days</strong> before the first visit: <strong>free</strong> (full refund / no charge).<br>
@@ -982,10 +993,29 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       return Math.floor((B - A) / (1000*60*60*24)) + 1; // inclusive
     }
     function fmt(n){ return '£' + (Number.isInteger(n) ? n : n.toFixed(2)); }
-    function isCorePostcode(pc){
-      if (!pc) return false;
-      const p = pc.toUpperCase().replace(/\s+/g,'');
-      return p.startsWith('W5') || p.startsWith('W3') || p.startsWith('W2');
+    const EXTRA_CAT_PER_VISIT = 3;
+    const ZONE_FEE = { 1: 0, 2: 3, 3: 5 };
+    const ZONE_BY_OUTCODE = {
+      // Zone 1 - no travel fee
+      W5:1, W13:1, W7:1, W3:1, UB6:1,
+      // Zone 2 - +£3 per visit
+      W4:2, W6:2, W12:2, TW8:2, TW9:2,
+      // Zone 3 - +£5 per visit
+      W11:3, W9:3, W2:3, W8:3
+    };
+    // Outward code: UK inward codes are always 3 chars, so strip them when present.
+    function outcode(pc){
+      const p = String(pc||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+      if (!p) return '';
+      return p.length > 3 ? p.slice(0, -3) : p;
+    }
+    function zoneFor(pc){
+      const oc = outcode(pc);
+      return oc ? (ZONE_BY_OUTCODE[oc] || 0) : 0;   // 0 = outside the listed zones
+    }
+    function zoneFeeFor(pc){
+      const z = zoneFor(pc);
+      return z ? ZONE_FEE[z] : 0;
     }
 
     // Pure calculator for testing & UI
@@ -995,7 +1025,10 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   lengthMins = 30,
   overnights = 0,
   meds = false,
-  surchargeDays = 0,
+  cats = 1,
+  zoneFee = 0,
+  bhDays = 0,
+  festiveDays = 0,
   rate = RATE
 } = {}) {
   const key =
@@ -1003,15 +1036,25 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       ? (lengthMins === 60 ? 'double60' : 'double30')
       : (lengthMins === 60 ? 'single60' : 'single30');
 
-  const visitCost = days * rate[key];
-  const overnightCost = overnights * rate.overnight;
+  const extraCats = Math.max(0, (parseInt(cats, 10) || 1) - 1);
+  const perVisitExtra = zoneFee + extraCats * EXTRA_CAT_PER_VISIT;
+
+  // Travel and extra-cat fees are per visit, so they scale with visits per day.
+  const dayRate   = rate[key]      + visitsPerDay * perVisitExtra;
+  const nightRate = rate.overnight + perVisitExtra;
+
+  const visitCost = days * dayRate;
+  const overnightCost = overnights * nightRate;
   const medCost = meds ? (rate.medsFlatPerBooking || 0) : 0;
 
-  const surchargeVisit     = Math.min(surchargeDays, days)       * rate[key]      * 0.20;
-  const surchargeOvernight = Math.min(surchargeDays, overnights) * rate.overnight * 0.20;
-  const bhSurcharge = surchargeVisit + surchargeOvernight;
+  // Festive days (24 Dec - 1 Jan) take precedence over bank holidays; never both.
+  const bhSurcharge = Math.min(bhDays, days)       * dayRate   * 0.25
+                    + Math.min(bhDays, overnights) * nightRate * 0.25;
+  const festiveSurcharge = Math.min(festiveDays, days)       * dayRate   * 0.50
+                         + Math.min(festiveDays, overnights) * nightRate * 0.50;
+  const surcharge = bhSurcharge + festiveSurcharge;
 
-  const total = visitCost + overnightCost + medCost + bhSurcharge;
+  const total = visitCost + overnightCost + medCost + surcharge;
 
   const parts = [];
   if (days > 0) {
@@ -1019,10 +1062,13 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     parts.push(`${days} ${days===1?'day':'days'} (${labelV}, ${lengthMins}m) × ${fmt(rate[key])}`);
   }
   if (overnights > 0) parts.push(`${overnights} ${overnights===1?'night':'nights'} × ${fmt(rate.overnight)}`);
+  if (zoneFee > 0) parts.push(`travel ${fmt(zoneFee)}/visit`);
+  if (extraCats > 0) parts.push(`${extraCats} extra ${extraCats===1?'cat':'cats'} × ${fmt(EXTRA_CAT_PER_VISIT)}/visit`);
   if (medCost > 0) parts.push(`meds (flat) = ${fmt(medCost)}`);
-  if (bhSurcharge > 0) parts.push(`bank holiday +20% = ${fmt(bhSurcharge)}`);
+  if (bhSurcharge > 0) parts.push(`bank holiday +25% = ${fmt(bhSurcharge)}`);
+  if (festiveSurcharge > 0) parts.push(`festive +50% = ${fmt(festiveSurcharge)}`);
 
-  return { total, parts, bhSurcharge };
+  return { total, parts, surcharge };
 }
 
 
@@ -1039,12 +1085,16 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       const medsEl = document.getElementById('meds');
       const meds = medsEl ? !!medsEl.checked : false;
 
-  // bank holidays in range
-      const bhDates = bankHolidaysInRange_EW(start, end);
-      const surchargeDays = bhDates.length;
+      const cats = parseInt(document.getElementById('cats')?.value || '1', 10);
+      const zoneFee = zoneFeeFor(document.getElementById('postcode')?.value || '');
+
+  // bank holidays and festive days in range
+      const bhDates = bankHolidaysExFestive(start, end);
+      const festiveDates = festiveDaysInRange(start, end);
 
       const { total, parts } = computeQuote({
-    days, visitsPerDay, lengthMins, overnights, meds, surchargeDays
+    days, visitsPerDay, lengthMins, overnights, meds, cats, zoneFee,
+    bhDays: bhDates.length, festiveDays: festiveDates.length
   });
 
   // Optional: show which BH dates trigger the surcharge
@@ -1058,7 +1108,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 }
 
 
-    ['postcode','start','end','visits','length','overnights','meds']
+    ['postcode','start','end','visits','length','overnights','meds','cats']
   .forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', updateQuote); });
 
 
@@ -1141,6 +1191,18 @@ function datesBetweenInclusiveUTC(startStr, endStr){
        x <= new Date(Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()));
        x = addDaysUTC(x,1)) out.push(new Date(x));
   return out;
+}
+// 24 December to 1 January inclusive
+function isFestiveUTC(d){
+  const m = d.getUTCMonth(), day = d.getUTCDate();
+  return (m === 11 && day >= 24) || (m === 0 && day === 1);
+}
+function festiveDaysInRange(startStr, endStr){
+  return datesBetweenInclusiveUTC(startStr, endStr).filter(isFestiveUTC);
+}
+// Bank holidays that are not already charged at the festive rate
+function bankHolidaysExFestive(startStr, endStr){
+  return bankHolidaysInRange_EW(startStr, endStr).filter(d => !isFestiveUTC(d));
 }
 function bankHolidaysInRange_EW(startStr, endStr){
   const days = datesBetweenInclusiveUTC(startStr, endStr);
@@ -1279,8 +1341,13 @@ function buildQuotePayload() {
   const consentURL = 'https://forms.gle/oWxGsTxTLcwHJ2vJ9';
 
   const days = daysDiff(start, end);
+  const lengthMins = parseInt(document.getElementById('length')?.value || '30', 10);
+  const cats = parseInt(document.getElementById('cats')?.value || '1', 10);
   const { total, parts } = computeQuote({
-    days, visitsPerDay, overnights, meds:false, inCore:true, surchargeDays:0
+    days, visitsPerDay, lengthMins, overnights, meds:false, cats,
+    zoneFee: zoneFeeFor(postcode),
+    bhDays: bankHolidaysExFestive(start, end).length,
+    festiveDays: festiveDaysInRange(start, end).length
   });
 
   const lines = [
@@ -1288,6 +1355,7 @@ function buildQuotePayload() {
     `Dates: ${start || '?'} → ${end || '?'}`,
     `Days: ${days}`,
     `Visits/day: ${visitsPerDay}`,
+    `Cats: ${cats}`,
     `Overnights: ${overnights}`,
     postcode ? `Postcode: ${postcode}` : null,
     ``,
