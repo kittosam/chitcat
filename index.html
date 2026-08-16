@@ -358,42 +358,97 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   </div>
 
-  <div class="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-    <h3 class="font-semibold text-xl">Rates and supplements</h3>
-    <dl class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Second cat</dt>
-        <dd class="font-medium text-right">No extra charge</dd>
+  <div class="mt-10">
+    <div class="flex items-center gap-3">
+      <div class="h-1.5 w-16 rounded-full"
+           style="background: linear-gradient(90deg, var(--brand-600), var(--accent-1));"></div>
+      <h3 class="text-xl font-semibold">Rates and supplements</h3>
+    </div>
+
+    <!-- Long stays: the saving, given the most visual weight -->
+    <div class="mt-5 rounded-2xl border border-violet-200 bg-lilac p-6 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h4 class="font-semibold">Staying away 14 nights or more?</h4>
+        <span class="inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-medium ring-1 ring-violet-200">
+          Long-stay rates apply automatically
+        </span>
       </div>
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Third cat and beyond</dt>
-        <dd class="font-medium text-right">+£5 per visit</dd>
+      <dl class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-white/80 p-4">
+          <dt class="text-sm text-neutral-600">30-minute visit</dt>
+          <dd class="mt-1 text-3xl font-extrabold brand-text">£19<span class="text-sm font-medium text-neutral-500"> / visit</span></dd>
+          <p class="mt-1 text-xs text-neutral-500">Usually £20</p>
+        </div>
+        <div class="rounded-xl bg-white/80 p-4">
+          <dt class="text-sm text-neutral-600">60-minute visit</dt>
+          <dd class="mt-1 text-3xl font-extrabold brand-text">£28<span class="text-sm font-medium text-neutral-500"> / visit</span></dd>
+          <p class="mt-1 text-xs text-neutral-500">Usually £30</p>
+        </div>
+        <div class="rounded-xl bg-white/80 p-4">
+          <dt class="text-sm text-neutral-600">Overnight stay</dt>
+          <dd class="mt-1 text-3xl font-extrabold brand-text">£66<span class="text-sm font-medium text-neutral-500"> / night</span></dd>
+          <p class="mt-1 text-xs text-neutral-500">Usually £70</p>
+        </div>
+      </dl>
+    </div>
+
+    <div class="mt-4 grid md:grid-cols-2 gap-4">
+      <!-- What costs nothing extra -->
+      <div class="rounded-2xl border border-neutral-200 bg-sky p-6 shadow-sm">
+        <h4 class="font-semibold">Included, at no extra charge</h4>
+        <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+          <li class="flex gap-3">
+            <span aria-hidden="true" class="brand-text font-bold">✔</span>
+            <span><strong>A second cat.</strong> Two cats are the same price as one.</span>
+          </li>
+          <li class="flex gap-3">
+            <span aria-hidden="true" class="brand-text font-bold">✔</span>
+            <span><strong>Simple medication</strong>, oral or topical.</span>
+          </li>
+          <li class="flex gap-3">
+            <span aria-hidden="true" class="brand-text font-bold">✔</span>
+            <span><strong>Travel</strong> anywhere in the areas I cover.</span>
+          </li>
+        </ul>
       </div>
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Peak dates (bank holidays, Christmas, New Year)</dt>
-        <dd class="font-medium text-right">Visits +£3; overnights £80</dd>
+
+      <!-- What adds to the price -->
+      <div class="rounded-2xl border border-neutral-200 bg-lemon p-6 shadow-sm">
+        <h4 class="font-semibold">Supplements</h4>
+        <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+          <li class="flex items-baseline justify-between gap-4">
+            <span>Third cat and beyond</span>
+            <span class="whitespace-nowrap font-semibold">+£5 / visit</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-4">
+            <span>Peak dates: bank holidays, Christmas, New Year</span>
+            <span class="whitespace-nowrap font-semibold text-right">+£3 / visit<br>£80 / overnight</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-4">
+            <span>Short notice, booked within 48 hours</span>
+            <span class="whitespace-nowrap font-semibold">+£4 / booking</span>
+          </li>
+        </ul>
       </div>
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Bookings of 14 nights or more</dt>
-        <dd class="font-medium text-right">£19 per 30-minute visit, £28 per 60-minute visit, £66 per night for overnights</dd>
+    </div>
+
+    <!-- Where I cover -->
+    <div class="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <div class="flex gap-3">
+        <span aria-hidden="true" class="text-xl leading-none">📍</span>
+        <div>
+          <h4 class="font-semibold">Where I cover</h4>
+          <p class="mt-2 text-sm text-neutral-700">
+            <strong>Ealing, Hanwell, Northfields, West Ealing, Perivale, Acton and Chiswick</strong> are covered at the rates
+            above with no travel charge. I do take bookings further out, though for those I usually ask for either two visits
+            a day or a booking of five days or more, so that the journey makes sense at both ends. Get in touch and I will quote you.
+          </p>
+        </div>
       </div>
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Short notice (booked within 48 hours)</dt>
-        <dd class="font-medium text-right">+£4 per booking</dd>
-      </div>
-      <div class="flex justify-between gap-4 border-b border-neutral-100 pb-2">
-        <dt class="text-neutral-700">Simple medication, oral or topical</dt>
-        <dd class="font-medium text-right">Included</dd>
-      </div>
-    </dl>
-    <p class="mt-5 text-neutral-700">
-      Ealing, Hanwell, Northfields, West Ealing, Perivale, Acton and Chiswick are covered at the rates above with no travel charge.
-      I do take bookings further out, though for those I usually ask for either two visits a day or a booking of five days
-      or more, so that the journey makes sense at both ends. Get in touch and I will quote you.
-    </p>
+    </div>
   </div>
 
-  <div class="mt-8 rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur p-6 shadow-sm">
+  <div class="mt-10 rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur p-6 shadow-sm">
     <div class="h-1.5 w-16 rounded-full"
          style="background: linear-gradient(90deg, var(--brand-600), var(--accent-1));"></div>
     <h3 class="mt-4 text-xl font-semibold">Cheaper than a cattery, and your cat never leaves home</h3>
