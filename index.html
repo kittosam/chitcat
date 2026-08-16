@@ -411,6 +411,10 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
             <span aria-hidden="true" class="brand-text font-bold">✔</span>
             <span><strong>Travel</strong> anywhere in the areas I cover.</span>
           </li>
+          <li class="flex gap-3">
+            <span aria-hidden="true" class="brand-text font-bold">✔</span>
+            <span><strong>Short notice.</strong> Booking within 48 hours costs no extra.</span>
+          </li>
         </ul>
       </div>
 
@@ -425,10 +429,6 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
           <li class="flex items-baseline justify-between gap-4">
             <span>Peak dates: bank holidays, Christmas, New Year</span>
             <span class="whitespace-nowrap font-semibold text-right">+£3 / visit<br>£78 / overnight</span>
-          </li>
-          <li class="flex items-baseline justify-between gap-4">
-            <span>Short notice, booked within 48 hours</span>
-            <span class="whitespace-nowrap font-semibold">+£4 / booking</span>
           </li>
         </ul>
       </div>
@@ -697,7 +697,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       <summary class="cursor-pointer font-medium">How do bookings work?</summary>
       <p class="mt-2 text-neutral-700">
         Send your dates and postcode. I’ll confirm availability and your estimate. If you’re happy to go ahead, I’ll reserve your dates and arrange a free meet &amp; greet before the first visit to run through routines, meds and keys.
-        <br><br><strong>No deposit required.</strong> Full payment is due <strong>24 hours before</strong> the first visit (or immediately if your booking starts within 48 hours). On peak dates (bank holidays, Christmas and New Year) visits are <strong>+£3</strong> and overnights are <strong>£78</strong>. A second cat is free and a third cat or more is <strong>+£5 per visit</strong>. Bookings of 14 nights or more are <strong>£18 per 30-minute visit</strong>, <strong>£27 per 60-minute visit</strong> and <strong>£64 per night</strong>, and anything booked within 48 hours carries <strong>+£4</strong>. There is no travel charge in the areas I cover.
+        <br><br><strong>No deposit required.</strong> Full payment is due <strong>24 hours before</strong> the first visit (or immediately if your booking starts within 48 hours). On peak dates (bank holidays, Christmas and New Year) visits are <strong>+£3</strong> and overnights are <strong>£78</strong>. A second cat is free and a third cat or more is <strong>+£5 per visit</strong>. Bookings of 14 nights or more are <strong>£18 per 30-minute visit</strong>, <strong>£27 per 60-minute visit</strong> and <strong>£64 per night</strong>, and there is <strong>no extra charge</strong> for booking at short notice. There is no travel charge in the areas I cover.
       <br><br>
 <span class="text-sm text-neutral-600">
   Optional: you can complete the 
@@ -912,7 +912,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
       <p><strong>About me.</strong> I trade as ChitCat, a sole trader. Correspondence by email; based in Ealing, West London, full address available on request. You can reach me at <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a>.</p>
 
-      <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once I confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Peak dates (bank holidays, Christmas and New Year) are charged at <strong>£3 per visit</strong> extra and <strong>£78 per overnight</strong>. A second cat is included; a third cat or more is <strong>£5 per visit</strong>. Bookings of 14 nights or more are charged at <strong>£18 per 30-minute visit</strong>, <strong>£27 per 60-minute visit</strong> and <strong>£64 per night</strong>. Bookings made within 48 hours of the first visit carry <strong>£4</strong>. There is no travel charge in the areas listed on the pricing section of this site. Prices shown are indicative and confirmed in your quote.</p>
+      <p><strong>Bookings &amp; Payment.</strong> No deposit required. Your booking is confirmed once I confirm availability in writing. Full payment is due <strong>24 hours before</strong> the first visit (or <strong>immediately</strong> for bookings starting within 48 hours). Peak dates (bank holidays, Christmas and New Year) are charged at <strong>£3 per visit</strong> extra and <strong>£78 per overnight</strong>. A second cat is included; a third cat or more is <strong>£5 per visit</strong>. Bookings of 14 nights or more are charged at <strong>£18 per 30-minute visit</strong>, <strong>£27 per 60-minute visit</strong> and <strong>£64 per night</strong>. Bookings made within 48 hours of the first visit carry <strong>no extra charge</strong>. There is no travel charge in the areas listed on the pricing section of this site. Prices shown are indicative and confirmed in your quote.</p>
 
       <p><strong>Changes &amp; Cancellations.</strong><br>
         <strong>7+ days</strong> before the first visit: <strong>free</strong> (full refund / no charge).<br>
@@ -1099,14 +1099,6 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     const LONG_STAY_VISIT_30    = 18;   // replaces the 30-min visit rate
     const LONG_STAY_VISIT_60    = 27;   // replaces the 60-min visit rate
     const LONG_STAY_NIGHT_RATE  = 64;   // replaces the overnight rate
-    const SHORT_NOTICE_FEE      = 4;    // one-off, booked within 48h of the first visit
-    const SHORT_NOTICE_HOURS    = 48;
-    function isShortNotice(startStr, now = new Date()){
-      const s = new Date(startStr);
-      if (isNaN(s)) return false;
-      const hours = (s - now) / 36e5;
-      return hours >= 0 && hours < SHORT_NOTICE_HOURS;
-    }
 
     // Pure calculator for testing & UI
   function computeQuote({
@@ -1117,7 +1109,6 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   meds = false,
   cats = 1,
   peakDays = 0,
-  shortNotice = false,
   rate = RATE
 } = {}) {
   const key =
@@ -1150,9 +1141,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   const peakNightSupp = peakNights * Math.max(0, PEAK_OVERNIGHT_RATE - baseNightRate);
   const peakSupp = peakVisitSupp + peakNightSupp;
 
-  const shortNoticeFee = shortNotice ? SHORT_NOTICE_FEE : 0;
-
-  const total = visitCost + overnightCost + medCost + peakSupp + shortNoticeFee;
+  const total = visitCost + overnightCost + medCost + peakSupp;
 
   const parts = [];
   if (days > 0) {
@@ -1164,7 +1153,6 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   if (extraCats > 0) parts.push(`${extraCats} extra ${extraCats===1?'cat':'cats'} × ${fmt(THIRD_CAT_PER_VISIT)}/visit`);
   if (medCost > 0) parts.push(`meds (flat) = ${fmt(medCost)}`);
   if (peakSupp > 0) parts.push(`peak dates = ${fmt(peakSupp)}`);
-  if (shortNoticeFee > 0) parts.push(`short notice = ${fmt(shortNoticeFee)}`);
 
   return { total, parts, peakSupp };
 }
@@ -1190,7 +1178,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
       const { total, parts } = computeQuote({
     days, visitsPerDay, lengthMins, overnights, meds, cats,
-    peakDays: peakDates.length, shortNotice: isShortNotice(start)
+    peakDays: peakDates.length
   });
 
   // Optional: show which BH dates trigger the surcharge
@@ -1443,8 +1431,7 @@ function buildQuotePayload() {
   const cats = parseInt(document.getElementById('cats')?.value || '1', 10);
   const { total, parts } = computeQuote({
     days, visitsPerDay, lengthMins, overnights, meds:false, cats,
-    peakDays: peakDaysInRange(start, end).length,
-    shortNotice: isShortNotice(start)
+    peakDays: peakDaysInRange(start, end).length
   });
 
   const lines = [
