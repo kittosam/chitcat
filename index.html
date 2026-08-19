@@ -1019,21 +1019,21 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
 
 <footer class="border-t border-neutral-200/70">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6 items-start text-sm text-neutral-600 text-center md:text-left">
-    <!-- Brand column -->
-    <div>
-      <div class="flex items-center justify-center md:justify-start gap-3 font-semibold text-neutral-900">
-        <img src="logo.svg?v=2" alt="ChitCat logo" class="h-12 w-15 md:h-14 md:w-17" />
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 items-start text-sm text-neutral-600 text-left">
+    <!-- Brand column: full width on mobile, its own column from md -->
+    <div class="col-span-2 md:col-span-1">
+      <div class="flex items-center gap-3 font-semibold text-neutral-900">
+        <img src="logo.svg?v=2" alt="ChitCat logo" class="h-10 w-auto md:h-14" />
         <span>ChitCat</span>
       </div>
       <p class="mt-2">London, UK</p>
-      <p class="mt-1">Public Liability Insurance: Protectivity #444900301998</p>
+      <p class="mt-1 text-xs md:text-sm">Public Liability Insurance: Protectivity #444900301998</p>
     </div>
 
     <!-- Links -->
     <div>
       <h4 class="font-semibold text-neutral-900">Links</h4>
-      <ul class="mt-2 space-y-2">
+      <ul class="mt-2 space-y-1.5">
         <li><a class="hover:brand-text" href="#pricing">Pricing</a></li>
         <li><a class="hover:brand-text" href="#quote">Quote</a></li>
         <li><a class="hover:brand-text" href="#faq">FAQ</a></li>
@@ -1044,14 +1044,14 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     <!-- Policies -->
     <div>
       <h4 class="font-semibold text-neutral-900">Policies</h4>
-      <ul class="mt-2 space-y-2">
+      <ul class="mt-2 space-y-1.5">
         <li><a class="hover:brand-text" href="#termsPanel">Terms &amp; Conditions</a></li>
         <li><a class="hover:brand-text" href="#privacyPanel">Privacy Policy</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-neutral-200/70 py-6 text-center text-xs text-neutral-500">
+  <div class="border-t border-neutral-200/70 py-4 md:py-6 text-center text-xs text-neutral-500">
     © <span id="year"></span> ChitCat. All rights reserved.
   </div>
 </footer>
