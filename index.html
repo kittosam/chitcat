@@ -28,66 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* Palette A — Loud */
-      --brand-700: #7c3aed; /* violet */
-      --brand-600: #8b5cf6; /* violet */
-      --brand-50:  #f5f3ff; /* soft lilac */
-      --accent-1:  #ff7b54; /* tangerine */
-      --accent-2:  #22d3ee; /* sky/cyan */
-      --accent-3:  #f43f5e; /* pop rose */
-      --lilac-50:  #f6e8ff;
-      --lemon-50:  #fff7cc;
-      --sky-50:    #e6fbff;
-      --ink:       #0b0f12; /* near-black */
-    }
-    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); }
-    h1, h2, h3, .display { font-family: Rubik, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-
-    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); }
-    .badge { border: 1px solid rgba(0,0,0,0.08); background: linear-gradient(135deg, #ffffff, rgba(139,92,246,0.07)); }
-    .ring-brand { box-shadow: 0 0 0 3px rgba(124,58,237,0.18); }
-
-    .btn-brand { background: linear-gradient(135deg, var(--brand-600), var(--accent-1)); color: #fff; border: none; transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; box-shadow: 0 10px 20px rgba(124,58,237,0.22); }
-    .btn-brand:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 12px 24px rgba(124,58,237,0.30); }
-
-    .brand-text { color: var(--brand-700); }
-
-    /* Make link hovers pop without changing HTML classes */
-    header nav a:hover, footer a:hover { color: var(--brand-700) !important; }
-
-    .bg-lilac { background: var(--lilac-50); }
-    .bg-lemon { background: var(--lemon-50); }
-    .bg-sky   { background: var(--sky-50); }
-
-    .hero-bg { background:
-      radial-gradient(800px 500px at -10% -10%, rgba(139,92,246,.25), transparent 60%),
-      radial-gradient(700px 400px at 110% 0%, rgba(255,123,84,.22), transparent 55%),
-      linear-gradient(135deg, var(--brand-50), #ffffff 40%, #ffffff);
-    }
-    .cta-bg { background:
-      radial-gradient(600px 400px at 20% 120%, rgba(34,211,238,.25), transparent 60%),
-      radial-gradient(700px 400px at 100% -20%, rgba(255,123,84,.18), transparent 55%),
-      linear-gradient(135deg, #ffffff, var(--brand-50));
-    }
-    .bg-brand-blob { background: rgba(139,92,246,0.18); }
-
-/* Soft yellow + subtle confetti */
-.included-bg {
-  background:
-    radial-gradient(520px 320px at 12% 110%, rgba(34,211,238,.14), transparent 60%),
-    radial-gradient(580px 360px at 100% -10%, rgba(255,123,84,.12), transparent 55%),
-    linear-gradient(135deg, var(--lemon-50), #ffffff 55%);
-}
-
-    header a img { transition: transform .2s ease; }
-    header a:hover img { transform: rotate(-6deg) scale(1.15); }
-
-    #contact { scroll-margin-top: 5rem; }
-    
-  </style>
+  <link rel="stylesheet" href="/styles.css">
   
 <link rel="icon" href="logo.svg?v=2" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
