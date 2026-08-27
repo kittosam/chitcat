@@ -1067,22 +1067,170 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 
   <!-- Structured data (update business details) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "PetSittingService",
-    "name": "ChitCat — Premium West London Cat Sitting",
-    "areaServed": ["Ealing", "West Ealing", "Hanwell", "Acton", "Northfields", "Perivale",
-                   "Chiswick", "Hammersmith", "Shepherd's Bush", "Brentford", "Kew",
-                   "Notting Hill", "Holland Park", "Maida Vale", "Paddington", "Bayswater", "Kensington"],
-    "url": "https://www.chitcat.co.uk",
-    "email": "hello.chitcat@gmail.com",
-    "telephone": "+447455567874",
-    "address": {"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},
-    "priceRange": "££",
-    "openingHours": "Mo-Su 07:00-20:00",
-    "image": "https://www.chitcat.co.uk/sam-with-gnocchi.jpg",
-    "sameAs": []
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.chitcat.co.uk/#business",
+      "name": "ChitCat",
+      "description": "In-home cat sitting in Ealing and the surrounding parts of West London, with daily visits, overnight stays, simple medication, and photo and video updates after every visit.",
+      "url": "https://www.chitcat.co.uk",
+      "email": "hello.chitcat@gmail.com",
+      "telephone": "+447455567874",
+      "image": "https://www.chitcat.co.uk/sam-with-gnocchi.jpg",
+      "priceRange": "££",
+      "openingHours": "Mo-Su 07:00-20:00",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ealing",
+        "addressRegion": "London",
+        "addressCountry": "GB"
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Ealing"
+        },
+        {
+          "@type": "Place",
+          "name": "West Ealing"
+        },
+        {
+          "@type": "Place",
+          "name": "Hanwell"
+        },
+        {
+          "@type": "Place",
+          "name": "Northfields"
+        },
+        {
+          "@type": "Place",
+          "name": "Perivale"
+        },
+        {
+          "@type": "Place",
+          "name": "Acton"
+        },
+        {
+          "@type": "Place",
+          "name": "Chiswick"
+        },
+        {
+          "@type": "Place",
+          "name": "Hammersmith"
+        },
+        {
+          "@type": "Place",
+          "name": "Shepherd's Bush"
+        },
+        {
+          "@type": "Place",
+          "name": "Brentford"
+        },
+        {
+          "@type": "Place",
+          "name": "Kew"
+        },
+        {
+          "@type": "Place",
+          "name": "Notting Hill"
+        },
+        {
+          "@type": "Place",
+          "name": "Holland Park"
+        },
+        {
+          "@type": "Place",
+          "name": "Maida Vale"
+        },
+        {
+          "@type": "Place",
+          "name": "Paddington"
+        },
+        {
+          "@type": "Place",
+          "name": "Bayswater"
+        },
+        {
+          "@type": "Place",
+          "name": "Kensington"
+        }
+      ],
+      "sameAs": [
+        "https://www.rover.com/members/samanta-c-your-local-cat-enthusiast/"
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do bookings work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Send your dates and postcode. I’ll confirm availability and your estimate. If you’re happy to go ahead, I’ll reserve your dates and arrange a free meet & greet before the first visit to run through routines, meds and keys. No deposit required. Full payment is due 24 hours before the first visit (or immediately if your booking starts within 48 hours). On peak dates (bank holidays, Christmas and New Year) visits are +£3 and overnights are £78 . A second cat is free and a third cat or more is +£5 per visit . Bookings of 14 nights or more are £18 per 30-minute visit , £27 per 60-minute visit and £64 per night , and there is no extra charge for booking at short notice. There is no travel charge in the areas I cover. Optional: you can complete the vet authorisation & emergency consent now to speed things up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you hold keys?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, keys are stored securely off-site with coded tags (no addresses). Key pick-up/return is included (no fee) , and I can hold a key for future bookings if you prefer. Please also tell me in advance if anyone else will have access to your home during the booking, for example cleaners, builders, family or letting agents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What’s your cancellation policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "7+ days before the first visit: free (full refund / no charge). 24 hours–6 days before: 20% cancellation fee (I refund 80%; or invoice 20% if unpaid). Less than 24 hours before: 50% cancellation fee . After the booking begins, completed visits are non-refundable . If you cancel once the booking has begun, visits I have not yet carried out are refunded under the same rule above (20% if you give 24 hours or more; 50% if less). Peak/bank-holiday surcharges are non-refundable once applied. If I cannot get in to carry out a visit, it may be charged as a completed visit. Bookings are agreed at a distance, so you also have statutory cancellation rights under the Consumer Contracts Regulations 2013. The detail is in the Terms & Conditions ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if you are ill and cannot come?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I will tell you as soon as I can, and refund every visit I have not carried out, in full. Where possible I will suggest a vetted replacement sitter for you to approve; they carry their own insurance and would arrange things with you directly. You are never obliged to accept a substitute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are you insured/DBS checked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Public liability insurance up to £1m with Protectivity, underwritten by AXA XL, and a current DBS. I also hold a Pet First Aid Level 2 (VTQ) Certificate and a Cat Care Level 2 (VTQ) Certificate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who pays the vet in an emergency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vet costs are yours, but you will not be left stuck. I will try to reach you first. If I cannot and your cat needs help, I can pay the vet and invoice you, and I ask to be reimbursed within 14 days. For anything likely to go over £250 I will make every effort to reach you or your emergency contact before authorising it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a Care Report include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After each visit you’ll get a short message with time in/out, food & water, litter, play/enrichment, meds (if any), and 2–4 photos or a quick clip."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What insurance do you carry? How are claims handled?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ChitCat holds pet business insurance with Protectivity, underwritten by AXA XL. This includes £1,000,000 public liability, £100,000 cover for non-negligent animal care, and £10,000 cover for keys and alarms. I am happy to show you the certificate at the free meet and greet, or to send it over beforehand if you would rather see it first."
+          }
+        }
+      ]
+    }
   </script>
 
   <script>
