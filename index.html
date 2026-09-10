@@ -1610,7 +1610,7 @@ function buildQuotePayload() {
   })();
 
   // Keep links updated as the user types
-  ['postcode','start','end','visits','overnights'].forEach(id=>{
+  ['postcode','start','end','visits','length','overnights','cats'].forEach(id=>{
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', updateContactLinks, { passive: true });
   });
