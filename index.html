@@ -27,8 +27,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=2">
   
 <link rel="icon" href="logo.svg?v=2" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
@@ -71,14 +71,14 @@
   
   <!-- Quote: visible on every size; label shortens on mobile -->
   <a href="#quote"
-     class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-3 md:px-4 py-2 text-sm md:text-base font-medium hover:border-neutral-400 min-h-[44px] whitespace-nowrap">
+     class="inline-flex items-center justify-center btn-ghost px-3 md:px-4 py-2 text-sm md:text-base font-medium hover:border-neutral-400 min-h-[44px] whitespace-nowrap">
     <span class="md:hidden">Quote</span>
     <span class="hidden md:inline">Get an instant quote</span>
   </a>
 
   <!-- Primary CTA -->
   <a href="#contact" data-open-form
-     class="inline-flex items-center justify-center gap-2 rounded-xl btn-brand px-3 md:px-4 py-2 text-sm md:text-base text-white shadow focus:outline-none ring-brand min-h-[44px] whitespace-nowrap">
+     class="inline-flex items-center justify-center gap-2 btn-brand rounded-full px-3 md:px-4 py-2 text-sm md:text-base text-white shadow focus:outline-none ring-brand min-h-[44px] whitespace-nowrap">
     <span class="md:hidden">Contact</span>
     <span class="hidden md:inline">Contact me</span>
   </a>
@@ -97,182 +97,157 @@
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- 1. Hero: headline, trust, and the quote tool together -->
   <section id="home" class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 hero-bg"></div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 lg:pt-20 pb-8 md:pb-10">
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 lg:pt-16 pb-10 md:pb-14">
+      <div class="grid items-start gap-10 lg:grid-cols-[1fr_minmax(360px,420px)]">
         <div class="flex flex-col">
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
             Loving, reliable <span class="brand-text">in‑home cat care</span> in Ealing and West London
           </h1>
           <p class="mt-4 md:mt-5 text-base sm:text-lg text-neutral-700">Daily visits and overnights tailored to your cat’s routine. Photos and videos every visit. Clear communications.</p>
-
           <p class="mt-4 md:mt-5">
             <span class="inline-block rounded-lg bg-lilac px-3 py-1 text-lg sm:text-xl md:text-2xl font-bold tracking-tight"
                   style="color: var(--ink);">No drama. Just purrs.</span>
           </p>
-
           <p class="mt-4 md:mt-5 text-base sm:text-lg text-neutral-700">Covering Ealing, Acton, Hanwell and Chiswick. I take bookings in other areas on request and will let you know based on the distance.</p>
           <div class="order-3 lg:order-none mt-6 flex flex-wrap items-center gap-3 text-sm">
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">✅ Fully insured</span>
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">🪪 DBS checked</span>
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">🎓 Pet First Aid &amp; Cat Care certified</span>
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">💊 Medication admin</span>
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">📸 Photo updates</span>
-            <span class="badge inline-flex items-center gap-2 rounded-full bg-white px-3 py-1">🤝 Free meet &amp; greet</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">✅ Fully insured</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">🪪 DBS checked</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">🎓 Pet First Aid &amp; Cat Care certified</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">💊 Medication admin</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">📸 Photo updates</span>
+            <span class="chip inline-flex items-center gap-2 px-3.5 py-1.5">🤝 Free meet &amp; greet</span>
           </div>
           <div class="order-1 lg:order-none mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3">
             
   <a href="#quote"
-     class="inline-flex w-full sm:w-auto items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow min-h-[48px]">
+     class="inline-flex w-full sm:w-auto items-center justify-center btn-brand rounded-full px-5 py-3 text-white font-medium shadow min-h-[48px]">
     Get an instant quote
   </a>
 
   <a href="#contact" data-open-form
-     class="inline-flex w-full sm:w-auto items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400 min-h-[48px]">
+     class="inline-flex w-full sm:w-auto items-center justify-center btn-ghost px-5 py-3 font-medium hover:border-neutral-400 min-h-[48px]">
     Contact me
   </a>
 </div>
-
-<!-- Keep this reassurance note BELOW the helper link -->
-<p class="order-2 lg:order-none mt-3 text-xs text-neutral-500">
+          <p class="order-2 lg:order-none mt-3 text-xs text-neutral-500">
 I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake happens after you’re happy to book.
 </p>
-        </div>
-
-        <!-- RIGHT COLUMN — REPLACE the whole existing right-side <div class="relative">…</div> -->
-<!-- Right column of your hero -->
-<div class="relative">
-  <div class="absolute -top-6 -left-6 -z-10 h-72 w-72 rounded-2xl bg-brand-blob blur-3xl"></div>
-
-  <!-- 3 cols × 4 rows (4×120=480px). No gaps. -->
-  <div class="md:h-[480px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-neutral-200">
-    <div class="grid grid-cols-3 auto-rows-[120px] gap-3">
-
-      <!-- Big hero tile (fills left 2 cols, all 4 rows) -->
-      <figure class="col-span-2 row-span-4 rounded-xl overflow-hidden">
+          <div class="order-4 lg:order-none mt-8 grid max-w-md grid-cols-3 gap-3">
+            <figure class="rounded-[20px] overflow-hidden aspect-square">
         <img src="sam-with-gnocchi.jpg" fetchpriority="high" alt="Sam holding her grey and white cat Gnocchi close to her cheek, both looking at the camera" width="2880" height="2160" decoding="async" class="h-full w-full object-cover">
-      </figure>
-
-      <!-- Right column, top half -->
-      <figure class="col-span-1 row-span-2 rounded-xl overflow-hidden">
+      </figure><figure class="rounded-[20px] overflow-hidden aspect-square">
         <img src="sam-with-cat-on-sofa.jpg" alt="Sam in a green top sitting on a sofa with a grey and white cat resting beside her" width="2880" height="2160" decoding="async" class="h-full w-full object-cover">
-      </figure>
-
-      <!-- Right column, bottom half -->
-      <figure class="col-span-1 row-span-2 rounded-xl overflow-hidden">
+      </figure><figure class="rounded-[20px] overflow-hidden aspect-square">
         <img src="sam-and-cat-relaxing.jpg" alt="Sam lying back next to a grey and white cat, both facing the camera" width="2880" height="2160" decoding="async" class="h-full w-full object-cover">
       </figure>
+          </div>
+        </div>
+        <div id="quote" class="card scroll-mt-24 p-6 md:p-7">
+          <h2 class="text-xl font-semibold">Get an instant price</h2>
+          <p class="mt-1 text-sm text-neutral-500">Get a ballpark figure. I’ll confirm after a quick chat and a free meet &amp; greet.</p>
+          <form id="quoteForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium" for="postcode">Postcode</label>
+            <input type="text" id="postcode" placeholder="e.g., W5 2TH"
+                   aria-describedby="quotePostHelp"
+                   class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            <p id="quotePostHelp" class="mt-1 text-xs text-neutral-500">
+              No travel charge in Ealing, Hanwell, Northfields, West Ealing, Perivale, Acton and Chiswick. Further out is welcome; get in touch and I will quote you.
+            </p>
+          </div>
 
-    </div>
-  </div>
-</div>
-</div>
+          <div>
+            <label class="block text-sm font-medium">Start date</label>
+            <input type="date" id="start" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">End date</label>
+            <input type="date" id="end" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">Visits per day</label>
+            <select id="visits" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500">
+              <option value="1">1 visit</option>
+              <option value="2">2 visits</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Visit length</label>
+            <select id="length" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500">
+            <option value="30">30 minutes</option>
+            <option value="60">60 minutes</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium" for="cats">Number of cats</label>
+            <input type="number" min="1" step="1" id="cats" value="1"
+                   class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">Overnight stays</label>
+            <input type="number" min="0" id="overnights" value="0"
+                   class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <div class="rounded-[20px] bg-lilac border border-violet-200 p-4">
+              <div class="text-sm text-neutral-700">Estimated total</div>
+              <div id="total" class="text-3xl font-extrabold mt-1">£0</div>
+              <div id="breakdown" class="text-sm text-neutral-600 mt-2"></div>
+            </div>
+          </div>
+
+          <div class="sm:col-span-2 flex flex-wrap gap-3">
+            <!-- EMAIL is a link, not a button -->
+            <a id="emailQuoteBtn" href="mailto:hello.chitcat@gmail.com" class="inline-flex items-center justify-center btn-brand rounded-full px-5 py-3 text-white font-medium shadow">Email me to book</a>
+            <a href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-center btn-ghost px-5 py-3 font-medium hover:border-neutral-400">WhatsApp me to book</a>
+          </div>
+        </form>
+          <p class="mt-2 text-xs text-neutral-500">
+        Prefer webmail?
+        <a id="useGmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.chitcat@gmail.com" target="_blank" rel="noopener" class="underline">Gmail</a> •
+        <a id="useOutlook" href="https://outlook.live.com/owa/?path=/mail/action/compose&to=hello.chitcat@gmail.com" target="_blank" rel="noopener" class="underline">Outlook.com</a> •
+        <button id="copyEmail" type="button" class="underline">Copy message</button>
+      </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="bg-white border-b border-neutral-200/70 scroll-mt-24">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 md:pt-10 pb-16">
-    <!-- divider (not inside the grid) -->
-    <div aria-hidden="true" class="mb-6 md:mb-8 flex justify-center">
-      <div class="h-px w-24 bg-gradient-to-r from-transparent via-neutral-300 to-transparent"></div>
-    </div>
-          <div class="grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <h2 class="text-3xl font-bold tracking-tight">About ChitCat</h2>
-        <p class="mt-3 text-neutral-700">Hi, I’m Sam! I built ChitCat to give London cats calm, reliable care in their own homes - no stressy catteries, no rushed drop‑ins. Clear communication, tidy homes, happy cats.</p>
-        <ul class="mt-6 space-y-2 text-neutral-800">
-          <li>• <strong>DBS checked</strong> and <strong>insured</strong></li>
-          <li>• <strong>Pet First Aid Level 2 (VTQ)</strong> and <strong>Cat Care Level 2 (VTQ)</strong> certificates</li>
-          <li>• Comfortable with meds (pills, liquid, transderma)</li>
-          <li>• Daily video and photo updates; you’ll never chase me</li>
-          <li>• Respect for routines and boundaries</li>
-          <li>• Cat‑first handling; stress‑aware visits</li>
-          <li>• Transparent pricing, no upsell traps</li>
-          <li>• You'll find your house as you left it!</li>
-        </ul>
-
-        <h3 class="mt-8 text-xl font-semibold">Based in Ealing</h3>
-        <p class="mt-3 text-neutral-700">I am based in Ealing, so for most of my clients the journey to their home is a short one, which makes it easier to keep visits close to the times your cat is used to, whether that is breakfast, an evening feed or medication at a set hour.</p>
-        <p class="mt-3 text-neutral-700">West Ealing, Northfields and Perivale are close by as well, and I cover them in exactly the same way as Ealing itself, with the same prices, no travel charge, and the same photo and video update after every visit.</p>
-      </div>
-      <div class="relative rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm overflow-hidden">
-
-  <!-- How I work — clean, no outer card -->
-<div>
-  <h3 class="text-xl font-semibold">How I work</h3>
-
-  <ol class="mt-4 divide-y divide-neutral-200">
-    <li class="flex items-start gap-3 py-3 first:pt-0">
-      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lilac-50);">1</span>
-      <div>
-        <div class="font-medium">Check dates &amp; estimate</div>
-        <div class="text-sm text-neutral-600">Email/WhatsApp. Reply within 24h</div>
-      </div>
-    </li>
-    <li class="flex items-start gap-3 py-3">
-      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lemon-50);">2</span>
-      <div>
-        <div class="font-medium">Reserve</div>
-        <div class="text-sm text-neutral-600">No deposit! Pay 24h before</div>
-      </div>
-    </li>
-    <li class="flex items-start gap-3 py-3">
-      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--sky-50);">3</span>
-      <div>
-        <div class="font-medium">Meet &amp; greet (free)</div>
-        <div class="text-sm text-neutral-600">Routines, meds, vet, keys</div>
-      </div>
-    </li>
-    <li class="flex items-start gap-3 py-3">
-      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lilac-50);">4</span>
-      <div>
-        <div class="font-medium">Visits</div>
-        <div class="text-sm text-neutral-600">Report + photos every visit. Simple meds included</div>
-      </div>
-    </li>
-    <li class="flex items-start gap-3 py-3 last:pb-0">
-      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lemon-50);">5</span>
-      <div>
-        <div class="font-medium">Keys</div>
-        <div class="text-sm text-neutral-600">Off-site storage. Optional key holding</div>
-      </div>
-    </li>
-  </ol>
-</div>
-
-</div> <!-- end grid -->
-</div> <!-- end container -->
-</section> <!-- end About -->
-
-  <!-- Social proof / stats -->
-<section class="bg-white border-y border-neutral-200/70">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-6 text-center">
-    <div class="rounded-2xl bg-lilac p-6 shadow-sm">
+  <!-- 2. Proof, in one thin band -->
+  <section class="bg-white border-y border-neutral-200/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid sm:grid-cols-3 gap-6 text-center">
+    <div class="rounded-[28px] bg-lilac p-6">
       <div class="text-3xl font-extrabold">20+</div>
       <div class="text-sm text-neutral-600">Five-star reviews on Rover</div>
     </div>
-    <div class="rounded-2xl bg-lemon p-6 shadow-sm">
+    <div class="rounded-[28px] bg-lemon p-6">
       <div class="text-3xl font-extrabold">15</div>
       <div class="text-sm text-neutral-600">Families who book me again and again</div>
     </div>
-    <div class="rounded-2xl bg-sky p-6 shadow-sm">
+    <div class="rounded-[28px] bg-sky p-6">
       <div class="text-3xl font-extrabold">Every visit</div>
       <div class="text-sm text-neutral-600">Photo &amp; video update, without being asked</div>
     </div>
   </div>
-</section>
+    </div>
+  </section>
 
-  <!-- Our Promises -->
-
-<!-- Services (pricing) -->
-<section id="pricing" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-  <h2 class="text-3xl font-bold tracking-tight">Prices</h2>
+  <!-- 3. Prices -->
+  <section id="pricing" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20 scroll-mt-24">
+    <h2 class="text-3xl font-bold tracking-tight">What it costs</h2>
+    
 
   <!-- one container, hairline dividers, instead of four separate cards -->
-  <div class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="mt-8 grid gap-px overflow-hidden rounded-[28px] overflow-hidden border border-[color:var(--hairline)] bg-[color:var(--hairline)] sm:grid-cols-2 lg:grid-cols-4">
     <div class="bg-white p-6">
       <h3 class="font-semibold">Daily Visit — 30 min</h3>
       <p class="mt-1 text-sm text-neutral-600">One focused visit</p>
@@ -313,7 +288,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   <h3 class="mt-12 text-xl font-semibold">Rates and supplements</h3>
 
   <!-- the saving, the one block given colour -->
-  <div class="mt-5 rounded-2xl border border-violet-200 bg-lilac p-6">
+  <div class="mt-5 rounded-[28px] border border-violet-200 bg-lilac p-6 md:p-8">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <h4 class="font-semibold">Staying away 14 nights or more?</h4>
       <span class="inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-medium ring-1 ring-violet-200">
@@ -321,17 +296,17 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
       </span>
     </div>
     <dl class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <div class="rounded-xl bg-white/80 p-4">
+      <div class="card-quiet p-4">
         <dt class="text-sm text-neutral-600">30-minute visit</dt>
         <dd class="mt-1 text-2xl font-extrabold brand-text">£13<span class="text-sm font-medium text-neutral-500"> / visit</span></dd>
         <p class="mt-1 text-xs text-neutral-500">Usually £14.50</p>
       </div>
-      <div class="rounded-xl bg-white/80 p-4">
+      <div class="card-quiet p-4">
         <dt class="text-sm text-neutral-600">60-minute visit</dt>
         <dd class="mt-1 text-2xl font-extrabold brand-text">£21.50<span class="text-sm font-medium text-neutral-500"> / visit</span></dd>
         <p class="mt-1 text-xs text-neutral-500">Usually £23</p>
       </div>
-      <div class="rounded-xl bg-white/80 p-4">
+      <div class="card-quiet p-4">
         <dt class="text-sm text-neutral-600">Overnight stay</dt>
         <dd class="mt-1 text-2xl font-extrabold brand-text">£56.50<span class="text-sm font-medium text-neutral-500"> / night</span></dd>
         <p class="mt-1 text-xs text-neutral-500">Usually £59</p>
@@ -340,8 +315,8 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   </div>
 
   <!-- included and supplements share one card now -->
-  <div class="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-    <div class="grid gap-8 md:grid-cols-2 md:gap-0 md:divide-x md:divide-neutral-200">
+  <div class="mt-4 card p-6 md:p-8">
+    <div class="grid gap-8 md:grid-cols-2 md:gap-0 md:divide-x md:divide-[color:var(--hairline)]">
       <div class="md:pr-8">
         <h4 class="font-semibold">Included, at no extra charge</h4>
         <ul class="mt-4 space-y-2 text-sm text-neutral-700">
@@ -370,7 +345,7 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     a day or a booking of five days or more, so that the journey makes sense at both ends. Get in touch and I will quote you.
   </p>
 
-  <div class="mt-12 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+  <div class="mt-12 card p-6 md:p-8">
     <div class="h-1.5 w-16 rounded-full"
          style="background: linear-gradient(90deg, var(--brand-600), var(--accent-1));"></div>
     <h3 class="mt-4 text-xl font-semibold">Cheaper than a cattery, and your cat never leaves home</h3>
@@ -382,91 +357,48 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
   <p class="mt-6 text-sm text-neutral-500">
     Prices are starting points; your quote is confirmed after a quick chat. Simple oral/topical meds are included.
   </p>
-</section>
+  </section>
 
-  <!-- Quote Calculator -->
-  <section id="quote" class="bg-white border-y border-neutral-200/70">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-    <!-- Make two columns from small screens upward if you want: change md:grid-cols-2 to sm:grid-cols-2 -->
-    <div class="grid md:grid-cols-2 gap-10 items-start">
-          <div>
-        <h2 class="text-3xl font-bold tracking-tight">Instant quote (estimate)</h2>
-        <p class="mt-3 text-neutral-700">Get a ballpark figure. I’ll confirm after a quick chat and a free meet &amp; greet.</p>
-
-        <form id="quoteForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="sm:col-span-2">
-            <label class="block text-sm font-medium" for="postcode">Postcode</label>
-            <input type="text" id="postcode" placeholder="e.g., W5 2TH"
-                   aria-describedby="quotePostHelp"
-                   class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            <p id="quotePostHelp" class="mt-1 text-xs text-neutral-500">
-              No travel charge in Ealing, Hanwell, Northfields, West Ealing, Perivale, Acton and Chiswick. Further out is welcome; get in touch and I will quote you.
-            </p>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium">Start date</label>
-            <input type="date" id="start" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium">End date</label>
-            <input type="date" id="end" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium">Visits per day</label>
-            <select id="visits" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500">
-              <option value="1">1 visit</option>
-              <option value="2">2 visits</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Visit length</label>
-            <select id="length" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500">
-            <option value="30">30 minutes</option>
-            <option value="60">60 minutes</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium" for="cats">Number of cats</label>
-            <input type="number" min="1" step="1" id="cats" value="1"
-                   class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium">Overnight stays</label>
-            <input type="number" min="0" id="overnights" value="0"
-                   class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-          </div>
-
-          <div class="sm:col-span-2">
-            <div class="rounded-2xl bg-lilac border border-violet-200 p-4">
-              <div class="text-sm text-neutral-700">Estimated total</div>
-              <div id="total" class="text-3xl font-extrabold mt-1">£0</div>
-              <div id="breakdown" class="text-sm text-neutral-600 mt-2"></div>
-            </div>
-          </div>
-
-          <div class="sm:col-span-2 flex flex-wrap gap-3">
-            <!-- EMAIL is a link, not a button -->
-            <a id="emailQuoteBtn" href="mailto:hello.chitcat@gmail.com" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">Email me to book</a>
-            <a href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">WhatsApp me to book</a>
-          </div>
-        </form>
-
-        <!-- IMPORTANT: keep this helper INSIDE the left column, after the form -->
-        <p class="mt-2 text-xs text-neutral-500">
-        Prefer webmail?
-        <a id="useGmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.chitcat@gmail.com" target="_blank" rel="noopener" class="underline">Gmail</a> •
-        <a id="useOutlook" href="https://outlook.live.com/owa/?path=/mail/action/compose&to=hello.chitcat@gmail.com" target="_blank" rel="noopener" class="underline">Outlook.com</a> •
-        <button id="copyEmail" type="button" class="underline">Copy message</button>
-      </p>
+  <!-- 4. Everything that builds trust, in one place -->
+  <section id="about" class="bg-white border-y border-neutral-200/70 scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <h2 class="text-3xl font-bold tracking-tight">Why people book me again</h2>
+      <p class="mt-3 text-neutral-700">Hi, I’m Sam! I built ChitCat to give London cats calm, reliable care in their own homes - no stressy catteries, no rushed drop‑ins. Clear communication, tidy homes, happy cats.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold">Covered and checked</h3>
+          <ul class="mt-6 space-y-2 text-neutral-800">
+          <li>• <strong>DBS checked</strong> and <strong>insured</strong></li>
+          <li>• <strong>Pet First Aid Level 2 (VTQ)</strong> and <strong>Cat Care Level 2 (VTQ)</strong> certificates</li>
+          <li>• Comfortable with meds (pills, liquid, transderma)</li>
+          <li>• Daily video and photo updates; you’ll never chase me</li>
+          <li>• Respect for routines and boundaries</li>
+          <li>• Cat‑first handling; stress‑aware visits</li>
+          <li>• Transparent pricing, no upsell traps</li>
+          <li>• You'll find your house as you left it!</li>
+        </ul>
+        </div>
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold">Every visit, the same way</h3>
+          <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-neutral-800">
+      <li>• Calm entry, greet if cat consents, fresh water first</li>
+      <li>• Feed as instructed; log appetite/leftovers</li>
+      <li>• Litter refresh & tidy surrounding area</li>
+      <li>• Play/enrichment rotation or quiet companionship</li>
+      <li>• Brush if allowed; check for changes (eyes/coat/behaviour)</li>
+      <li>• Simple meds as instructed; log dose/time</li>
+      <li>• Quick sweep of bowls/litter area; lock-up checklist</li>
+      <li>• Care Report sent before the visit window ends</li>
+    </ul>
+        </div>
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold">Based in Ealing</h3>
+          <p class="mt-3 text-neutral-700">I am based in Ealing, so for most of my clients the journey to their home is a short one, which makes it easier to keep visits close to the times your cat is used to, whether that is breakfast, an evening feed or medication at a set hour.</p>
+          <p class="mt-3 text-neutral-700">West Ealing, Northfields and Perivale are close by as well, and I cover them in exactly the same way as Ealing itself, with the same prices, no travel charge, and the same photo and video update after every visit.</p>
+        </div>
       </div>
-
-      <!-- RIGHT: What’s included card (second sibling in the grid) -->
-      <div class="rounded-2xl border border-neutral-200 shadow-sm overflow-hidden">
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="card overflow-hidden">
   <div class="included-bg p-6 md:p-8">
     <h3 class="text-xl font-semibold brand-text">What’s included</h3>
     <ul class="mt-4 space-y-2 text-neutral-700">
@@ -478,40 +410,54 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     </ul>
     <p class="mt-4 text-sm text-neutral-600">Need something special? Add it in your message below.</p>
       </div> <!-- end .included-bg -->
-      </div> <!-- ✅ close the outer rounded card -->
-    </div> <!-- end grid -->
-  </div> <!-- end container -->
-</section> <!-- end Quote -->
+      </div>
+        <div class="card p-6 md:p-8">
+          <h3 class="text-xl font-semibold">How I work</h3>
+          <ol class="mt-4 divide-y divide-[color:var(--hairline)]">
+    <li class="flex items-start gap-3 py-3 first:pt-0">
+      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lilac-50);">1</span>
+      <div>
+        <div class="font-medium">Check dates &amp; estimate</div>
+        <div class="text-sm text-neutral-600">Email/WhatsApp. Reply within 24h</div>
+      </div>
+    </li>
+    <li class="flex items-start gap-3 py-3">
+      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lemon-50);">2</span>
+      <div>
+        <div class="font-medium">Reserve</div>
+        <div class="text-sm text-neutral-600">No deposit! Pay 24h before</div>
+      </div>
+    </li>
+    <li class="flex items-start gap-3 py-3">
+      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--sky-50);">3</span>
+      <div>
+        <div class="font-medium">Meet &amp; greet (free)</div>
+        <div class="text-sm text-neutral-600">Routines, meds, vet, keys</div>
+      </div>
+    </li>
+    <li class="flex items-start gap-3 py-3">
+      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lilac-50);">4</span>
+      <div>
+        <div class="font-medium">Visits</div>
+        <div class="text-sm text-neutral-600">Report + photos every visit. Simple meds included</div>
+      </div>
+    </li>
+    <li class="flex items-start gap-3 py-3 last:pb-0">
+      <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ring-1 ring-neutral-200" style="background: var(--lemon-50);">5</span>
+      <div>
+        <div class="font-medium">Keys</div>
+        <div class="text-sm text-neutral-600">Off-site storage. Optional key holding</div>
+      </div>
+    </li>
+  </ol>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-  <!-- Why we're different -->
-
-  <!-- Care Standards -->
-<section id="standards" class="bg-white border-y border-neutral-200/70">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-    <h2 class="text-3xl font-bold tracking-tight">Care Standards</h2>
-    <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-neutral-800">
-      <li>• Calm entry, greet if cat consents, fresh water first</li>
-      <li>• Feed as instructed; log appetite/leftovers</li>
-      <li>• Litter refresh & tidy surrounding area</li>
-      <li>• Play/enrichment rotation or quiet companionship</li>
-      <li>• Brush if allowed; check for changes (eyes/coat/behaviour)</li>
-      <li>• Simple meds as instructed; log dose/time</li>
-      <li>• Quick sweep of bowls/litter area; lock-up checklist</li>
-      <li>• Care Report sent before the visit window ends</li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- Reviews -->
-<section id="reviews" class="relative border-y border-neutral-200/70">
-
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-
-    <div class="flex justify-center">
-      <span class="inline-flex items-center rounded-full bg-white/70 backdrop-blur px-3 py-1 text-xs font-medium ring-1 ring-neutral-200">
-        ⭐️⭐️⭐️⭐️⭐️ Rated by West London cat parents
+  <!-- 5. Reviews as a quote strip -->
+  <section id="reviews" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20 scroll-mt-24">
+    <div class="flex justify-center">⭐️⭐️⭐️⭐️⭐️ Rated by West London cat parents
       </span>
     </div>
 
@@ -522,48 +468,34 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
     <div class="mt-8 grid gap-6 md:grid-cols-3">
 
       <!-- 1. Nervous / territorial cat + home left clean -->
-      <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <figure class="card p-6 md:p-8">
         <div class="h-1.5 w-16 rounded-full"
-             style="background: linear-gradient(90deg, var(--brand-600), var(--accent-1));"></div>
+             style="background: linear-gradient(90deg, var(--brand-600), var(--accent-1));"></div></div>
+    <h2 class="mt-4 text-center text-3xl font-bold tracking-tight">Loved by cats, trusted by humans</h2>
+    <div class="mt-8 grid gap-8 md:grid-cols-3">
+      <figure>
         <blockquote class="mt-4 text-neutral-800">“Sam is so fabulous that I feel at ease to leave my nervous cat with her. She sent me videos and photos and updates every visit. And found the house as clean as before we left. She spent time to comfort and calm my nervous and territorial cat.”</blockquote>
         <figcaption class="mt-3 text-sm text-neutral-600">— a nervous cat’s human</figcaption>
-      </figure>
-
-      <!-- 2. Depth of care — the long one, trimmed -->
-      <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="h-1.5 w-16 rounded-full"
-             style="background: linear-gradient(90deg, var(--accent-2), var(--brand-600));"></div>
+      </figure><figure>
         <blockquote class="mt-4 text-neutral-800">“Her prompt and consistent updates with photos and videos… she made sure I knew she was there spending quality time with Rosie, and not just feeding her and cleaning the litter box… not only routine care but a great nurturing environment filled with playful engagement and attentive grooming.”</blockquote>
         <figcaption class="mt-3 text-sm text-neutral-600">— Rosie’s human</figcaption>
-      </figure>
-
-
-
-
-      <!-- 6. Repeat client — the "as always" does the work -->
-      <figure class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="h-1.5 w-16 rounded-full"
-             style="background: linear-gradient(90deg, var(--accent-2), var(--accent-1));"></div>
+      </figure><figure>
         <blockquote class="mt-4 text-neutral-800">“Fantastic as always! Thanks for taking such great care of my boys, I know I can relax knowing they are being looked after so well!”</blockquote>
         <figcaption class="mt-3 text-sm text-neutral-600">— a returning client, two cats</figcaption>
       </figure>
-
     </div>
-
     <p class="mt-8 text-center text-sm text-neutral-600">
       Verified reviews from clients in Ealing, West Ealing and Hanwell, left on
       <a class="underline" href="https://www.rover.com/members/samanta-c-your-local-cat-enthusiast/" target="_blank" rel="noopener"><strong>Rover</strong></a>.
       Lightly trimmed for length; never reworded.
     </p>
+  </section>
 
-  </div>
-</section>
-
-<!-- FAQ -->
-<!-- FAQ -->
-<section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-  <h2 class="text-3xl font-bold tracking-tight">FAQ</h2>
-  <div class="mt-6 divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+  <!-- 6. Good to know: FAQ and policies together -->
+  <section id="faq" class="bg-white border-y border-neutral-200/70 scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <h2 class="text-3xl font-bold tracking-tight">Good to know</h2>
+      <div id="faq-list"><div class="mt-6 divide-y divide-[color:var(--hairline)] overflow-hidden card">
 
     <details class="p-5">
       <summary class="cursor-pointer font-medium">How do bookings work?</summary>
@@ -638,126 +570,17 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 </details>
 
 
-  </div>
-</section>
-
-
-  <!-- Contact -->
-  <section id="contact" class="bg-white border-y border-neutral-200/70">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="grid md:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 class="text-3xl font-bold tracking-tight">Get in touch</h2>
-          <p class="mt-3 text-neutral-700">Tell me about your cat and dates. I reply within 24 hours.</p>
-          <div class="mt-4 flex flex-col sm:flex-row gap-3">
-  <a href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20enquiry&body=Hi%2C%20I%27d%20like%20to%20check%20availability."
-     class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">
-    Email me
-  </a>
-  <a href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F"
-     target="_blank" rel="noopener"
-     class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-3 font-medium hover:border-neutral-400">
-    WhatsApp me
-  </a>
-</div>
-
-<p class="mt-3 text-xs text-neutral-500">
-  I’ll confirm availability and send a short intake form. 
-  You can also complete the 
-  <a class="underline" href="https://forms.gle/joKZvSuDiVDPszys5" target="_blank" rel="noopener">vet authorisation &amp; emergency consent</a> now.
-  Meet &amp; Greet happens after you decide to book.
-</p>
-          <details id="contactFormPanel" class="mt-6">
-  <summary class="cursor-pointer text-sm text-neutral-900 underline">
-    Prefer a web form? Click to fill it out
-  </summary>
-  <div class="mt-4">
-          <form id="contactForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" action="https://formspree.io/f/mgvzqelp" method="POST">
-            <!-- Attribution hidden fields (auto-filled by JS) -->
-            <input type="hidden" name="utm_source" id="utm_source">
-            <input type="hidden" name="utm_medium" id="utm_medium">
-            <input type="hidden" name="utm_campaign" id="utm_campaign">
-            <input type="hidden" name="utm_term" id="utm_term">
-            <input type="hidden" name="utm_content" id="utm_content">
-            <input type="hidden" name="landing_page" id="landing_page">
-            <input type="hidden" name="referrer" id="referrer">
-            <div>
-              <label class="block text-sm font-medium">Your name</label>
-              <input required name="name" type="text" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">Email</label>
-              <input required name="email" type="email" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">Phone / WhatsApp</label>
-              <input name="phone" type="tel" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">Postcode</label>
-              <input name="postcode" type="text" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">Start date</label>
-              <input name="start" type="date" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">End date</label>
-              <input name="end" type="date" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
-            </div>
-            <div class="sm:col-span-2">
-              <label class="block text-sm font-medium">Tell me about your cat(s)</label>
-              <textarea name="details" rows="5" placeholder="Names, routines, meds, quirks—everything helps" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
-            </div>
-            <div class="sm:col-span-2">
-              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-              <div id="recaptcha" class="mt-2"></div>
-            </div>
-            <div class="sm:col-span-2 flex items-center gap-3">
-              <button type="submit" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow ">Send request</button>
-              <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
-            </div>
-          </form>
-      </div>
-</details>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 shadow-sm">
-          <div class="mt-6 rounded-2xl bg-white border border-neutral-200 p-4 text-sm text-neutral-700">
-            <p><strong>Hours:</strong> 7am - 8pm daily</p>
-            <p class="mt-1"><strong>Contact:</strong> +44 7455 567874 </p>
-            <p class="mt-1"><strong>Email:</strong> hello.chitcat@gmail.com </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="relative border-b border-neutral-200/70">
-  <div class="absolute inset-0 -z-10 cta-bg"></div>
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 text-center">
-    <h2 class="text-2xl md:text-3xl font-bold">Travel without cat-guilt. I’ve got this.</h2>
-    <div class="mt-6">
-  <a href="#contact" class="inline-flex items-center justify-center rounded-xl btn-brand px-5 py-3 text-white font-medium shadow">
-    Check availability
-  </a>
-</div>
-  </div>
-</section>
-
-<!-- Policies (accordion) -->
-<section id="policies" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 scroll-mt-24">
-  <h2 class="text-3xl font-bold tracking-tight">Policies</h2>
-  <p class="mt-2 text-sm text-neutral-600">Tap to read. Links in the header/footer will open the right panel.</p>
-
-  <div class="mt-4 flex gap-3 text-sm">
+  </div></div>
+      <div id="policies" class="mt-12 scroll-mt-24">
+        <h3 class="text-xl font-semibold">Policies</h3>
+        <p class="mt-2 text-sm text-neutral-600">Tap to read. Links in the header/footer will open the right panel.</p>
+        <div class="mt-4 flex gap-3 text-sm">
     <button id="expandPolicies" type="button"
-      class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 hover:border-neutral-400">Expand all</button>
+      class="btn-ghost px-3 py-1.5 hover:border-neutral-400">Expand all</button>
     <button id="collapsePolicies" type="button"
-      class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 hover:border-neutral-400">Collapse all</button>
+      class="btn-ghost px-3 py-1.5 hover:border-neutral-400">Collapse all</button>
   </div>
-
-  <div class="mt-6 divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+        <div class="mt-6 divide-y divide-[color:var(--hairline)] overflow-hidden card">
   <!-- Terms -->
   <details id="termsPanel" class="p-5">
     <summary class="cursor-pointer font-medium text-lg">Terms &amp; Conditions</summary>
@@ -852,9 +675,97 @@ I’ll confirm availability by email or WhatsApp. Meet &amp; Greet + full intake
 </div>
   </details>
   </div>
-</section>
+      </div>
+    </div>
+  </section>
 
-
+  <!-- 7. One closing band -->
+  <section id="contact" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20 scroll-mt-24">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">Travel without cat-guilt. I’ve got this.</h2>
+        <p class="mt-3 text-neutral-700">Tell me about your cat and dates. I reply within 24 hours.</p>
+        <div class="mt-4 flex flex-col sm:flex-row gap-3">
+  <a href="mailto:hello.chitcat@gmail.com?subject=ChitCat%20enquiry&body=Hi%2C%20I%27d%20like%20to%20check%20availability."
+     class="inline-flex items-center justify-center btn-brand rounded-full px-5 py-3 text-white font-medium shadow">
+    Email me
+  </a>
+  <a href="https://wa.me/447455567874?text=Hi%20ChitCat%2C%20can%20I%20check%20availability%3F"
+     target="_blank" rel="noopener"
+     class="inline-flex items-center justify-center btn-ghost px-5 py-3 font-medium hover:border-neutral-400">
+    WhatsApp me
+  </a>
+</div>
+        <p class="mt-3 text-xs text-neutral-500">
+  I’ll confirm availability and send a short intake form. 
+  You can also complete the 
+  <a class="underline" href="https://forms.gle/joKZvSuDiVDPszys5" target="_blank" rel="noopener">vet authorisation &amp; emergency consent</a> now.
+  Meet &amp; Greet happens after you decide to book.
+</p>
+        <details id="contactFormPanel" class="mt-6">
+  <summary class="cursor-pointer text-sm text-neutral-900 underline">
+    Prefer a web form? Click to fill it out
+  </summary>
+  <div class="mt-4">
+          <form id="contactForm" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4" action="https://formspree.io/f/mgvzqelp" method="POST">
+            <!-- Attribution hidden fields (auto-filled by JS) -->
+            <input type="hidden" name="utm_source" id="utm_source">
+            <input type="hidden" name="utm_medium" id="utm_medium">
+            <input type="hidden" name="utm_campaign" id="utm_campaign">
+            <input type="hidden" name="utm_term" id="utm_term">
+            <input type="hidden" name="utm_content" id="utm_content">
+            <input type="hidden" name="landing_page" id="landing_page">
+            <input type="hidden" name="referrer" id="referrer">
+            <div>
+              <label class="block text-sm font-medium">Your name</label>
+              <input required name="name" type="text" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Email</label>
+              <input required name="email" type="email" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Phone / WhatsApp</label>
+              <input name="phone" type="tel" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Postcode</label>
+              <input name="postcode" type="text" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Start date</label>
+              <input name="start" type="date" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">End date</label>
+              <input name="end" type="date" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-medium">Tell me about your cat(s)</label>
+              <textarea name="details" rows="5" placeholder="Names, routines, meds, quirks—everything helps" class="field mt-1 w-full border px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+              <div id="recaptcha" class="mt-2"></div>
+            </div>
+            <div class="sm:col-span-2 flex items-center gap-3">
+              <button type="submit" class="inline-flex items-center justify-center btn-brand rounded-full px-5 py-3 text-white font-medium shadow ">Send request</button>
+              <p class="text-sm text-neutral-600">Or email <a class="underline" href="mailto:hello.chitcat@gmail.com">hello.chitcat@gmail.com</a></p>
+            </div>
+          </form>
+      </div>
+</details>
+      </div>
+      <div class="card p-6 md:p-8">
+        <h3 class="text-xl font-semibold">Get in touch</h3>
+        <div class="mt-6 card-quiet p-4 text-sm text-neutral-700">
+            <p><strong>Hours:</strong> 7am - 8pm daily</p>
+            <p class="mt-1"><strong>Contact:</strong> +44 7455 567874 </p>
+            <p class="mt-1"><strong>Email:</strong> hello.chitcat@gmail.com </p>
+          </div>
+      </div>
+    </div>
+  </section>
 
 <footer class="border-t border-neutral-200/70">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 items-start text-sm text-neutral-600 text-left">
@@ -1576,13 +1487,13 @@ function buildQuotePayload() {
 
 <!-- reCAPTCHA consent (simple) -->
 <div id="rc-banner"
-     class="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-xl w-[92vw] rounded-xl border border-neutral-300 bg-white px-4 py-3 shadow z-50 text-sm">
+     class="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-xl w-[92vw] btn-ghost px-4 py-3 shadow z-50 text-sm">
   This form uses Google reCAPTCHA to prevent spam. By continuing, you agree to Google’s
   <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/privacy">Privacy Policy</a>
   and <a class="underline" target="_blank" rel="noopener" href="https://policies.google.com/terms">Terms</a>.
   <div class="mt-2 flex gap-2">
     <button id="rc-accept" class="rounded-lg btn-brand px-3 py-1.5 text-white">I’m OK with this</button>
-    <button id="rc-later"  class="rounded-lg border border-neutral-300 bg-white px-3 py-1.5">Not now</button>
+    <button id="rc-later"  class="btn-ghost px-3 py-1.5">Not now</button>
   </div>
 </div>
 

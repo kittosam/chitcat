@@ -56,3 +56,30 @@
     header a:hover img { transform: rotate(-6deg) scale(1.15); }
 
     #contact { scroll-margin-top: 5rem; }
+
+
+/* ---------- Direction B: soft modern ---------- */
+:root{
+  --r-lg: 28px;   /* big surfaces */
+  --r-md: 20px;   /* nested surfaces */
+  --r-sm: 14px;   /* inputs */
+  --shadow-soft:    0 20px 50px -24px rgba(76,29,149,.35);
+  --shadow-soft-sm: 0 12px 30px -18px rgba(76,29,149,.28);
+  --hairline: rgba(124,58,237,.10);
+}
+.card      { background:#fff; border:1px solid var(--hairline); border-radius:var(--r-lg); box-shadow:var(--shadow-soft); }
+.card-sm   { background:#fff; border:1px solid var(--hairline); border-radius:var(--r-md); box-shadow:var(--shadow-soft-sm); }
+.card-quiet{ background:#fff; border:1px solid var(--hairline); border-radius:var(--r-md); }
+.chip      { background:var(--brand-50); color:var(--brand-700); border-radius:999px; border:1px solid var(--hairline); }
+
+/* pill buttons, keeping the existing brand gradient */
+.btn-brand { border-radius:999px; }
+.btn-ghost { background:#fff; color:var(--brand-700); border-radius:999px; box-shadow:inset 0 0 0 1px #ddd6fe; transition:box-shadow .15s ease, transform .15s ease; }
+.btn-ghost:hover { box-shadow:inset 0 0 0 1px var(--brand-600); transform:translateY(-1px); }
+
+/* softer form controls */
+.field { border-radius:var(--r-sm) !important; border-color:#e7e2f5 !important; }
+.field:focus { border-color:var(--brand-600) !important; }
+
+/* display type */
+h1,h2,h3,.display{ font-family:'Space Grotesk', Rubik, Inter, system-ui, sans-serif; letter-spacing:-.02em; }
